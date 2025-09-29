@@ -62,11 +62,11 @@ const Footer = () => (
 export default function Home() {
   return (
     <>
-        <Head>
+        <head>
             <title>電気回路図シンボル・ライブラリ | 無料CADフリー素材・ダウンロードサイト</title>
             <meta 
                 name="description" 
-                content="接点、リレー、開閉器など、電気回路図作成に必要なJIS/IEC規格の電気シンボルを無料で提供。DXF/DWGファイルをダウンロード可能。"
+                content="接点、リレー、開閉器など、電気回路図作成に必要なJIS規格の電気シンボルを無料で提供。DXF/SVGファイルをダウンロード可能。"
             />
             <script 
                 async 
@@ -74,7 +74,7 @@ export default function Home() {
                 crossOrigin="anonymous"
             ></script>
             {/* 任意: ファビコンやその他のメタデータもここに追加できます */}
-        </Head>
+        </head>
         <MainContentArea>
             <Header />
             <ContentWrapper>
