@@ -8,7 +8,7 @@ import swal from 'sweetalert2';
 import { Signals } from './signalsData'; 
 
 const SERVER = "https://electric-diagram-server.onrender.com"
-const base = process.env.NODE_ENV === 'production' ? '/electric_diagram_client/' : '/';
+const base = process.env.NODE_ENV === 'production' ? '/electric_diagram_client_nextjs/' : '/';
 const extSVG ={
   ext : ".svg",
   type: 'image/svg+xml',
