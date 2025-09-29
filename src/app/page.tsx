@@ -70,7 +70,7 @@ export default function Home() {
             />
             <script 
                 async 
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-[YOUR_PUB_ID]"
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9180260030467303"
                 crossOrigin="anonymous"
             ></script>
             {/* 任意: ファビコンやその他のメタデータもここに追加できます */}
