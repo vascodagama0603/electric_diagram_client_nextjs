@@ -1,16 +1,49 @@
 "use client"; 
 import {SymbolCatalog} from './SymbolCatalog'
-
+import Head from 'next/head'
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
+
+const SidebarAd = () => (
+    <AdContainer>
+        {/* レスポンシブまたは固定サイズの広告ユニット (サイドバー用) */}
+        <p>スポンサーリンク</p>
+        <ins 
+            className="adsbygoogle"
+            style={{ display: 'block', width: '100%', height: '250px' }} // スタイルは適宜調整
+            data-ad-client="ca-pub-[YOUR_PUB_ID]" // ご自身のPub IDに置き換え
+            data-ad-slot="[YOUR_AD_SLOT_ID_1]" // サイドバー用の広告スロットIDに置き換え
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+        ></ins>
+    </AdContainer>
+);
+
+const MainContentAd = () => (
+    <MainAdContainer>
+        {/* レスポンシブ広告ユニット (メインコンテンツ上部用) */}
+        <ins 
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-ad-client="ca-pub-9180260030467303" // ご自身のPub IDに置き換え
+            data-ad-slot="[YOUR_AD_SLOT_ID_2]" // メインコンテンツ用の広告スロットIDに置き換え
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+        ></ins>
+    </MainAdContainer>
+);
+
+
 const Header = () => (
     <StyledHeader>
-        <AppTitle>🔌 電気シンボル・ライブラリ</AppTitle>
+        <AppTitle>🔌 電気回路図シンボル・ライブラリ | CAD素材</AppTitle>
     </StyledHeader>
 );
 
 const Sidebar = () => (
     <StyledSidebar>
+
+        <SidebarAd />
         <SidebarTitle>カテゴリ</SidebarTitle>
         <SidebarList>
             <SidebarItem>接点 / スイッチ</SidebarItem>
@@ -29,11 +62,25 @@ const Footer = () => (
 export default function Home() {
   return (
     <>
+        <Head>
+            <title>電気回路図シンボル・ライブラリ | 無料CADフリー素材・ダウンロードサイト</title>
+            <meta 
+                name="description" 
+                content="接点、リレー、開閉器など、電気回路図作成に必要なJIS/IEC規格の電気シンボルを無料で提供。DXF/DWGファイルをダウンロード可能。"
+            />
+            <script 
+                async 
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-[YOUR_PUB_ID]"
+                crossOrigin="anonymous"
+            ></script>
+            {/* 任意: ファビコンやその他のメタデータもここに追加できます */}
+        </Head>
         <MainContentArea>
             <Header />
             <ContentWrapper>
                 {/*<Sidebar />*/}
                 <MainContent>
+                    <MainContentAd />
                     <SymbolCatalog />
                 </MainContent>
             </ContentWrapper>
@@ -130,4 +177,21 @@ const ContentWrapper = styled(Box)`
 const MainContent = styled.main`
     flex-grow: 1;
     padding: 20px 30px;
+`;
+
+const AdContainer = styled.div`
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e9ecef; /* 目立たせるための薄い背景 */
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6c757d;
+`;
+
+const MainAdContainer = styled.div`
+    margin-bottom: 30px;
+    min-height: 100px; /* 広告が読み込まれるまでのスペースを確保 */
+    background-color: #f1f3f5;
+    text-align: center;
+    padding: 5px 0;
 `;
