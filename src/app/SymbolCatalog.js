@@ -138,57 +138,6 @@ export function SymbolCatalog() {
 	);
 }
 
-function App() {
-    return (
-      <>
-                  {/* ======================================= */}
-            {/* 💡 SEO対策: React Helmet によるメタタグ設定 */}
-            {/* ======================================= */}
-      
-                <title>JIS電気シンボル ライブラリ | CAD用 DXF/SVG 無料ダウンロード</title>
-                <meta 
-                    name="description" 
-                    content="電気図面作成に必要なJIS規格の回路シンボルを無料提供。a接点、遮断器、押しボタンなどDXF/SVG形式でダウンロード可能。" 
-                />
-                {/* 検索エンジンのロボットに対して、このページのインデックスとリンクの追跡を許可 */}
-                <meta name="robots" content="index, follow" /> 
-                
-                {/* OGP設定 (SNSでの表示を最適化) */}
-                <meta property="og:title" content="JIS電気シンボル ライブラリ" />
-                <meta property="og:description" content="電気図面用シンボルをDXF/SVGで無料提供。" />
-                <meta property="og:type" content="website" />
-                {/* ⭐ サイトのURLとOGP画像のURLを忘れずに設定してください */}
-                {/* <meta property="og:url" content="https://yourwebsite.com/" /> */}
-                {/* <meta property="og:image" content="https://yourwebsite.com/ogp-image.jpg" /> */}
-  
-
-            {/* ======================================= */}
-            {/* 💡 Google広告/アナリティクス設定 (ヘッド内に追加をシミュレート) */}
-            {/* ======================================= */}
-     
-                {/* Google Analytics (GA4) タグの例 */}
-                {/* ⭐ ご自身のトラッキングIDに置き換えてください (G-XXXXXXXXXX) */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-                <script>
-                    {`
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', 'G-XXXXXXXXXX');
-                    `}
-                </script>
-                
-                {/* Google広告のリマーケティングタグの例 (任意) */}
-                {/* ⭐ 広告アカウントから取得したリマーケティングタグを貼り付けてください */}
-                {/* <script>
-                    {`
-                      // 広告アカウントから取得したスクリプトをここに貼り付けます
-                    `}
-                </script> */}
-     
-      </>
-    );
-}
 const StyledComment = styled.p`
   font-size: 0.85rem;
   color: #777; /* 薄い色でサブ情報として強調 */

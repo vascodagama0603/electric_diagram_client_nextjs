@@ -79,7 +79,7 @@ export default function Home() {
             <ContentWrapper>
                 {/*<Sidebar />*/}
                 <MainContent>
-                    <MainContentAd />
+                    {/* <MainContentAd /> */}
                     <SymbolCatalog />
                 </MainContent>
             </ContentWrapper>
