@@ -72,6 +72,7 @@ export default function Home() {
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9180260030467303"
                 crossOrigin="anonymous"
             ></script>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
             {/* 任意: ファビコンやその他のメタデータもここに追加できます */}
         </head>
         <MainContentArea>
@@ -83,6 +84,7 @@ export default function Home() {
                     <SymbolCatalog />
                 </MainContent>
             </ContentWrapper>
+            <p>JISC0617をもとにシンボルを制作しています</p>
             <Footer />
         </MainContentArea>
     </>
