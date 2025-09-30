@@ -3,54 +3,13 @@ import {SymbolCatalog} from './SymbolCatalog'
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
 
-const SidebarAd = () => (
-    <AdContainer>
-        {/* レスポンシブまたは固定サイズの広告ユニット (サイドバー用) */}
-        <p>スポンサーリンク</p>
-        <ins 
-            className="adsbygoogle"
-            style={{ display: 'block', width: '100%', height: '250px' }} // スタイルは適宜調整
-            data-ad-client="ca-pub-[YOUR_PUB_ID]" // ご自身のPub IDに置き換え
-            data-ad-slot="[YOUR_AD_SLOT_ID_1]" // サイドバー用の広告スロットIDに置き換え
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-        ></ins>
-    </AdContainer>
-);
 
-const MainContentAd = () => (
-    <MainAdContainer>
-        {/* レスポンシブ広告ユニット (メインコンテンツ上部用) */}
-        <ins 
-            className="adsbygoogle"
-            style={{ display: 'block' }}
-            data-ad-client="ca-pub-9180260030467303" // ご自身のPub IDに置き換え
-            data-ad-slot="[YOUR_AD_SLOT_ID_2]" // メインコンテンツ用の広告スロットIDに置き換え
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-        ></ins>
-    </MainAdContainer>
-);
 
 
 const Header = () => (
     <StyledHeader>
-        <AppTitle>🔌 電気回路図シンボル・ライブラリ | CAD素材</AppTitle>
+        <AppTitle>電気回路図シンボルライブラリ | CAD素材</AppTitle>
     </StyledHeader>
-);
-
-const Sidebar = () => (
-    <StyledSidebar>
-
-        <SidebarAd />
-        <SidebarTitle>カテゴリ</SidebarTitle>
-        <SidebarList>
-            <SidebarItem>接点 / スイッチ</SidebarItem>
-            <SidebarItem>開閉器 / 遮断器</SidebarItem>
-            <SidebarItem>リレー / コイル</SidebarItem>
-            <SidebarItem>その他</SidebarItem>
-        </SidebarList>
-    </StyledSidebar>
 );
 
 const Footer = () => (
@@ -62,18 +21,11 @@ export default function Home() {
   return (
     <>
         <head>
-            <title>電気回路図シンボル・ライブラリ | 無料CADフリー素材・ダウンロードサイト</title>
-            <meta 
-                name="description" 
-                content="接点、リレー、開閉器など、電気回路図作成に必要なJIS規格の電気シンボルを無料で提供。DXF/SVGファイルをダウンロード可能。"
-            />
             <script 
                 async 
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9180260030467303"
                 crossOrigin="anonymous"
             ></script>
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            {/* 任意: ファビコンやその他のメタデータもここに追加できます */}
         </head>
         <MainContentArea>
             <Header />

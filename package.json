@@ -13,6 +13,7 @@
   "dependencies": {
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.2",
+    "@svgr/webpack": "^8.1.0",
     "axios": "^1.12.2",
     "mui": "^0.0.1",
     "next": "15.5.4",

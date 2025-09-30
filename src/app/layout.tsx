@@ -19,6 +19,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "JIS電気シンボル ライブラリ | CAD用 DXF/SVG 無料ダウンロード",
   description: "電気図面作成に必要なJIS規格の回路シンボルを無料提供。a接点、遮断器、押しボタンなどDXF",
+  icons: {
+    icon: [
+      // SVGが最も高解像度で優先される
+      { url: '/favicon.svg', type: 'image/svg+xml' }, 
+      // 互換性のため、通常サイズのPNGやICOも併用推奨
+      { url: '/favicon.ico' },
+    ],
+},
 };
 
 export default function RootLayout({
