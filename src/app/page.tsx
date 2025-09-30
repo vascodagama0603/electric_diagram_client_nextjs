@@ -1,6 +1,5 @@
 "use client"; 
 import {SymbolCatalog} from './SymbolCatalog'
-import Head from 'next/head'
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
 
@@ -147,21 +146,6 @@ const SidebarItem = styled.li`
         font-weight: 600;
     }
 `;
-
-
-const OnImageStatus = styled.div`
-
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  font-size: 12px;
-  background: yellow;
-  opacity: 0.5;
-`;
-
 
 const MainContentArea = styled(Box)`
     display: flex;
