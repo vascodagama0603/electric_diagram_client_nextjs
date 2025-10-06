@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Header, Footer, MainContentArea, ContentWrapper, MainContent } from './components/LayoutComponents';
+
 
 
 
@@ -17,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JIS電気シンボル ライブラリ | CAD用 DXF/SVG 無料ダウンロード",
-  description: "電気図面作成に必要なJIS規格の回路シンボルを無料提供。a接点、遮断器、押しボタンなどDXF",
+  title: "CAD用 電気シンボル DXF/SVG 無料ダウンロード",
+  description: "電気図面作成に必要なJIS規格の電気シンボルを提供します。a接点、遮断器、押しボタンなど",
   icons: {
     icon: [
       // SVGが最も高解像度で優先される
@@ -36,8 +37,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
+      {/* AdSenseのスクリプトをheadに追加 */}
+      <head>
+          <script 
+              async 
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9180260030467303"
+              crossOrigin="anonymous"
+          ></script>
+        
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <MainContentArea>
+            <Header />
+            <ContentWrapper>
+                {/* <Sidebar /> の場所 */}
+                <MainContent>
+                    {children} {/* 各ページのコンテンツがここに入る */}
+                </MainContent>
+            </ContentWrapper>
+            <Footer />
+        </MainContentArea>
       </body>
     </html>
   );

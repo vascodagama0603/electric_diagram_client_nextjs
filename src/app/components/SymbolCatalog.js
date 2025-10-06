@@ -39,7 +39,7 @@ export function SymbolCatalog() {
 
             return pictures.filter(picture => {
             // 検索フィールド (search) または キャプション (caption) にキーワードが含まれているかチェック
-            const searchString = `${picture.search} ${picture.subcaption} ${picture.text}`.toLowerCase();
+            const searchString = `${picture.search} ${picture.subcaption} ${picture.id}`.toLowerCase();
             return searchString.includes(searchTerm.toLowerCase());
         });
     }, [searchTerm, pictures]); // searchTerm か pictures が変わった時のみ再計算
@@ -57,13 +57,13 @@ export function SymbolCatalog() {
   const downloadDxf = async (picture,extType) => {
     try {
       setFlags(prev => prev.map((flag, i) => i === picture.id ? true : flag))
-      const response = await axios.get(extType.url+ picture.text, {
+      const response = await axios.get(extType.url+ picture.id, {
         responseType: 'blob', 
       });
       const blob = new Blob([response.data], { type: extType.type });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = picture.text+extType.ext; // The default filename for the download
+      link.download = picture.id+extType.ext; // The default filename for the download
       document.body.appendChild(link); // Append to the document body
       link.click();
       URL.revokeObjectURL(link.href);
@@ -111,7 +111,7 @@ export function SymbolCatalog() {
             <StatusText>ダウンロード中...</StatusText>
             </StyledStatusContainer>
           )}
-            <StyledImage src={base + picture.src} />
+            <StyledImage src={base + picture.id +".svg"} />
   
             
             {isHoveredOnPicture(picture.id) && (
@@ -130,7 +130,8 @@ export function SymbolCatalog() {
               </StyledOnImageButton>
             )}
             <StyledComment>{picture.caption}</StyledComment>
-            <StyledSubComment>{picture.subcaption}</StyledSubComment>
+            <StyledSubComment>{"図記号番号 " + picture.did}</StyledSubComment>
+            <StyledSubComment>{"識別番号 " + picture.id}</StyledSubComment>
           </SignalBox>
         ))}
       </StyledImageArea>
