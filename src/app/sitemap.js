@@ -1,5 +1,8 @@
 // app/sitemap.js
 
+// ★ 修正点: このファイルを静的に扱うようNext.jsに明示的に指示
+export const dynamic = 'force-static'; 
+
 // サイトのベースURLを正確に設定してください
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://denkizumen.com'; 
 
