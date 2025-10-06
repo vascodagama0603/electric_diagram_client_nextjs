@@ -4,9 +4,20 @@ import { Box } from "@mui/material";
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import swal from 'sweetalert2';
-
+import { IoMdCloseCircle } from 'react-icons/io'; 
 import { Signals } from './signalsData'; 
 
+const getDescription = (id) => {
+  console.log("ID:",id)
+    switch(id) {
+        case 227: return "a接点（常開接点）は、リレーや接触器に電源が投入されていない待機状態（非励磁状態）のときに開いており、電源が投入されると閉じる接点です。最も一般的に使用される接点で、回路図では接点番号の末尾に「a」を付けて示されます。主に回路の投入や起動に使用されます。このシンボルのDXF/SVGファイルを無料でダウンロードできます。";
+        case 229: return "b接点（常閉接点）は、待機状態（非励磁状態）のときに閉じており、電源が投入されると開く接点です。回路図では接点番号の末尾に「b」を付けて示されます。主に回路の停止やインターロック、安全回路に使用され、電源喪失時に回路が遮断されるフェイルセーフな用途にも適しています。このシンボルのDXF/SVGファイルを無料でダウンロードできます。";
+        case 243: return "a接点(オフディレイ)は、リレーへの電源が切断された後、設定された時間が経過してから動作（開く）するタイマー接点です。オフディレイは「復帰遅延」とも呼ばれ、特定の機器を一定時間動かし続ける場合などに利用されます。高品質なCAD素材を無料で提供しています。";
+        case 244: return "a接点(オンディレイ)は、リレーに電源が投入されてから、設定された時間が経過した後に動作（閉じる）するタイマー接点です。オンディレイは「動作遅延」とも呼ばれ、機器の起動タイミングを遅らせるインターロックやシーケンス制御で頻繁に利用されます。JIS規格に基づいたシンボルです。";
+        // デフォルトの解説を充実させる
+        default: return "このシンボルに関する詳細な解説文は準備中です。このシンボルはJIS規格 C0617 に基づいて制作されており、電気図面で使用される標準的な記号です。ファイル形式はSVGとDXFに対応しており、無料でダウンロードいただけます。";
+    }
+}
 const SERVER = "https://electric-diagram-server.onrender.com"
 const base = process.env.NODE_ENV === 'production' ? '/' : '/';
 const extSVG ={
@@ -29,9 +40,10 @@ export function SymbolCatalog() {
   const [pictures, setPictures] = useState(Signals);
   const [hoveredPictureId, setHoveredPictureId] = useState(null);
   const [onHover, setOnHover] = useState(false);
-  const [flags, setFlags] = useState(Array(pictures.length).fill(false));
+  const [flags, setFlags] = useState({});
+  const [selectedPictureId, setSelectedPictureId] = useState(null);
 
-    const filteredPictures = React.useMemo(() => {
+  const filteredPictures = React.useMemo(() => {
         if (!searchTerm) {
             // 検索ワードがない場合は全件返す
             return pictures;
@@ -56,7 +68,7 @@ export function SymbolCatalog() {
 
   const downloadDxf = async (picture,extType) => {
     try {
-      setFlags(prev => prev.map((flag, i) => i === picture.id ? true : flag))
+      setFlags(prev => ({ ...prev, [picture.id]: true }));
       const response = await axios.get(extType.url+ picture.id, {
         responseType: 'blob', 
       });
@@ -76,10 +88,14 @@ export function SymbolCatalog() {
         text: "ダウンロードできませんでした",
       });      
       console.error('Error downloading the '+extType+' file:', error);
+    }finally {
+      // ★ 修正 3: 完了時またはエラー時に特定のIDのフラグを false に設定 (finallyブロックの使用を推奨)
+      setFlags(prev => ({ ...prev, [picture.id]: false }));
     }
-      setFlags(prev => prev.map((flag, i) => i === picture.id ? false : flag))
   };
-
+  const selectedPicture = selectedPictureId !== null 
+    ? pictures.find(p => p.id === selectedPictureId)
+    : null;
 
 	return (
 		<>
@@ -91,11 +107,28 @@ export function SymbolCatalog() {
           // 4. 入力時に searchTerm State を更新
           onChange={(e) => setSearchTerm(e.target.value)}
       />
+
+      {selectedPicture && (
+          <StyledOverlay onClick={() => setSelectedPictureId(null)}>
+            <StyledDescriptionBox onClick={(e) => e.stopPropagation()}>
+                <CloseButton onClick={() => setSelectedPictureId(null)} title="閉じる">
+                    <IoMdCloseCircle size={30} />
+                </CloseButton>
+                <DescriptionTitle>
+                    {selectedPicture.caption} ({selectedPicture.did}) の解説
+                </DescriptionTitle>
+                <DescriptionContent>
+                    {selectedPicture.discription}
+                </DescriptionContent>
+            </StyledDescriptionBox>
+          </StyledOverlay>
+      )}
       <StyledImageArea>
         {filteredPictures.map((picture) => (
           <SignalBox
             key={picture.id}
             sx={{ position: "relative" }}
+            onClick={() => setSelectedPictureId(picture.id)} 
             onMouseEnter={() => {
               setHoveredPictureId(picture.id);
               setOnHover(true);
@@ -118,19 +151,23 @@ export function SymbolCatalog() {
               <StyledOnImageButton
               >
                 <SvgButton
-                  onClick={() => downloadDxf(picture,extSVG)}
-                  //onKeyDown={() => handleRemovePicture(picture.id)}
+                      onClick={(e) => {
+                       e.stopPropagation(); // 親要素のonClickイベントが発火するのを防ぐ
+                       downloadDxf(picture,extSVG);
+                   }}
                   tabIndex={0}
                 >SVG</SvgButton>
                 <DxfButton
-                  onClick={() => downloadDxf(picture,extDXF)}
-                  //onKeyDown={() => handleRemovePicture(picture.id)}
-                  tabIndex={0}
+                onClick={(e) => {
+                       e.stopPropagation(); // 親要素のonClickイベントが発火するのを防ぐ
+                       downloadDxf(picture,extDXF);
+                   }}
+                tabIndex={0}
                 >DXF</DxfButton>
               </StyledOnImageButton>
             )}
             <StyledComment>{picture.caption}</StyledComment>
-            <StyledSubComment>{"図記号番号 " + picture.did}</StyledSubComment>
+            <StyledSubComment>{"図番号 " + picture.did}</StyledSubComment>
             <StyledSubComment>{"識別番号 " + picture.id}</StyledSubComment>
           </SignalBox>
         ))}
@@ -138,18 +175,76 @@ export function SymbolCatalog() {
 		</>
 	);
 }
+// 1. オーバーレイ (画面全体を覆う半透明の背景)
+const StyledOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 黒の半透明 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 最前面に表示 */
+`;
 
+// 2. モーダル本体
+const StyledDescriptionBox = styled.div`
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #ffffff; /* 白の背景 */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    /* 軽くアニメーション */
+    transform: scale(1);
+    transition: transform 0.3s ease-out;
+`;
+
+// 3. 閉じるボタン
+const CloseButton = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #a0a0a0;
+    padding: 5px;
+
+    &:hover {
+        color: #e74c3c; /* ホバーで赤く */
+    }
+`;
+
+const DescriptionTitle = styled.h3`
+    font-size: 1.5rem;
+    color: #0056b3;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+`;
+
+const DescriptionContent = styled.p`
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333;
+    text-align: justify;
+`;
 const StyledComment = styled.p`
-  font-size: 0.85rem;
+  font-size: 0.5rem;
   color: #777; /* 薄い色でサブ情報として強調 */
   margin: 4px auto 10px;
 `;
 
 const StyledSubComment = styled.p`
-  font-size: 1.1rem;
+  font-size: 0.5rem;
   font-weight: 600; /* 太字にして目立たせる */
   color: #333; /* 濃いめの色 */
-  margin: 10px auto 0px;
+  margin: 5px auto 0px;
 `;
 
 const StyledImageArea = styled.div`
@@ -166,22 +261,23 @@ const StyledImage = styled.img`
   object-fit: contain;
   margin: 10px;
 
-  max-width: 200px;
-  height: 200px;
+  max-width: 100px;
+  height: 100px;
 `;
 
 const StyledOnImageButton = styled.div`
   cursor: pointer;
   position: absolute;
   bottom: 5px;
-  right: 15px;
+  right: 5px;
   color: #fff;
   
 `;
 
 const SvgButton = styled.button`
-  width: 40px;
-  height: 40px;
+  font-size: 0.8rem;
+  width: 30px;
+  height: 30px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -209,10 +305,10 @@ const SignalBox = styled(Box)`
   /* カードとしての視覚的改善 */
   background-color: #ffffff; /* 背景を白に設定 */
   border: 1px solid #e0e0e0; /* 薄い境界線 */
-  border-radius: 12px; /* 角を丸く */
+  border-radius: 6px; /* 角を丸く */
   padding: 10px;
-  margin: 15px; /* カード間のスペースを広げる */
-  width: 250px; /* 最大幅を固定して整列しやすく */
+  margin: 5px; /* カード間のスペースを広げる */
+  width: 130px; /* 最大幅を固定して整列しやすく */
   text-align: center;
   
   /* アニメーションの追加 */
@@ -220,13 +316,10 @@ const SignalBox = styled(Box)`
   
   &:hover {
     box-shadow: 0px 8px 16px rgba(0, 40, 80, 0.1); /* ホバーでより立体的な影 */
-    transform: translateY(-5px); /* 持ち上がる効果 */
+    transform: translateY(-7px); /* 持ち上がる効果 */
     border-color: #007bff; /* ホバーで主要な色に */
   }
 `;
-
-
-
 
 const PageTitle = styled.h2`
     font-size: 2rem;
