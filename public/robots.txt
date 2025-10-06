@@ -1,0 +1,7 @@
+# robots.txt
+
+User-agent: *
+Allow: /
+
+# サイトマップの場所を通知
+Sitemap: https://denkizumen.com/sitemap.xml
