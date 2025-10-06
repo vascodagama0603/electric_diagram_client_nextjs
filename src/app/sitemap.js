@@ -1,7 +1,7 @@
 // app/sitemap.js
 
 // サイトのベースURLを正確に設定してください
-const baseUrl = 'https://denkizumen.com'; 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://denkizumen.com'; 
 
 export default async function sitemap() {
   const routes = [
