@@ -107,35 +107,35 @@ export const Signals = [
     search:"break,b接点,ブレイク,off,delay",
     caption:"b接点(オフディレイ)",
     did:"07-05-03",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"b接点(オフディレイ)は、リレーへの電源が切断された後、設定された時間が経過するまで動作（開く→閉じる）しないタイマー接点です。回路の停止や復旧の順序を調整する目的で利用されます。"
   },
   {
     id: BREAK_CONTACT_DELAYED_CLOSING,
     search:"break,b接点,ブレイク,on,,delay",
     caption:"b接点(オンディレイ)",
     did:"07-05-04",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"b接点(オンディレイ)は、リレーに電源が投入されてから、設定された時間が経過した後に動作（閉じる→開く）するタイマー接点です。特定の条件が満たされた後、一定の時間を置いてから回路を遮断する用途に利用されます。"
   },
   {
     id: MAKE_CONTACT_DELAYED,
     search:"make,a接点,メーク,on,off,delay",
     caption:"a接点(オンディレイオフディレイ)",
     did:"07-05-05",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"a接点(オンディレイオフディレイ)は、電源投入時と切断時の両方で時間遅れ動作を持つタイマー接点です。複雑なシーケンス制御において、起動と停止の両方のタイミングを精密に調整する際に使用されます。"
   },
   {
     id: BREAK_CONTACT_DELAYED,
     search:"break,b接点,ブレイク,on,off,delay",
     caption:"b接点(オンディレイオフディレイ)",
     did:"-",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"b接点(オンディレイオフディレイ)は、電源投入時と切断時の両方で時間遅れ動作を持つタイマー接点です。複雑なインターロックや安全回路において、遮断と復帰の両方のタイミングを精密に調整する際に使用されます。"
   },
   {
     id: MAKE_CONTACT_MANUAL,
     search:"make,a接点,メーク,マニュアル,ボタン,manual",
     caption:"マニュアルボタンa接点",
     did:"07-A6-02(旧図)",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"保護枠付きや手動操作を示す押しボタンスイッチのa接点です。通常、操作者が直接触れて回路を投入するために使用されます。"
   },
   // {
   // id: BREAK_CONTACT_MANUAL,
@@ -156,14 +156,14 @@ export const Signals = [
     search:"make,a接点,メーク,push",
     caption:"押しボタンa接点",
     did:"07-07-02",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"押しボタンスイッチのa接点（常開）を示します。ボタンを押している間だけ回路を閉じるモーメンタリ動作に多く利用され、回路の始動（スタート）に用いられます。"
   },
   {
     id: BREAK_CONTACT_PUSH_BUTTON,
     search:"break,b接点,ブレイク,push",
     caption:"押しボタンb接点",
     did:"-",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"押しボタンスイッチのb接点（常閉）を示します。ボタンを押している間だけ回路を開くモーメンタリ動作に多く利用され、回路の停止（ストップ）に用いられます。"
   },
   // {
   //   id: MAKE_CONTACT_PUSH_BUTTON_POSITIBVE,
@@ -177,35 +177,35 @@ export const Signals = [
     search:"make,a接点,メーク,pull",
     caption:"引きボタンa接点",
     did:"07-07-03",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"プルスイッチや、操作部を引くことで動作するタイプの押しボタンスイッチのa接点を示します。主に特定の操作や解除に使用されます。"
   },
   {
     id: MAKE_CONTACT_TWIST_BUTTON,
     search:"make,a接点,メーク,twist",
     caption:"ひねりボタンa接点",
     did:"07-07-04",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"**ひねり操作（ツイスト）**で保持・解除を行うタイプのスイッチのa接点を示します。ロックされた状態を解除してから操作する用途などに用いられます。"
   },
   {
     id: BREAK_CONTACT_EMERGENCY_STOP,
     search:"ブレイク,b接点,emergency,break",
     caption:"非常停止ボタン",
     did:"07-07-06",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"危険な状態が発生した際に、回路を強制的に遮断するためのラッチング式のb接点です。フェイルセーフ設計に基づいており、最も高い安全性が求められる回路で使用されます。"
   },
   {
     id: MAKE_CONTACT_LIMIT,
     search:"make,a接点,メーク,limit",
     caption:"リミット接点",
     did:"07-08-01",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"機械的な移動や位置を検出するリミットスイッチのa接点です。機械部品が所定の位置に到達したことを検出する用途（例：動作開始条件）に用いられます。"
   },
   {
     id: BREAK_CONTACT_LIMIT,
     search:"break,ブレイク,limit",
     caption:"リミットb接点",
     did:"07-08-02",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"機械的な移動や位置を検出するリミットスイッチのb接点です。機械部品が所定の位置にある間、回路を閉じる用途（例：動作終了条件）に用いられます。"
   },
   // {
   //   id: ASSEMBLY_CONTACT_LIMIT,
@@ -268,7 +268,7 @@ export const Signals = [
     search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器",
     caption:"電磁接触器a接点",
     did:"7-13-02",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
   },
   // {
   //   id: MAKE_CONTACTOR_AUTO_TRIP,
@@ -282,28 +282,28 @@ export const Signals = [
     search:"break,b接点,ブレイク,contactor,コンタクタ,電磁,接触器",
     caption:"電磁接触器b接点",
     did:"7-13-04",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"電磁接触器の補助回路のb接点を示します。主に電磁接触器が動作していないことの確認や、インターロック（相互の同時動作防止）回路に利用されます。"
   },
   {
     id: CIRCUIT_BREAKER,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,1P",
     caption:"サーキットブレーカ1極",
     did:"7-13-08",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"1極（単相または直流）の配線用遮断器（ノーヒューズブレーカなど）を示します。過電流や短絡事故が発生した際に、自動で回路を遮断し機器を保護します。"
   },
   {
     id: CIRCUIT_2P_BREAKER,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,2P",
     caption:"サーキットブレーカ2極",
     did:"-",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"2極（単相2線、または三相の一部）の配線用遮断器を示します。過負荷や短絡から回路を保護し、手動での開閉操作も可能です。"
   },
   {
     id: CIRCUIT_3P_BREAKER,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,3P",
     caption:"サーキットブレーカ3極",
     did:"-",
-    discription:"このシンボルに関する詳細な解説文は準備中です。"
+    discription:"3極（三相3線）の配線用遮断器を示します。動力回路などの三相電源ラインを一括で保護・遮断する目的で使用されます。"
   },
   // {
   //   id: COIL_GENEREL,

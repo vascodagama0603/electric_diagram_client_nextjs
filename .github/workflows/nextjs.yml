@@ -79,8 +79,8 @@ jobs:
         env:
           # 登録したシークレットを変数として渡す
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
-          NEXT_PUBLIC_ADSENCE_URL: ${{ secrets.ADSENCE_URL }}
-          NEXT_PUBLIC_SERVER_URL: ${{ secrets.SERVER_URL }}
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+          NEXT_PUBLIC_ADSENCE_URL: ${{ secrets.NEXT_PUBLIC_ADSENCE_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
