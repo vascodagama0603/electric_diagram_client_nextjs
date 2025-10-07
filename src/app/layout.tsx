@@ -41,7 +41,7 @@ export default function RootLayout({
       <head>
           <script 
               async 
-              src={process.env.ADSENCE_URL}
+              src={process.env.NEXT_PUBLIC_ADSENCE_URL}
               crossOrigin="anonymous"
           ></script>
         

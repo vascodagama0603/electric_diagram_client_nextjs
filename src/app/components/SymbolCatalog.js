@@ -7,33 +7,20 @@ import swal from 'sweetalert2';
 import { IoMdCloseCircle } from 'react-icons/io'; 
 import { Signals } from './signalsData'; 
 
-const getDescription = (id) => {
-  console.log("ID:",id)
-    switch(id) {
-        case 227: return "a接点（常開接点）は、リレーや接触器に電源が投入されていない待機状態（非励磁状態）のときに開いており、電源が投入されると閉じる接点です。最も一般的に使用される接点で、回路図では接点番号の末尾に「a」を付けて示されます。主に回路の投入や起動に使用されます。このシンボルのDXF/SVGファイルを無料でダウンロードできます。";
-        case 229: return "b接点（常閉接点）は、待機状態（非励磁状態）のときに閉じており、電源が投入されると開く接点です。回路図では接点番号の末尾に「b」を付けて示されます。主に回路の停止やインターロック、安全回路に使用され、電源喪失時に回路が遮断されるフェイルセーフな用途にも適しています。このシンボルのDXF/SVGファイルを無料でダウンロードできます。";
-        case 243: return "a接点(オフディレイ)は、リレーへの電源が切断された後、設定された時間が経過してから動作（開く）するタイマー接点です。オフディレイは「復帰遅延」とも呼ばれ、特定の機器を一定時間動かし続ける場合などに利用されます。高品質なCAD素材を無料で提供しています。";
-        case 244: return "a接点(オンディレイ)は、リレーに電源が投入されてから、設定された時間が経過した後に動作（閉じる）するタイマー接点です。オンディレイは「動作遅延」とも呼ばれ、機器の起動タイミングを遅らせるインターロックやシーケンス制御で頻繁に利用されます。JIS規格に基づいたシンボルです。";
-        // デフォルトの解説を充実させる
-        default: return "このシンボルに関する詳細な解説文は準備中です。このシンボルはJIS規格 C0617 に基づいて制作されており、電気図面で使用される標準的な記号です。ファイル形式はSVGとDXFに対応しており、無料でダウンロードいただけます。";
-    }
-}
-const SERVER = "https://electric-diagram-server.onrender.com"
 const base = process.env.NODE_ENV === 'production' ? '/' : '/';
 const extSVG ={
   ext : ".svg",
   type: 'image/svg+xml',
   text: 'SVG',
-  url:SERVER+"/svg/"
+  url:process.env.NEXT_PUBLIC_SERVER_URL+"/svg/"
 }
 const extDXF ={
   ext : ".dxf",
   type: 'image/vnd.dxf',
   text: 'DXF',
-  url:SERVER+"/dxf/"
+  url:process.env.NEXT_PUBLIC_SERVER_URL+"/dxf/"
 }
 
-//const SERVER = process.env.SERVER_ADDRESS
 export function SymbolCatalog() {
 
   const [searchTerm, setSearchTerm] = useState(''); 
