@@ -110,55 +110,64 @@ export function SymbolCatalog() {
             </StyledDescriptionBox>
           </StyledOverlay>
       )}
-      <StyledImageArea>
-        {filteredPictures.map((picture) => (
-          <SignalBox
-            key={picture.id}
-            sx={{ position: "relative" }}
-            onClick={() => setSelectedPictureId(picture.id)} 
-            onMouseEnter={() => {
-              setHoveredPictureId(picture.id);
-              setOnHover(true);
-            }}
-            onMouseLeave={() => {
-              setHoveredPictureId(null);
-              setOnHover(false);
-            }}
-          >
-          {flags[picture.id] && (
-            <StyledStatusContainer>
-            <Spinner />
-            <StatusText>ダウンロード中...</StatusText>
-            </StyledStatusContainer>
-          )}
-            <StyledImage src={base + picture.id +".svg"} />
-  
-            
-            {isHoveredOnPicture(picture.id) && (
-              <StyledOnImageButton
-              >
-                <SvgButton
-                      onClick={(e) => {
-                       e.stopPropagation(); // 親要素のonClickイベントが発火するのを防ぐ
-                       downloadDxf(picture,extSVG);
-                   }}
-                  tabIndex={0}
-                >SVG</SvgButton>
-                <DxfButton
-                onClick={(e) => {
-                       e.stopPropagation(); // 親要素のonClickイベントが発火するのを防ぐ
-                       downloadDxf(picture,extDXF);
-                   }}
-                tabIndex={0}
-                >DXF</DxfButton>
-              </StyledOnImageButton>
-            )}
-            <StyledComment>{picture.caption}</StyledComment>
-            <StyledSubComment>{"図番号 " + picture.did}</StyledSubComment>
-            <StyledSubComment>{"識別番号 " + picture.id}</StyledSubComment>
-          </SignalBox>
-        ))}
-      </StyledImageArea>
+    {filteredPictures.length === 0 && searchTerm !== '' ? (
+        // 検索語句があり、結果が0件の場合にメッセージを表示
+        <NotFoundMessage>
+            「{searchTerm}」に一致するシンボルは見つかりませんでした。
+            <p style={{ fontSize: '0.9rem', color: '#999', marginTop: '10px' }}>
+                検索ワードを変更してお試しください。
+            </p>
+        </NotFoundMessage>
+    ) : (
+        // 結果がある場合、または検索前（searchTerm === ''）はシンボル一覧を表示
+        <StyledImageArea>
+            {filteredPictures.map((picture) => (
+                <SignalBox
+                    key={picture.id}
+                    sx={{ position: "relative" }}
+                    onClick={() => setSelectedPictureId(picture.id)} 
+                    onMouseEnter={() => {
+                        setHoveredPictureId(picture.id);
+                        setOnHover(true);
+                    }}
+                    onMouseLeave={() => {
+                        setHoveredPictureId(null);
+                        setOnHover(false);
+                    }}
+                >
+                    {flags[picture.id] && (
+                        <StyledStatusContainer>
+                            <Spinner />
+                            <StatusText>ダウンロード中...</StatusText>
+                        </StyledStatusContainer>
+                    )}
+                    <StyledImage src={base + picture.id +".svg"} />
+                    
+                    {isHoveredOnPicture(picture.id) && (
+                        <StyledOnImageButton>
+                            <SvgButton
+                                onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    downloadDxf(picture,extSVG);
+                                }}
+                                tabIndex={0}
+                            >SVG</SvgButton>
+                            <DxfButton
+                                onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    downloadDxf(picture,extDXF);
+                                }}
+                                tabIndex={0}
+                            >DXF</DxfButton>
+                        </StyledOnImageButton>
+                    )}
+                    <StyledComment>{picture.caption}</StyledComment>
+                    <StyledSubComment>{"図番号 " + picture.did}</StyledSubComment>
+                    <StyledSubComment>{"識別番号 " + picture.id}</StyledSubComment>
+                </SignalBox>
+            ))}
+        </StyledImageArea>
+    )}
 		</>
 	);
 }
@@ -315,6 +324,20 @@ const PageTitle = styled.h2`
     border-bottom: 3px solid #007bff;
     padding-bottom: 5px;
 `;
+const NotFoundMessage = styled.div`
+    width: 100%;
+    text-align: center;
+    padding: 50px 0;
+    font-size: 1.2rem;
+    color: #6c757d; /* グレー系の色 */
+    background-color: #f8f9fa; /* 薄い背景色 */
+    border-radius: 8px;
+    margin-top: 20px;
+    /* サイドバーとのスペースを調整するため、幅を親要素に合わせる */
+    max-width: 95%; 
+    margin: 30px auto; 
+`;
+
 const SearchInput = styled.input`
     width: 100%;
     padding: 12px 20px;
@@ -324,6 +347,7 @@ const SearchInput = styled.input`
     font-size: 1.1rem;
     outline: none;
     transition: border-color 0.3s;
+    box-sizing: border-box; 
 
     &:focus {
         border-color: #007bff; /* フォーカス時に青く強調 */
