@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       // SVGが最も高解像度で優先される
-      { url: '/favicon.svg', type: 'image/svg+xml' }, 
+      { url: './favicon.svg', type: 'image/svg+xml' }, 
       // 互換性のため、通常サイズのPNGやICOも併用推奨
-      { url: '/favicon.ico' },
+      { url: './favicon.ico' },
     ],
 },
 };
@@ -41,7 +41,7 @@ export default function RootLayout({
       <head>
           <script 
               async 
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9180260030467303"
+              src={process.env.ADSENCE_URL}
               crossOrigin="anonymous"
           ></script>
         

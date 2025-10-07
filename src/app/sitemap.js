@@ -4,7 +4,7 @@
 export const dynamic = 'force-static'; 
 
 // サイトのベースURLを正確に設定してください
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://denkizumen.com'; 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL; 
 
 export default async function sitemap() {
   const routes = [

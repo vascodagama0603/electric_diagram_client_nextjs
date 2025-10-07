@@ -75,10 +75,16 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          # VercelやNetlifyなどのデプロイサービスで設定したシークレットの名前を使用します
+          # secrets.XXX の XXX 部分が、サービス側で設定した環境変数の名前と一致している必要があります
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+      - name: Deploy (Example - Placeholder)
+        run: echo "Deployment step goes here. e.g., using Vercel CLI."
 
   # Deployment job
   deploy:
@@ -89,6 +95,7 @@ jobs:
     env:
       # 登録したシークレットを変数として渡す
       NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+      ADSENCE_URL: ${{ secrets.ADSENCE_URL }}
     runs-on: ubuntu-latest
     needs: build
     steps:
