@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header, Footer, MainContentArea, ContentWrapper, MainContent } from './components/LayoutComponents';
+import Script from 'next/script'; // next/scriptをインポートする
 
 
 
-
-
+const GA_MEASUREMENT_ID = 'G-GKF9VPTXYB';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,12 +39,12 @@ export default function RootLayout({
     <html lang="jp">
       {/* AdSenseのスクリプトをheadに追加 */}
       <head>
-          <script 
-              async 
-              src={process.env.NEXT_PUBLIC_ADSENCE_URL}
-              crossOrigin="anonymous"
-          ></script>
-        
+        <script 
+            async 
+            src={process.env.NEXT_PUBLIC_ADSENCE_URL}
+            crossOrigin="anonymous"
+        ></script>
+
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MainContentArea>
@@ -57,6 +57,18 @@ export default function RootLayout({
             </ContentWrapper>
             <Footer />
         </MainContentArea>
+        <Script 
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} 
+            strategy="afterInteractive" 
+        />
+        <Script id="gtag-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}');
+            `,
+        }}/>
       </body>
     </html>
   );
