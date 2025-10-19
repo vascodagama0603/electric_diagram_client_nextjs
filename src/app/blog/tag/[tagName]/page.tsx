@@ -6,18 +6,12 @@ import { PageLayout } from '../../../components/LayoutComponents';
 import { BlogCatalog } from '../../../components/BlogCatalog'; 
 import { notFound } from 'next/navigation'; // notFoundをインポート
 
-interface TagPageProps {
-    params: {
-        tagName: string;
-    };
-}
-
 interface ArticleForStatic {
     slug: string;
     tag?: string[]; 
 }
 
-export default async function TagPage({ params }: TagPageProps) {
+export default async function TagPage( params : Promise<{ tagName: string }>) {
     const resolvedParams = await Promise.resolve(params);
     const { tagName: rawTagName } = resolvedParams;
     if (!rawTagName) {
