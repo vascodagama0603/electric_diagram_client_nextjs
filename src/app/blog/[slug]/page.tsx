@@ -18,7 +18,13 @@ interface Article {
     body: string;
     tag?: string[]
 }
-
+interface PageProps {
+    params: {
+        slug: string; // 動的セグメント名と一致させる
+        // 他の動的セグメントがあればここに追加
+    };
+    searchParams?: { [key: string]: string | string[] | undefined };
+}
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
     try {
@@ -32,7 +38,7 @@ const formatDate = (dateString: string): string => {
     }
 };
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage({ params }: PageProps) {
     const resolvedParams = await Promise.resolve(params);
     const { slug } = resolvedParams;
     const article = await getBlogArticleBySlug(slug) as Article | null;
