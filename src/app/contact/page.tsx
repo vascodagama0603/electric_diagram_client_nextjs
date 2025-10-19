@@ -41,7 +41,7 @@ export default function ContactPage() {
                     </p>
                     
                     <MailActionArea>
-                        <p style={{ fontWeight: 'bold' }}>メールアドレス：</p>
+                        <p style={{ fontWeight: 'bold' }}>メールアドレス：{emailAddress}</p>
                         
                         <CopyButton onClick={handleCopy}>
                             メールアドレスをコピー
