@@ -17,12 +17,9 @@ interface ArticleForStatic {
     tag?: string[]; 
 }
 
-export default async function TagDegail({ params }: TagPageProps) {
-    const { tagName: rawTagName } = params;
-    if (!rawTagName) {
-        return notFound();
-    }
-    const tagName = decodeURIComponent(rawTagName); 
+export default async function TagDetail({ params }: { params: Promise<{ tagName: string }> }) {
+    const resolvedParams = await Promise.resolve(params);
+    const { tagName } = resolvedParams;
     const articles = await getBlogArticles(tagName);
     return (
         <PageLayout>
