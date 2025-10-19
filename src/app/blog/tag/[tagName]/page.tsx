@@ -17,9 +17,13 @@ interface ArticleForStatic {
     tag?: string[]; 
 }
 
-export default async function TagDetail({ params }: { params: Promise<{ tagName: string }> }) {
+export default async function TagDetail({ params }: { params: Promise<{ tagNamea: string }> }) {
     const resolvedParams = await Promise.resolve(params);
-    const { tagName } = resolvedParams;
+    const { tagNamea } = resolvedParams;
+    if (!tagNamea) {
+        return notFound();
+    }
+    const tagName = decodeURIComponent(tagNamea); 
     const articles = await getBlogArticles(tagName);
     return (
         <PageLayout>
