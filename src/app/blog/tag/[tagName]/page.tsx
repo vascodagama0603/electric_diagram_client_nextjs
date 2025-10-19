@@ -17,7 +17,7 @@ interface ArticleForStatic {
     tag?: string[]; 
 }
 
-export default async function TagPage({ params }: TagPageProps) {
+export default async function TagDegail({ params }: TagPageProps) {
     const { tagName: rawTagName } = params;
     if (!rawTagName) {
         return notFound();
