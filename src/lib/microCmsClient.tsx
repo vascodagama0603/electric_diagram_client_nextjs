@@ -3,7 +3,7 @@
 import * as cheerio from 'cheerio';
 import { createClient, MicroCMSListResponse, MicroCMSListContent } from 'microcms-js-sdk';
 
-interface ArticleItem {
+export interface ArticleItem {
     slug: string;
     title: string;
     summary: string;
@@ -40,8 +40,7 @@ export const client = createClient({
   apiKey: apiKey,
 });
 
-export async function getBlogArticles(tag: string | null) {
-  try {
+export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]> => {  try {
       const queries: { limit: number, fields: string, filters?: string } = {
       limit: 100,
       fields: 'id,title,summary,publishedAt,slug,tag,image',

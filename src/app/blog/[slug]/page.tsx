@@ -18,12 +18,10 @@ interface Article {
     body: string;
     tag?: string[]
 }
-interface PageProps {
+interface BlogDetailPageProps {
     params: {
-        slug: string; // 動的セグメント名と一致させる
-        // 他の動的セグメントがあればここに追加
+        slug: string; 
     };
-    searchParams?: { [key: string]: string | string[] | undefined };
 }
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
@@ -38,7 +36,7 @@ const formatDate = (dateString: string): string => {
     }
 };
 
-export default async function ArticlePage({ params }: PageProps) {
+export default async function ArticlePage({ params }: BlogDetailPageProps) {
     const resolvedParams = await Promise.resolve(params);
     const { slug } = resolvedParams;
     const article = await getBlogArticleBySlug(slug) as Article | null;
