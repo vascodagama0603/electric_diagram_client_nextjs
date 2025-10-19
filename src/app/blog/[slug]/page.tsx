@@ -5,7 +5,7 @@ import { getBlogArticleBySlug, getBlogArticles } from '../../../lib/microCmsClie
 import { PageLayout } from '../../components/LayoutComponents';
 import { StyledContentContainer } from '../../components/ContentStyles';
 import { BlogTags } from '@/app/components/BlogTag'; // パスは適宜修正
-
+import type { Metadata } from 'next';
 // 💡 新しく作成したクライアントコンポーネントをインポート
 import { ArticleContent } from './ArticleClient'; 
 import React from 'react'; // JSXを使用するため
@@ -18,11 +18,7 @@ interface Article {
     body: string;
     tag?: string[]
 }
-interface BlogDetailPageProps {
-    params: {
-        slug: string; 
-    };
-}
+
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
     try {
@@ -36,7 +32,7 @@ const formatDate = (dateString: string): string => {
     }
 };
 
-export default async function ArticlePage({ params }: BlogDetailPageProps) {
+export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
     const resolvedParams = await Promise.resolve(params);
     const { slug } = resolvedParams;
     const article = await getBlogArticleBySlug(slug) as Article | null;
