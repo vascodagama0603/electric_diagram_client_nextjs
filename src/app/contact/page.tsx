@@ -43,17 +43,10 @@ export default function ContactPage() {
                     <MailActionArea>
                         <p style={{ fontWeight: 'bold' }}>メールアドレス：</p>
                         
-                        {/* 1. メールアプリ起動用リンク */}
-                        <MailLink href={mailtoLink}>
-                            {emailAddress}
-                        </MailLink>
-
-                        {/* 2. メールアドレスコピーボタン */}
                         <CopyButton onClick={handleCopy}>
                             メールアドレスをコピー
                         </CopyButton>
 
-                        {/* コピー完了メッセージ */}
                         {copyMessage && 
                             <Message color={copyMessage.includes('失敗') ? 'error' : 'success'}>
                                 {copyMessage}
