@@ -4,9 +4,9 @@ import { notFound } from 'next/navigation';
 import { getBlogArticleBySlug, getBlogArticles } from '../../../lib/microCmsClient'; 
 import { PageLayout } from '../../components/LayoutComponents';
 import { StyledContentContainer } from '../../components/ContentStyles';
-import { BlogTags } from '@/app/components/BlogTag'; // パスは適宜修正
+import { BlogTags } from '@/app/components/BlogTag';
 import { ArticleContent } from './ArticleClient'; 
-import React from 'react'; // JSXを使用するため
+import React from 'react';
 
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
@@ -22,20 +22,21 @@ const formatDate = (dateString: string): string => {
 };
 
 export default async function BlogDetail(props: { params: { slug: string } }) {
-    const { params } = props;   
     let slug: string;
+    
     try {
-        // ESLintのエラーは無視する設定になっている前提
-        const resolvedParams = await (params as any);
+        const resolvedParams = await (props.params as any);
         slug = resolvedParams.slug;
     } catch (e) {
-        // awaitが失敗した場合（実際は同期オブジェクトだった場合）
-        slug = (params as { slug: string }).slug;
-    }
+        // Promiseではない場合に備えたフォールバック（保険）
+        slug = (props.params as { slug: string }).slug;
+    }  
 
     if (!slug) {
         notFound();
     }
+    
+    // 記事データの取得
     const article = await getBlogArticleBySlug(slug);
 
     if (!article) {
