@@ -8,21 +8,6 @@ import { BlogTags } from '@/app/components/BlogTag'; // パスは適宜修正
 import { ArticleContent } from './ArticleClient'; 
 import React from 'react'; // JSXを使用するため
 
-interface BlogDetailPageProps {
-    params: {
-        slug: string;
-    };
-}
-
-interface Article {
-    id: string;
-    slug: string;
-    title: string;
-    publishedAt: string;
-    body: string;
-    tag?: string[]
-}
-
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
     try {
@@ -36,22 +21,26 @@ const formatDate = (dateString: string): string => {
     }
 };
 
-export default async function BlogDetail({ params }: BlogDetailPageProps) {    
-    const resolvedParams = await (params as any);
-    
-    const { slug } = resolvedParams; // ⬅️ resolvedParams から slug を同期的に取得
+export default async function BlogDetail(props: { params: { slug: string } }) {
+    const { params } = props;   
+    let slug: string;
+    try {
+        // ESLintのエラーは無視する設定になっている前提
+        const resolvedParams = await (params as any);
+        slug = resolvedParams.slug;
+    } catch (e) {
+        // awaitが失敗した場合（実際は同期オブジェクトだった場合）
+        slug = (params as { slug: string }).slug;
+    }
 
     if (!slug) {
         notFound();
     }
-    
-    // 記事データの取得
     const article = await getBlogArticleBySlug(slug);
 
     if (!article) {
         notFound();
     }
-
     return (
         <PageLayout>
             <StyledContentContainer>
