@@ -5,10 +5,14 @@ import { getBlogArticleBySlug, getBlogArticles } from '../../../lib/microCmsClie
 import { PageLayout } from '../../components/LayoutComponents';
 import { StyledContentContainer } from '../../components/ContentStyles';
 import { BlogTags } from '@/app/components/BlogTag'; // パスは適宜修正
-import type { Metadata } from 'next';
-// 💡 新しく作成したクライアントコンポーネントをインポート
 import { ArticleContent } from './ArticleClient'; 
 import React from 'react'; // JSXを使用するため
+
+interface BlogDetailPageProps {
+    params: {
+        slug: string;
+    };
+}
 
 interface Article {
     id: string;
@@ -32,14 +36,21 @@ const formatDate = (dateString: string): string => {
     }
 };
 
-export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
-    const resolvedParams = await Promise.resolve(params);
-    const { slug } = resolvedParams;
-    const article = await getBlogArticleBySlug(slug) as Article | null;
+export default async function BlogDetail({ params }: BlogDetailPageProps) {    
+    const resolvedParams = await (params as any);
+    
+    const { slug } = resolvedParams; // ⬅️ resolvedParams から slug を同期的に取得
+
+    if (!slug) {
+        notFound();
+    }
+    
+    // 記事データの取得
+    const article = await getBlogArticleBySlug(slug);
+
     if (!article) {
         notFound();
     }
-
 
     return (
         <PageLayout>
@@ -71,8 +82,11 @@ export async function generateStaticParams() {
         console.warn("getBlogArticles did not return an array.");
         return [];
     }
-    return articles.map((article) => ({
-        slug: article.slug,
+    const articlePaths = articles.map((article) => ({
+      slug: article.slug,
     }));
+
+    const fallbackPath = { slug: '' };          
+    return [...articlePaths, fallbackPath];
 }
 

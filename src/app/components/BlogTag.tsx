@@ -40,7 +40,7 @@ export const BlogTags: React.FC<BlogTagsProps> = ({ tag }) => {
     return (
         <TagsContainer>
             {tag.map(tagName => (
-                <Link href={`/blog/tag/${tagName}`} key={tagName}>
+                <Link href={`/blog?tag=${encodeURIComponent(tagName)}`} key={encodeURIComponent(tagName)}>
                     <TagBadge>
                         #{tagName}
                     </TagBadge>

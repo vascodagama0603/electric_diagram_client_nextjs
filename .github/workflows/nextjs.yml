@@ -81,8 +81,8 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
           NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
           NEXT_PUBLIC_ADSENCE_URL: ${{ secrets.NEXT_PUBLIC_ADSENCE_URL }}
-          NEXT_PUBLIC_MICROCMS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_ID }}
-          NEXT_PUBLIC_MICROCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY }}
+          NEXT_MICROCMS_SERVICE_ID: ${{ secrets.NEXT_MICROCMS_SERVICE_ID }}
+          NEXT_MICROCMS_API_KEY: ${{ secrets.NEXT_MICROCMS_API_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

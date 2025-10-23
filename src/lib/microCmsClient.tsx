@@ -9,15 +9,15 @@ export interface ArticleItem {
     summary: string;
     date: string;
     image: string;
-    tag: string[]; // タグは文字列の配列
+    tag: string[]; 
 }
 interface BlogContent extends MicroCMSListContent {
     title: string;
     summary: string;
     publishedAt: string;
     slug: string;
-    image?: { url: string }; // imageはオプショナルなオブジェクトと仮定
-    tag: string[]; // microCMSのtagフィールド名に合わせる
+    image?: { url: string }; 
+    tag: string[]; 
 }
 interface ArticleDetail {
     id: string;
@@ -25,7 +25,7 @@ interface ArticleDetail {
     publishedAt: string;
     body: string;
     slug: string;
-    tag: string[]; // タグは文字列の配列
+    tag: string[]; 
 }
 const getClient = () => {
   const serviceId = process.env.NEXT_MICROCMS_SERVICE_ID;
@@ -41,8 +41,9 @@ const getClient = () => {
   });
 };
 export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]> => {
-    const client = getClient();
+    
     try {
+      const client = getClient();
       const queries: { limit: number, fields: string, filters?: string } = {
       limit: 100,
       fields: 'id,title,summary,publishedAt,slug,tag,image',
@@ -75,13 +76,13 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
 }
 
 export async function getBlogArticleBySlug(slug: string) {
-  const client = getClient();
   try {
+    const client = getClient();
     const response = await client.get({
       endpoint: 'blogs',
-      contentId: slug,   // 💡 ここが単一記事取得のキモ
+      contentId: slug,   
       queries: {
-        fields: 'id,title,publishedAt,body,slug,tag', // 必要なフィールドを明記
+        fields: 'id,title,publishedAt,body,slug,tag',
       },
     });
     const processedBody = processTableHtml(response.body);
@@ -109,12 +110,10 @@ function processTableHtml(htmlContent: string): string {
         const $table = $(table);
         const headers: string[] = [];
         
-        // 1. ヘッダー (<th>) のテキストを取得
         $table.find('thead th').each((j, th) => {
             headers.push($(th).text().trim()); 
         });
 
-        // 2. 各行 (<tr>) のセル (<td>) に data-label 属性を設定
         if (headers.length > 0) {
             $table.find('tbody tr').each((k, tr) => {
                 $(tr).find('td').each((l, td) => {

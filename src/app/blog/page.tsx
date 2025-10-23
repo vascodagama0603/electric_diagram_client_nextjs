@@ -1,20 +1,21 @@
-// /app/blog/page.tsx
-
 import { PageLayout } from '../components/LayoutComponents'; 
-import { BlogCatalog } from '../components/BlogCatalog';
 import { getBlogArticles } from '../../lib/microCmsClient';
-export default async function BlogPage() {
-    const articles = await getBlogArticles(null);
+// 💡 修正: クライアントコンポーネントをインポート
+import ClientTagFilter from '../components/ClientTagFilter'; 
+
+export default async function BlogList() {
+    
+    // サーバーで全ての記事データを取得
+    // tagName: null は全記事取得を意味します
+    const allArticles = await getBlogArticles(null);
+
     return (
-        // 💡 修正3: PageLayout で全体をラップ
         <PageLayout>
             <h1>ブログ記事一覧</h1>
-            {/* 💡 修正: 取得した記事を BlogCatalog に渡す */}
-            {articles && articles.length > 0 ? (
-                <BlogCatalog initialArticles={articles} />
-            ) : (
-                <p>現在、公開されている記事はありません。</p>
-            )}
+            
+            {/* 💡 修正: 全ての記事データをクライアントコンポーネントに渡す */}
+            <ClientTagFilter initialArticles={allArticles} />
+            
         </PageLayout>
     );
 }
