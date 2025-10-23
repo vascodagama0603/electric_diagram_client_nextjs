@@ -21,22 +21,23 @@ const formatDate = (dateString: string): string => {
     }
 };
 
-export default async function BlogDetail(props: { params: { slug: string } }) {
+export default async function BlogDetail(props: any) {
+    
+    // 💡 修正: await を使った非同期アクセスはそのまま維持 (ESLint設定変更済み前提)
     let slug: string;
     
     try {
         const resolvedParams = await (props.params as any);
         slug = resolvedParams.slug;
     } catch (e) {
-        // Promiseではない場合に備えたフォールバック（保険）
+        // Promiseではない場合のフォールバック
         slug = (props.params as { slug: string }).slug;
-    }  
+    }
 
     if (!slug) {
         notFound();
     }
     
-    // 記事データの取得
     const article = await getBlogArticleBySlug(slug);
 
     if (!article) {
