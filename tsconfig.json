@@ -1,3 +1,4 @@
+//tsconfig.json
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -22,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/blog/page.js", "src/app/components/BlogCatalog.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/blog/page.tsx", "src/app/components/BlogCatalog.tsx"],
   "exclude": ["node_modules"]
 }

@@ -27,20 +27,22 @@ interface ArticleDetail {
     slug: string;
     tag: string[]; // タグは文字列の配列
 }
+const getClient = () => {
+  const serviceId = process.env.NEXT_MICROCMS_SERVICE_ID;
+  const apiKey = process.env.NEXT_MICROCMS_API_KEY;
 
-const serviceId = process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID;
-const apiKey = process.env.NEXT_PUBLIC_MICROCMS_API_KEY;
+  if (!serviceId || !apiKey) {
+      throw new Error("microCMSの環境変数が設定されていません。");
+  }
 
-if (!serviceId || !apiKey) {
-    throw new Error("microCMSの環境変数が設定されていません。");
-}
-
-export const client = createClient({
-  serviceDomain: serviceId,
-  apiKey: apiKey,
-});
-
-export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]> => {  try {
+  return createClient({
+    serviceDomain: serviceId,
+    apiKey: apiKey,
+  });
+};
+export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]> => {
+    const client = getClient();
+    try {
       const queries: { limit: number, fields: string, filters?: string } = {
       limit: 100,
       fields: 'id,title,summary,publishedAt,slug,tag,image',
@@ -56,7 +58,7 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
     });
 
     return response.contents.map((item) => ({
-      slug: item.id, 
+      slug: item.slug || item.id,
       title: item.title,
       summary: item.summary,
       date: item.publishedAt,
@@ -73,6 +75,7 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
 }
 
 export async function getBlogArticleBySlug(slug: string) {
+  const client = getClient();
   try {
     const response = await client.get({
       endpoint: 'blogs',
