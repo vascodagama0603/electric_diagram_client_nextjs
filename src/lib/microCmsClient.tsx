@@ -82,10 +82,11 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
   
 }
 
-export async function getBlogArticleBySlug(slug: string) {
+export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail | null> {
   try {
     const client = getClient();
-    if (!client || typeof client.get === 'undefined') {
+// client がダミーオブジェクトであり、get メソッドを持つことを確認
+    if (!client || typeof client.get !== 'function') {
         return null; 
     }
     const response = await client.get({
