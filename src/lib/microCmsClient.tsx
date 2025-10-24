@@ -31,16 +31,15 @@ const getClient = () => {
   const serviceId = process.env.NEXT_MICROCMS_SERVICE_ID;
   const apiKey = process.env.NEXT_MICROCMS_API_KEY;
 
-if (!serviceId || !apiKey) {
-      // 開発環境で環境変数が設定されていない場合のみ警告を出す
-      if (process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_SKIP_BUILD_API) {
-            // 環境変数がない場合、ダミーのクライアントを返すか、nullを返す。ここでは null を選択
-            console.warn("microCMSの環境変数が設定されていません。ビルド続行のためAPIコールをスキップします。");
-            return null; 
-      }
-      // 💡 致命的なエラーとして throw していた行は削除
-  }
-return createClient({
+    if (!serviceId || !apiKey) {
+        console.warn("microCMS環境変数が設定されていません。...");
+        
+        // 3. ダミーのクライアント（getメソッドを持つオブジェクト）を返す
+        return {
+            get: async () => ({ contents: [], totalCount: 0, limit: 0, offset: 0 }),
+        };
+    }
+    return createClient({
         serviceDomain: serviceId as string, // ⬅️ 型アサーション
         apiKey: apiKey as string,           // ⬅️ 型アサーション
     });
@@ -86,9 +85,9 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
 export async function getBlogArticleBySlug(slug: string) {
   try {
     const client = getClient();
-    if (!client) {
-          return [];
-      }
+    if (!client || typeof client.get === 'undefined') {
+        return null; 
+    }
     const response = await client.get({
       endpoint: 'blogs',
       contentId: slug,   
