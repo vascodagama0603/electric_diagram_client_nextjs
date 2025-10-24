@@ -55,9 +55,9 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
       limit: 100,
       fields: 'id,title,summary,publishedAt,slug,tag,image',
      };
-    
-    if (tag && tag.length > 0) {
-        queries.filters = `tag[contains]${tag}`;
+    const trimmedTag = tag ? tag.trim() : null;
+  if (trimmedTag && trimmedTag.length > 0) { 
+        queries.filters = `tag[contains]${trimmedTag}`; // ⬅️ 確実に値が存在する場合のみ適用
     }
     
     const response: MicroCMSListResponse<BlogContent> = await client.get({

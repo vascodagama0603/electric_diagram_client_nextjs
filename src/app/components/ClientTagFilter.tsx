@@ -10,10 +10,14 @@ interface ArticleItem {
     slug: string; title: string; summary: string; date: string; image: string; tag: string[];
 }
 
-export default function ClientTagFilter({ initialArticles }: { initialArticles: ArticleItem[] }) {
-    
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
-
+export default function ClientTagFilter({ 
+    initialArticles, 
+    initialSelectedTag // 💡 追記
+}: { 
+    initialArticles: ArticleItem[], 
+    initialSelectedTag: string | null // 💡 追記
+}) { 
+    const [selectedTag, setSelectedTag] = useState<string | null>(initialSelectedTag);
     // 1. 全てのユニークなタグを抽出
     const allUniqueTags: string[] = useMemo(() => {
         const tags = new Set<string>();
@@ -23,18 +27,18 @@ export default function ClientTagFilter({ initialArticles }: { initialArticles: 
         return Array.from(tags).sort();
     }, [initialArticles]);
 
-    // 2. 記事のフィルタリング
     const filteredArticles = useMemo(() => {
         if (!selectedTag) {
             return initialArticles;
         }
-        return initialArticles.filter(article => 
+        const result = initialArticles.filter(article => 
             article.tag.includes(selectedTag)
         );
+        
+        return result;
     }, [initialArticles, selectedTag]);
 
     const handleTagClick = (tag: string) => {
-        // 既に選択されているタグを再度クリックしたら解除
         setSelectedTag(tag === selectedTag ? null : tag);
     };
 
