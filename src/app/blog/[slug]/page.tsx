@@ -40,7 +40,8 @@ export default async function BlogDetail(props: any) {
     
     const article = await getBlogArticleBySlug(slug);
 
-    if (!article) {
+    if (!article || Array.isArray(article) || typeof article !== 'object') {
+        // null または無効な値（例えば空配列）が返された場合
         notFound();
     }
     return (
