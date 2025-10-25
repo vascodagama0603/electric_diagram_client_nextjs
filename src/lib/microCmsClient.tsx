@@ -28,8 +28,8 @@ interface ArticleDetail {
     tag: string[]; 
 }
 const getClient = () => {
-  const serviceId = process.env.NEXT_MICROCMS_SERVICE_ID;
-  const apiKey = process.env.NEXT_MICROCMS_API_KEY;
+  const serviceId = process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID;
+  const apiKey = process.env.NEXT_PUBLIC_MICROCMS_API_KEY;
 
     if (!serviceId || !apiKey) {
         console.warn("microCMS環境変数が設定されていません。...");
