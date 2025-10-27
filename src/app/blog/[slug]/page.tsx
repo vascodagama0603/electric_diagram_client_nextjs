@@ -10,6 +10,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export async function generateMetadata(props: any): Promise<Metadata> {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
     const slug = props.params.slug;
     const article = await getBlogArticleBySlug(slug);
     if (!article) {
@@ -27,9 +28,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
         openGraph: {
             title: pageTitle,
             description: pageDescription,
-            url: `https://denkizumen.com/blog/${params.slug}`,
-            // type: 'article',
-            // images: [{ url: article.image?.url || 'デフォルト画像URL' }],
+            url: `${baseUrl}/blog/${slug}`,
         },
     };
 }
