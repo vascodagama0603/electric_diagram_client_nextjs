@@ -9,12 +9,9 @@ import { ArticleContent } from './ArticleClient';
 import React from 'react';
 import { Metadata } from 'next';
 
-export async function generateMetadata({ 
-    params 
-}: { 
-    params: { slug: string } 
-}): Promise<Metadata> {
-    const article = await getBlogArticleBySlug(params.slug);
+export async function generateMetadata(props: any): Promise<Metadata> {
+    const slug = props.params.slug;
+    const article = await getBlogArticleBySlug(slug);
     if (!article) {
         return {
             title: '記事が見つかりません | [あなたのサイト名]',
