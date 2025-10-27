@@ -26,23 +26,22 @@ interface ArticleDetail {
     body: string;
     slug: string;
     tag: string[]; 
+    description:string;
 }
 const getClient = () => {
   const serviceId = process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID;
   const apiKey = process.env.NEXT_PUBLIC_MICROCMS_API_KEY;
 
     if (!serviceId || !apiKey) {
-        console.warn("microCMS環境変数が設定されていません。...");
-        
-        // 3. ダミーのクライアント（getメソッドを持つオブジェクト）を返す
-        return {
-            get: async () => ({ contents: [], totalCount: 0, limit: 0, offset: 0 }),
-        };
-    }
+        console.warn("microCMS環境変数が設定されていません。...");
+        return {
+            get: async () => ({ contents: [], totalCount: 0, limit: 0, offset: 0 }),
+        };
+    }
     return createClient({
-        serviceDomain: serviceId as string, // ⬅️ 型アサーション
-        apiKey: apiKey as string,           // ⬅️ 型アサーション
-    });
+        serviceDomain: serviceId as string, // ⬅️ 型アサーション
+        apiKey: apiKey as string,           // ⬅️ 型アサーション
+    });
 };
 export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]> => {
     
@@ -85,15 +84,14 @@ export const getBlogArticles = async (tag: string | null): Promise<ArticleItem[]
 export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail | null> {
   try {
     const client = getClient();
-// client がダミーオブジェクトであり、get メソッドを持つことを確認
-    if (!client || typeof client.get !== 'function') {
-        return null; 
-    }
+    if (!client || typeof client.get !== 'function') {
+         return null; 
+    }
     const response = await client.get({
       endpoint: 'blogs',
       contentId: slug,   
       queries: {
-        fields: 'id,title,publishedAt,body,slug,tag',
+        fields: 'id,title,publishedAt,body,slug,tag,summary',
       },
     });
     const processedBody = processTableHtml(response.body);
@@ -104,6 +102,7 @@ export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail 
         body: processedBody,
         slug: response.slug,
         tag: response.tag || [], 
+        description: response.summary, 
     } as ArticleDetail;
 
   } catch (error) {

@@ -7,6 +7,35 @@ import { StyledContentContainer } from '../../components/ContentStyles';
 import { BlogTags } from '@/app/components/BlogTag';
 import { ArticleContent } from './ArticleClient'; 
 import React from 'react';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ 
+    params 
+}: { 
+    params: { slug: string } 
+}): Promise<Metadata> {
+    const article = await getBlogArticleBySlug(params.slug);
+    if (!article) {
+        return {
+            title: '記事が見つかりません | [あなたのサイト名]',
+            description: 'お探しのページは見つかりませんでした。',
+        };
+    }
+    const pageTitle = `${article.title} | 電気設計 技術ブログ`;
+    const pageDescription = article.description ? article.description.substring(0, 160) : '電気設計や制御技術に関する詳細記事です。'; 
+
+    return {
+        title: pageTitle,
+        description: pageDescription,
+        openGraph: {
+            title: pageTitle,
+            description: pageDescription,
+            url: `https://denkizumen.com/blog/${params.slug}`,
+            // type: 'article',
+            // images: [{ url: article.image?.url || 'デフォルト画像URL' }],
+        },
+    };
+}
 
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
