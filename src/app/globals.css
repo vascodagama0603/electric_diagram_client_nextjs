@@ -47,3 +47,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+figcaption {
+    color: #6c757d; /* 薄いグレー */
+    font-size: 0.9em; /* 少し小さめに */
+    text-align: center; /* 中央寄せ */
+    margin-top: 8px; /* 上部に少し余白 */
+}

@@ -11,7 +11,7 @@ export default function AboutPage() {
                 
                 <SectionTitle>サイト運営者</SectionTitle>
                 <p>
-                    **運営者名: miyake**
+                    運営者名: miyake
                     <br />
                     （電気設備設計歴10年）
                 </p>
