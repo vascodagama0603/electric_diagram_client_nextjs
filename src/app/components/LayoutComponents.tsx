@@ -1,4 +1,5 @@
 
+// src/app/components/LayoutComponents.tsx
 "use client";
 import Link from 'next/link'; // next/link をインポート
 import styled from "@emotion/styled";
@@ -86,16 +87,13 @@ const StyledHeader = styled.header`
     color: white;
     padding: 15px 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    
-    /* 🚨 修正ポイント1: 縦並びにする */
     display: flex;
     flex-direction: column; 
-    
-    /* 💡 中央寄せにする */
     align-items: center; 
-    
     width: 100%; 
-    box-sizing: border-box; 
+    box-sizing: border-box; @media (max-width: 768px) {
+        padding: 15px 10px; 
+    }
 `;
 
 const AppTitle = styled.h1`
@@ -110,49 +108,23 @@ const NavList = styled.nav`
     display: flex;
     gap: 30px; 
     align-items: center;
-    
-    /* 🚨 修正ポイント3: タイトルからのセパレータと上部パディング */
     margin-top: 5px; 
     padding-top: 10px; 
-    border-top: 1px solid rgba(255, 255, 255, 0.3); /* 薄いセパレータライン */
+    border-top: 1px solid rgba(255, 255, 255, 0.3); 
 
     @media (max-width: 768px) {
-        /* モバイル対応（ここでは省略） */
-        /* ... */
+        flex-direction: column; /* 縦並びにする */
+        gap: 10px; /* 縦の間隔を狭く */
+        
+        /* メニューが長すぎる場合は折り返しを検討 (flex-wrap: wrap;) */
+        /* flex-wrap: wrap; */ 
+        /* justify-content: center; */
+        
+        /* 縦並びにした場合、 border-top のパディングを調整 */
+        padding-top: 5px; 
+        margin-top: 0;
     }
 `;
-
-// 各メニューリンクのスタイル
-const NavLink = styled.span<{ $active: boolean }>`
-    font-size: 1.1rem;
-    color: ${props => (props.$active ? '#ffeb3b' : 'white')};
-    text-decoration: none;
-    font-weight: ${props => (props.$active ? 'bold' : '500')};
-    padding: 5px 0;
-    position: relative;
-    transition: color 0.3s;
-    cursor: pointer;
-
-    /* 💡 ホバーエフェクト */
-    &:hover {
-        color: #ffeb3b;
-    }
-
-    /* 💡 アクティブなリンクの下線（モダンな強調） */
-    ${props => props.$active && `
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: #ffeb3b;
-            border-radius: 2px;
-        }
-    `}
-`;
-
 
 const StyledFooter = styled.footer`
     background-color: #343a40; /* Dark Gray */
