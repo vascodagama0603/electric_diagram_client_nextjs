@@ -95,7 +95,7 @@ export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail 
         fields: 'id,title,publishedAt,body,slug,tag,summary,keywords',
       },
     });
-    const processedBody = processTableHtml(response.body);
+    const processedBody = processArticleBody(response.body);
     return {
         id: response.id,
         title: response.title,
@@ -135,6 +135,36 @@ function processTableHtml(htmlContent: string): string {
                 });
             });
         }
+    });
+
+    return $.html();
+}
+
+function processArticleBody(htmlContent: string): string {
+    if (!htmlContent) return '';
+
+    const $ = cheerio.load(htmlContent);
+
+    // 1. テーブル処理 (既存のロジック)
+    $('table').each((i, table) => {
+        // ... (既存のテーブル処理ロジックをここに維持) ...
+    });
+
+    // 2. 見出しにIDを付与するロジック (目次用)
+    $('h2, h3').each((i, el) => {
+        const text = $(el).text().trim();
+        // ID生成ロジックを再利用
+        let id = text
+            .toLowerCase()
+            .replace(/[\s\t]+/g, '-')
+            .replace(/[()（）]/g, '')
+            .replace(/[^\w\-]/g, '');
+
+        if (!id) {
+            id = `heading-${i}`;
+        }
+        
+        $(el).attr('id', id);
     });
 
     return $.html();

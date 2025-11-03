@@ -21,19 +21,42 @@ export const StyledContentContainer = styled.div`
     max-width: 900px;
     margin: 0 auto;
     line-height: 1.8;
-    
+    h1 {
+        // H1は通常、タイトルとして大きく表示
+        font-size: 2.2em;
+        margin-bottom: 0.5em;
+        color: #212529;
+    }    
     h2 {
-        font-size: 2rem;
-        border-bottom: 3px solid #007bff;
-        padding-bottom: 5px;
-        margin-top: 0;
-        margin-bottom: 25px;
+        font-size: 1.8em;
+        padding: 12px 15px; /* 上下左右にしっかりパディング */
+        margin: 2.5em 0 1.2em 0; /* 上下の余白を広めに取る */
+        color: #212529; /* 濃いめのテキストカラー */
+        font-weight: bold;
+        
+        /* 💡 背景色と角丸 */
+        background-color: #f0f8ff; /* 非常に薄いブルーの背景色 (アクセントカラー #007bff に合わせて) */
+        border-radius: 6px; /* 柔らかな角丸 */
+        
+        /* 💡 左側のアクセントライン */
+        border-left: 5px solid #007bff; /* メインカラーの左線 */
+        
+        /* 💡 影を少し加えると、さらに浮き上がってモダンに (オプション) */
+        /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); */
     }
 
     h3 {
-        font-size: 1.4rem;
-        margin-top: 40px;
-        margin-bottom: 15px;
+        font-size: 1.4em;
+        padding: 0 0 5px 0; /* 下にのみパディング */
+        margin: 1.8em 0 0.8em 0;
+        color: #333;
+        font-weight: bold;
+        
+        /* 💡 H3のアクセント: 控えめな二重線風 */
+        border-bottom: 3px solid #007bff; /* メインカラーの線 */
+        border-image: linear-gradient(to right, #007bff 50%, transparent 50%) 1; /* グラデーションで線を短くすることも可能 */
+        
+        /* H3は背景色を削除し、テキストの下線のみにする方がモダンで軽やか */
     }
 
     p {

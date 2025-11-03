@@ -8,6 +8,8 @@ import { BlogTags } from '@/app/components/BlogTag';
 import { ArticleContent } from './ArticleClient'; 
 import React from 'react';
 import { Metadata } from 'next';
+import { extractHeadings } from '../../../lib/articleUtils'; // 💡 新しいユーティリティをインポート
+import { TableOfContents } from './TableOfContents'; // 💡 新しいコンポーネントをインポート
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const resolvedParams = await props.params;
@@ -68,6 +70,10 @@ export default async function BlogDetail(props: any) {
         notFound();
     }
     const article = await getBlogArticleBySlug(slug);
+    if (!article) {
+        notFound();
+    }
+    const headings = extractHeadings(article.body);
     if (!article || Array.isArray(article) || typeof article !== 'object') {
         notFound();
     }
@@ -81,6 +87,7 @@ export default async function BlogDetail(props: any) {
                 {article.tag && Array.isArray(article.tag) && (
                     <BlogTags tag={article.tag} />
                 )}
+                <TableOfContents headings={headings} />
                 <ArticleContent htmlContent={article.body} />
 
             </StyledContentContainer>
