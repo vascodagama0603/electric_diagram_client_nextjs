@@ -17,10 +17,22 @@ export const MainContentWrapper = styled.main`
 `;
 
 export const StyledContentContainer = styled.div`
-    padding: 30px;
     max-width: 900px;
     margin: 0 auto;
     line-height: 1.8;
+
+    /* 画面幅が 768px (タブレット未満) 以下の場合に適用 */
+    @media (max-width: 768px) {
+        /* 横のパディングを設定: コンテンツと画面端の間に適切な余白を作る */
+        /* 上下は 0、左右は 16px (1em) 程度のパディングがスマホでは標準的 */
+        padding: 0 16px; 
+    }
+    
+    /* 画面幅が 769px 以上（PC/タブレット）の場合 */
+    @media (min-width: 769px) {
+        /* PCでは左右のパディングをゼロにするか、控えめにする */
+        padding: 0;
+    }
     h1 {
         // H1は通常、タイトルとして大きく表示
         font-size: 2.2em;
