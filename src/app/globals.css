@@ -20,6 +20,7 @@ body[data-emotion] {
 html {
   /* 横方向のはみ出しを抑制 */
   overflow-x: hidden; 
+  scroll-behavior: smooth;
 }
 
 body {
