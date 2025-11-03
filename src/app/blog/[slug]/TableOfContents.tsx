@@ -15,25 +15,23 @@ interface TableOfContentsProps {
     headings: Heading[];
 }
 const TocContainer = styled.div`
-    /* 💡 全体を囲むボックスをモダンなデザインに */
     border: 1px solid #e9ecef;
-    border-radius: 8px; /* 角丸を少し大きく */
-    padding: 20px; /* パディングを増やす */
-    margin: 30px 0; /* 上下の余白を確保 */
-    background-color: #ffffff; /* 白い背景 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 影を追加して浮き上がらせる */
+    border-radius: 6px; /* 角丸を小さく */
+    padding: 15px; /* パディングを減らす */
+    margin: 25px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* 影を控えめに */
 `;
 
 const TocTitle = styled.h4`
-    /* 💡 タイトルを強調 */
-    font-size: 1.2em; /* 少し大きく */
+    /* 💡 タイトルをコンパクトに */
+    font-size: 1.05em; /* フォントサイズを小さく */
     font-weight: 700;
-    color: #212529; /* 濃い色 */
+    color: #212529;
     margin-top: 0;
-    margin-bottom: 15px; /* 下に余白 */
-    padding-bottom: 8px;
-    border-bottom: 3px solid #007bff; /* メインカラーの太い下線 */
-    line-height: 1.4;
+    margin-bottom: 10px; /* 余白を減らす */
+    padding-bottom: 5px;
+    border-bottom: 2px solid #007bff; /* 下線も少し細く */
 `;
 
 const TocList = styled.ul`
@@ -43,23 +41,37 @@ const TocList = styled.ul`
 `;
 
 const TocItem = styled.li<{ level: number }>`
-    /* 💡 リストアイテムのデザイン */
-    margin-bottom: 8px; /* 間隔を少し広げる */
-    font-size: 0.95em;
-    transition: background-color 0.2s; /* ホバー時のトランジション */
+/* 💡 リストアイテムを詰める */
+    margin-bottom: 1px;
+    font-size: 0.7rem; /* フォントサイズを小さく */
+    transition: background-color 0.2s; 
 
-    /* H3 はインデントを適用 */
-    padding-left: ${({ level }) => (level === 3 ? '20px' : '0')}; 
+    /* H1, H2, H3のインデントを調整 */
+    padding-left: ${({ level }) => {
+        if (level === 2) return '15px'; // H2は少しインデント
+        if (level === 3) return '30px'; // H3はさらにインデント
+        return '0'; // H1
+    }};
     position: relative;
     
-    /* 💡 モダンなリストマーカー */
+    /* 💡 マーカーの調整 */
     &::before {
-        content: '${({ level }) => (level === 2 ? '▶' : '・')}'; /* H2/H3でマーカーを区別 */
-        color: ${({ level }) => (level === 2 ? '#007bff' : '#6c757d')}; /* H2にメインカラー */
-        font-size: ${({ level }) => (level === 2 ? '0.7em' : '1em')};
+        content: '${({ level }) => {
+            if (level === 2) return '▶';
+            if (level === 3) return '・';
+            return '■'; // H1には新しいマーカー
+        }}'; 
+        color: ${({ level }) => (level === 1 ? '#007bff' : (level === 2 ? '#007bff' : '#6c757d'))};
+        font-size: ${({ level }) => (level === 1 ? '0.8em' : '0.7em')}; /* H1マーカーを少し大きく */
         margin-right: 8px;
         position: absolute;
-        left: ${({ level }) => (level === 3 ? '0' : '-10px')};
+        
+        /* H1は左端に配置、H2, H3はインデントの分だけ右に移動 */
+        left: ${({ level }) => {
+            if (level === 2) return '0';
+            if (level === 3) return '15px';
+            return '-10px'; // H1はコンテナの左端に寄せる
+        }};
         top: 3px;
     }
 
@@ -67,7 +79,7 @@ const TocItem = styled.li<{ level: number }>`
         color: #333;
         text-decoration: none;
         display: block;
-        padding: 2px 0;
+        padding: 0;
         
         &:hover {
             color: #007bff;
