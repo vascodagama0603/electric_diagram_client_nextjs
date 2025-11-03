@@ -94,6 +94,9 @@ const StyledHeader = styled.header`
     box-sizing: border-box; @media (max-width: 768px) {
         padding: 15px 10px; 
     }
+    @media (max-width: 768px) {
+        padding: 10px 10px; /* 上下10px、左右10px */
+    }
 `;
 
 const AppTitle = styled.h1`
@@ -103,6 +106,10 @@ const AppTitle = styled.h1`
     font-weight: 700;
     letter-spacing: 1px;
     text-align: center;
+    @media (max-width: 768px) {
+        font-size: 1.2rem; /* 1.2rem〜1.4rem 程度に縮小 */
+        margin-bottom: 5px; /* メニューとの間の余白も縮小 */
+    }
 `;
 const NavList = styled.nav`
     display: flex;
@@ -113,14 +120,8 @@ const NavList = styled.nav`
     border-top: 1px solid rgba(255, 255, 255, 0.3); 
 
     @media (max-width: 768px) {
-        flex-direction: column; /* 縦並びにする */
-        gap: 10px; /* 縦の間隔を狭く */
-        
-        /* メニューが長すぎる場合は折り返しを検討 (flex-wrap: wrap;) */
-        /* flex-wrap: wrap; */ 
-        /* justify-content: center; */
-        
-        /* 縦並びにした場合、 border-top のパディングを調整 */
+        flex-direction: column; 
+        gap: 5px; 
         padding-top: 5px; 
         margin-top: 0;
     }
