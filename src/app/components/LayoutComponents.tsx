@@ -12,7 +12,7 @@ interface LayoutProps {
 const Menu = () => {
     // 💡 usePathname の使用を ActiveLink に委譲
     const links = [
-        { href: '/', label: 'ホーム' },
+        { href: '/', label: 'シンボルダウンロード' },
         { href: '/blog', label: '技術ブログ' },
         { href: '/contact', label: 'お問い合わせ' },
         { href: '/about', label: '運営者情報' },

@@ -10,8 +10,9 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export async function generateMetadata(props: any): Promise<Metadata> {
+    const resolvedParams = await props.params;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-    const slug = props.params.slug;
+    const slug = resolvedParams.slug;
     const article = await getBlogArticleBySlug(slug);
     if (!article) {
         return {
@@ -25,6 +26,13 @@ export async function generateMetadata(props: any): Promise<Metadata> {
     return {
         title: pageTitle,
         description: pageDescription,
+        keywords: [
+            article.title, 
+            "電気設計", 
+            "制御技術", 
+            "CAD", 
+            article.keyword ,
+        ],
         openGraph: {
             title: pageTitle,
             description: pageDescription,
@@ -52,7 +60,6 @@ export default async function BlogDetail(props: any) {
         const resolvedParams = await (props.params as any);
         slug = resolvedParams.slug;
     } catch (e) {
-        // Promiseではない場合のフォールバック
         slug = (props.params as { slug: string }).slug;
     }
     if (!slug) {

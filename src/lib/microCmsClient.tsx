@@ -27,6 +27,7 @@ interface ArticleDetail {
     slug: string;
     tag: string[]; 
     description:string;
+    keyword:string;
 }
 const getClient = () => {
   const serviceId = process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID;
@@ -91,7 +92,7 @@ export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail 
       endpoint: 'blogs',
       contentId: slug,   
       queries: {
-        fields: 'id,title,publishedAt,body,slug,tag,summary',
+        fields: 'id,title,publishedAt,body,slug,tag,summary,keyword',
       },
     });
     const processedBody = processTableHtml(response.body);
@@ -103,6 +104,7 @@ export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail 
         slug: response.slug,
         tag: response.tag || [], 
         description: response.summary, 
+        keyword: response.keyword, 
     } as ArticleDetail;
 
   } catch (error) {
