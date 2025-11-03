@@ -8,7 +8,6 @@ export const GlobalLayoutContainer = styled.div`
 `;
 export const MainContentWrapper = styled.main`
     flex-grow: 1;
-    padding: 20px; /* 全体の余白 */
 
     /* 🚨 修正ポイント: max-width を設定する場合は width: 100% と併用する */
     width: 100%; 
