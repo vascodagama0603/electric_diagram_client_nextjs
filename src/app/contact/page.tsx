@@ -3,22 +3,13 @@
 "use client";
 import { StyledContentContainer } from '../components/ContentStyles';
 import { PageLayout } from '../components/LayoutComponents'; 
-import { CenteredContent, MailActionArea, MailLink, CopyButton, Message } from '../../styles/GeneralStyles'; 
+import { CenteredContent, MailActionArea,  CopyButton, Message } from '../../styles/GeneralStyles'; 
 import React, { useState } from 'react';
-import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-    title: 'お問い合わせ | 電気回路図シンボルライブラリ', 
-    description: 'CADシンボルや技術ブログの内容に関するご質問、その他のお問い合わせはこちらからご連絡ください。',
-    openGraph: {
-        title: 'お問い合わせ | 電気回路図シンボルライブラリ',
-        url: 'https://denkizumen.com/contact', // ドメインを合わせてください
-    }
-};
+
 export default function ContactPage() {
     // 実際に使用するメールアドレスを設定してください
     const emailAddress = "contact@denkizumen.com"; 
-    const mailtoLink = `mailto:${emailAddress}?subject=電気回路図シンボルライブラリに関するお問い合わせ`;
 
     const [copyMessage, setCopyMessage] = useState('');
 
