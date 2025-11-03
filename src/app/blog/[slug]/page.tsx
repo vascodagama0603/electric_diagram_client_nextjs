@@ -22,7 +22,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
     }
     const pageTitle = `${article.title} | 電気設計 技術ブログ`;
     const pageDescription = article.description ? article.description.substring(0, 160) : '電気設計や制御技術に関する詳細記事です。'; 
-
+    const keywordsFromField = typeof article.keyword === 'string' && article.keyword.length > 0
+        ? article.keyword.split(',').map(k => k.trim()).filter(k => k.length > 0)
+        : [];
     return {
         title: pageTitle,
         description: pageDescription,
@@ -31,7 +33,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
             "電気設計", 
             "制御技術", 
             "CAD", 
-            article.keyword ,
+            ...keywordsFromField,
         ],
         openGraph: {
             title: pageTitle,

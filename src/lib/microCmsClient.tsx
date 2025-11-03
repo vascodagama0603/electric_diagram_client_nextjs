@@ -92,7 +92,7 @@ export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail 
       endpoint: 'blogs',
       contentId: slug,   
       queries: {
-        fields: 'id,title,publishedAt,body,slug,tag,summary,keyword',
+        fields: 'id,title,publishedAt,body,slug,tag,summary,keywords',
       },
     });
     const processedBody = processTableHtml(response.body);
@@ -104,7 +104,7 @@ export async function getBlogArticleBySlug(slug: string): Promise<ArticleDetail 
         slug: response.slug,
         tag: response.tag || [], 
         description: response.summary, 
-        keyword: response.keyword, 
+        keyword: response.keywords, 
     } as ArticleDetail;
 
   } catch (error) {
