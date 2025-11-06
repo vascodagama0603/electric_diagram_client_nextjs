@@ -9,8 +9,8 @@ const BREAK_CONTACT_DELAYED_OPENING = "S00245"
 const BREAK_CONTACT_DELAYED_CLOSING = "S00246"
 const MAKE_CONTACT_DELAYED = "S00247"
 const BREAK_CONTACT_DELAYED = "S01911"
-const MAKE_CONTACT_MANUAL = "S00250"
-const BREAK_CONTACT_MANUAL = "S00171+S00225"
+//const MAKE_CONTACT_MANUAL = "S00250"
+//const BREAK_CONTACT_MANUAL = "S00171+S00225"
 const MAKE_CONTACT_GENERAL_MANUAL = "S00253"
 const MAKE_CONTACT_PUSH_BUTTON = "S00254"
 const MAKE_CONTACT_PUSH_BUTTON_POSITIBVE = "S00257"
@@ -20,22 +20,24 @@ const MAKE_CONTACT_TWIST_BUTTON = "S00256"
 const BREAK_CONTACT_EMERGENCY_STOP = "S00258"
 const MAKE_CONTACT_LIMIT = "S00259"
 const BREAK_CONTACT_LIMIT = "S00260"
-const ASSEMBLY_CONTACT_LIMIT = "S00261"
+//const ASSEMBLY_CONTACT_LIMIT = "S00261"
 const BREAK_CONTACT_LIMIT_POSITIVE = "S00262"
 const MAKE_CONTACT_TEMPERRATURE = "S00263"
 const BREAK_CONTACT_TEMPERRATURE = "S00264"
 const BREAK_CONTACT_THERMAL = "S00265"
-const MULTI_POSITION_SWITCH = "S00270"
-const FOUR_POSITION_SWITCH = "S00271"
-const MULTI_POSITION_SWITCH_DIAGRAM = "S00272"
+//const MULTI_POSITION_SWITCH = "S00270"
+//const FOUR_POSITION_SWITCH = "S00271"
+//const MULTI_POSITION_SWITCH_DIAGRAM = "S00272"
 const MAKE_CONTACTOR = "S00284"
-const MAKE_CONTACTOR_AUTO_TRIP = "S00285"
+//const MAKE_CONTACTOR_AUTO_TRIP = "S00285"
 const BREAK_CONTACTOR = "S00286"
 const CIRCUIT_BREAKER = "S00287"
 const CIRCUIT_2P_BREAKER = "S00287_2P"
 const CIRCUIT_3P_BREAKER = "S00287_3P"
 const COIL_GENEREL = "S00305"
-const THERMAL_RERAY = "S00325"
+const THERMAL_RERAY_1P = "S00325"
+const THERMAL_RERAY_2P = "S00325_2P"
+const THERMAL_RERAY_3P = "S00325_3P"
 const TOUCH_SENSOR = "S00357"
 const TOUCH_SENSITIVE_SWITCH = "S00358"
 const PROXIMITY_SWITCH = "S00359"
@@ -67,27 +69,27 @@ export const Signals = [
     did:"07-02-03",
     discription:"b接点（常閉接点）は、待機状態（非励磁状態）のときに閉じており、電源が投入されると開く接点です。回路図では接点番号の末尾に「b」を付けて示されます。主に回路の停止やインターロック、安全回路に使用され、電源喪失時に回路が遮断されるフェイルセーフな用途にも適しています。"
   },
-  // {
-  //   id: TWO_MAKE_CONTACT,
-  //   search:"make,a接点,メーク,二重",
-  //   caption:"二重a接点",
-  //   did:"07-02-08",
-  //   discription:""
-  // },
-  // {
-  //   id: TWO_BREAK_CONTACT,
-  //   search:"break,b接点,メーク,二重",
-  //   caption:"二重b接点",
-  //   did:"07-02-09",
-  //   discription:""
-  // },
-  // {
-  //   id: MIRROR_CONTACT,
-  //   search:"make,a接点,メーク,ミラー",
-  //   caption:"安全開離機能a接点",
-  //   did:"07-02-10",
-  //   discription:""
-  // },
+  {
+    id: TWO_MAKE_CONTACT,
+    search:"make,a接点,メーク,二重",
+    caption:"二重a接点",
+    did:"07-02-08",
+    discription:"二つのa接点を並列に接続したシンボルで、冗長性（信頼性）を高めるために使用されます。片方の接点が故障してももう一方が動作することで、回路の投入を確実に行います。"
+  },
+  {
+    id: TWO_BREAK_CONTACT,
+    search:"break,b接点,メーク,二重",
+    caption:"二重b接点",
+    did:"07-02-09",
+    discription:"二つのb接点を直列に接続したシンボルで、安全性を高めるために使用されます。両方の接点が開かない限り回路は遮断されないため、安全インターロックや非常停止回路の信頼性向上に利用されます。"
+  },
+  {
+    id: MIRROR_CONTACT,
+    search:"make,a接点,メーク,ミラー",
+    caption:"安全開離機能a接点",
+    did:"07-02-10",
+    discription:"ミラー接点とも呼ばれ、安全リレーなどに使用される信頼性の高いa接点です。リレーのb接点が開く前に、このa接点が閉じることはないという安全機能が保証されており、非常停止などの安全回路の監視に使用されます。"
+  },
   {
     id: MAKE_CONTACT_DELAYED_CLOSING,
     search:"make,a接点,メーク,off,delay",
@@ -130,13 +132,13 @@ export const Signals = [
     did:"-",
     discription:"b接点(オンディレイオフディレイ)は、電源投入時と切断時の両方で時間遅れ動作を持つタイマー接点です。複雑なインターロックや安全回路において、遮断と復帰の両方のタイミングを精密に調整する際に使用されます。"
   },
-  {
-    id: MAKE_CONTACT_MANUAL,
-    search:"make,a接点,メーク,マニュアル,ボタン,manual",
-    caption:"マニュアルボタンa接点",
-    did:"07-A6-02(旧図)",
-    discription:"保護枠付きや手動操作を示す押しボタンスイッチのa接点です。通常、操作者が直接触れて回路を投入するために使用されます。"
-  },
+  // {
+  //   id: MAKE_CONTACT_MANUAL,
+  //   search:"make,a接点,メーク,マニュアル,ボタン,manual",
+  //   caption:"マニュアルボタンa接点",
+  //   did:"07-A6-02(旧図)",
+  //   discription:"保護枠付きや手動操作を示す押しボタンスイッチのa接点です。通常、操作者が直接触れて回路を投入するために使用されます。"
+  // },
   // {
   // id: BREAK_CONTACT_MANUAL,
   //   search:"break,b接点,ブレイク,マニュアル,ボタン,manual",
@@ -165,13 +167,13 @@ export const Signals = [
     did:"-",
     discription:"押しボタンスイッチのb接点（常閉）を示します。ボタンを押している間だけ回路を開くモーメンタリ動作に多く利用され、回路の停止（ストップ）に用いられます。"
   },
-  // {
-  //   id: MAKE_CONTACT_PUSH_BUTTON_POSITIBVE,
-  //   search:"make,a接点,メーク,push",
-  //   caption:"押しボタンa接点",
-  //   did:"07-07-05",
-  //   discription:""
-  // },
+  {
+    id: MAKE_CONTACT_PUSH_BUTTON_POSITIBVE,
+    search:"make,a接点,メーク,push",
+    caption:"押しボタンa接点",
+    did:"07-07-05",
+    discription:"強制開離（ポジティブオープニング）機能を持つ押しボタンスイッチのa接点です。接点の溶着などの異常時でも、ボタンを操作すれば必ず接点が開く構造となっており、安全規格が要求される回路に用いられます。"
+  },
   {
     id: MAKE_CONTACT_PULL_BUTTON,
     search:"make,a接点,メーク,pull",
@@ -214,34 +216,34 @@ export const Signals = [
   //   did:"07-08-03",
   //   discription:""
   // },
-  // {
-  //   id: BREAK_CONTACT_LIMIT_POSITIVE,
-  //   search:"break,ブレイク,limit",
-  //   caption:"確実リミットb接点",
-  //   did:"07-08-04",
-  //   discription:""
-  // },
-  // {
-  //   id: MAKE_CONTACT_TEMPERRATURE,
-  //   search:"make,a接点,メーク,温度",
-  //   caption:"温度感知a接点",
-  //   did:"07-09-01",
-  //   discription:""
-  // },
-  // {
-  //   id: BREAK_CONTACT_TEMPERRATURE,
-  //   search:"break,ブレイク,温度",
-  //   caption:"温度感知b接点",
-  //   did:"07-09-02",
-  //   discription:""
-  // },
-  // {
-  //   id: BREAK_CONTACT_THERMAL,
-  //   search:"break,ブレイク,サーマル",
-  //   caption:"自己動作温度b接点",
-  //   did:"07-09-03",
-  //   discription:""
-  // },
+  {
+    id: BREAK_CONTACT_LIMIT_POSITIVE,
+    search:"break,ブレイク,limit",
+    caption:"確実リミットb接点",
+    did:"07-08-04",
+    discription:"強制開離（ポジティブオープニング）機能を持つリミットスイッチのb接点です。接点の溶着などの異常時でも、機械的な力によって確実に開く（回路を遮断する）構造となっており、機械の安全機構などに利用されます。"
+  },
+  {
+    id: MAKE_CONTACT_TEMPERRATURE,
+    search:"make,a接点,メーク,温度",
+    caption:"温度感知a接点",
+    did:"07-09-01",
+    discription:"温度上昇により動作する温度スイッチのa接点です。設定温度を超えると閉じ、回路を投入（例：冷却ファン起動）するなどの制御に使用されます。"
+  },
+  {
+    id: BREAK_CONTACT_TEMPERRATURE,
+    search:"break,ブレイク,温度",
+    caption:"温度感知b接点",
+    did:"07-09-02",
+    discription:"温度上昇により動作する温度スイッチのb接点です。設定温度を超えると開き、回路を遮断（例：ヒーター停止）するなどの制御に使用されます。"
+  },
+  {
+    id: BREAK_CONTACT_THERMAL,
+    search:"break,ブレイク,サーマル",
+    caption:"自己動作温度b接点",
+    did:"07-09-03",
+    discription:"機器自体（例：モーター巻線）の過熱を感知して動作するb接点です。サーマルプロテクターの接点として利用され、異常発熱時に回路を遮断し、機器の焼損を防ぎます。"
+  },
   // {
   //   id: MULTI_POSITION_SWITCH,
   //   search:"多段,スイッチ,multi,position,switch",
@@ -305,104 +307,118 @@ export const Signals = [
     did:"-",
     discription:"3極（三相3線）の配線用遮断器を示します。動力回路などの三相電源ラインを一括で保護・遮断する目的で使用されます。"
   },
-  // {
-  //   id: COIL_GENEREL,
-  //   search:"coil,コイル,一般",
-  //   caption:"コイル(一般)",
-  //   did:"7-15-01",
-  //   discription:""
-  // },
-  // {
-  //   id: THERMAL_RERAY,
-  //   search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
-  //   caption:"サーマルリレー",
-  //   did:"7-15-21",
-  //   discription:""
-  // },
-  // {
-  //   id: TOUCH_SENSOR,
-  //   search:"sensor,センサー,タッチ,touch",
-  //   caption:"タッチセンサー",
-  //   did:"7-19-04",
-  //   discription:""
-  // },
-  // {
-  //   id: TOUCH_SENSITIVE_SWITCH,
-  //   search:"sensor,センサー,タッチ,スイッチ,touch",
-  //   caption:"タッチセンサースイッチ",
-  //   did:"7-20-01",
-  //   discription:""
-  // },
-  // {
-  //   id: PROXIMITY_SWITCH,
-  //   search:"sensor,センサー,近接,PROXIMITY",
-  //   caption:"近接センサ",
-  //   did:"7-20-02",
-  //   discription:""
-  // },
-  // {
-  //   id: FUSE,
-  //   search:"ヒューズ,fuze",
-  //   caption:"ヒューズ(一般図)",
-  //   did:"7-21-02",
-  //   discription:""
-  // },
-  // {
-  //   id: FUSE_STRIKER,
-  //   search:"ヒューズ,fuze,striker,ストライカー",
-  //   caption:"ストライカー付きヒューズ",
-  //   did:"7-21-03",
-  //   discription:""
-  // },
-  // {
-  //   id: FUSE_SWITCH,
-  //   search:"ヒューズ,fuze,スイッチ",
-  //   caption:"ヒューズスイッチ",
-  //   did:"7-21-07",
-  //   discription:""
-  // },
-  // {
-  //   id: MOTOR,
-  //   search:"motor,モータ,",
-  //   caption:"モータ（一般図)",
-  //   did:"06-04-01",
-  //   discription:""
-  // },
-  // {
-  //   id: LINER_MOTOR,
-  //   search:"motor,モータ,liner,リニア",
-  //   caption:"リニアモータ（一般図)",
-  //   did:"06-04-02",
-  //   discription:""
-  // },
-  // {
-  //   id: STEPPING_MOTOR,
-  //   search:"motor,モータ,stepping,ステッピング",
-  //   caption:"ステッピングモータ",
-  //   did:"06-04-03",
-  //   discription:""
-  // },
-  // {
-  //   id: THEMOCOUPLE,
-  //   search:"themocouple,熱電対",
-  //   caption:"熱電対",
-  //   did:"08-06-01",
-  //   discription:""
-  // },
-  // {
-  //   id: LAMP,
-  //   search:"lamp,ランプ",
-  //   caption:"ランプ",
-  //   did:"08-10-01",
-  //   discription:""
-  // },
-  // {
-  //   id: BUZZER,
-  //   search:"ブザー,buzzer",
-  //   caption:"ブザー",
-  //   did:"08-10-10",
-  //   discription:""
-  // },
+  {
+    id: COIL_GENEREL,
+    search:"coil,コイル,一般",
+    caption:"コイル(一般)",
+    did:"7-15-01",
+    discription:"リレー、電磁接触器、電磁弁などの操作部（電磁石）を示す一般的なシンボルです。このコイルに電圧をかけることで、関連する接点群が動作します。"
+  },
+  {
+    id: THERMAL_RERAY_1P,
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
+    caption:"サーマルリレー1極",
+    did:"7-15-21",
+    discription:"熱動継電器の主回路部分のシンボルです。モーターなどの過負荷による発熱を検出・保護するリレーであり、1極（単相または直流）の電流を検出します。"
+  },
+  {
+    id: THERMAL_RERAY_2P,
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
+    caption:"サーマルリレー2極",
+    did:"-",
+    discription:"2極の電流を検出する熱動継電器の主回路シンボルです。"
+  },
+  {
+    id: THERMAL_RERAY_3P,
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
+    caption:"サーマルリレー3極",
+    did:"-",
+    discription:"3極の電流を検出する熱動継電器の主回路シンボルです。三相交流モーターの過負荷保護に最も広く利用されます。"
+  },
+  {
+    id: TOUCH_SENSOR,
+    search:"sensor,センサー,タッチ,touch",
+    caption:"タッチセンサー",
+    did:"7-19-04",
+    discription:"物理的な接触を検出するセンサーです。操作盤のボタンや、ロボットなどの接触検出に使われます。"
+  },
+  {
+    id: TOUCH_SENSITIVE_SWITCH,
+    search:"sensor,センサー,タッチ,スイッチ,touch",
+    caption:"タッチセンサースイッチ",
+    did:"7-20-01",
+    discription:"物理的な圧力や接触に感応し、接点の開閉を行うスイッチです。静電容量式や感圧式のものが含まれ、機械的な動きがない操作部に利用されます。"
+  },
+  {
+    id: PROXIMITY_SWITCH,
+    search:"sensor,センサー,近接,PROXIMITY",
+    caption:"近接センサ",
+    did:"7-20-02",
+    discription:"検出対象（金属など）が特定の距離に近づいたことを非接触で検出するセンサーです。工作機械の位置決めや、部品の有無検出に広く利用されます。"
+  },
+  {
+    id: FUSE,
+    search:"ヒューズ,fuze",
+    caption:"ヒューズ(一般図)",
+    did:"7-21-02",
+    discription:"回路の短絡や過電流が発生した際に、溶断することで回路を遮断し、後段の機器を保護する保護装置のシンボルです。"
+  },
+  {
+    id: FUSE_STRIKER,
+    search:"ヒューズ,fuze,striker,ストライカー",
+    caption:"ストライカー付きヒューズ",
+    did:"7-21-03",
+    discription:"ヒューズが溶断した際に、内蔵されたピン（ストライカー）が飛び出す構造を持つヒューズです。このピンの飛び出しを検出することで、ヒューズ切れを外部に知らせる監視機能に利用されます。"
+  },
+  {
+    id: FUSE_SWITCH,
+    search:"ヒューズ,fuze,スイッチ",
+    caption:"ヒューズスイッチ",
+    did:"7-21-07",
+    discription:"ヒューズ（過電流保護）とスイッチ（手動開閉）の機能を一体化した機器のシンボルです。回路を物理的に開閉できるため、安全な保守・点検のために電源を遮断する用途や、保護と同時に電源投入を行う主回路の開閉器として使用されます。"
+  },
+  {
+    id: MOTOR,
+    search:"motor,モータ,",
+    caption:"モータ（一般図)",
+    did:"06-04-01",
+    discription:"一般的な電動機のシンボルです。電気エネルギーを回転運動（動力）に変換する機器を示し、ポンプ、コンベヤ、ファンなどの駆動源として使用されます。"
+  },
+  {
+    id: LINER_MOTOR,
+    search:"motor,モータ,liner,リニア",
+    caption:"リニアモータ（一般図)",
+    did:"06-04-02",
+    discription:"電気エネルギーを直線運動に変換する特殊な電動機のシンボルです。高速・高精度の位置決めが必要な搬送装置などに使用されます。"
+  },
+  {
+    id: STEPPING_MOTOR,
+    search:"motor,モータ,stepping,ステッピング",
+    caption:"ステッピングモータ",
+    did:"06-04-03",
+    discription:"パルス信号に応じて段階的に回転するモーターです。正確な角度制御や位置決めが必要な用途（例：プリンター、精密機器）に使用されます。"
+  },
+  {
+    id: THEMOCOUPLE,
+    search:"themocouple,熱電対",
+    caption:"熱電対",
+    did:"08-06-01",
+    discription:"異なる種類の金属線の接合部で発生する熱起電力を利用し、温度を測定するセンサーです。高温計測などに広く利用されます。"
+  },
+  {
+    id: LAMP,
+    search:"lamp,ランプ",
+    caption:"ランプ",
+    did:"08-10-01",
+    discription:"機器の状態（例：運転中、停止、異常）を視覚的に知らせる表示灯のシンボルです。"
+  },
+  {
+    id: BUZZER,
+    search:"ブザー,buzzer",
+    caption:"ブザー",
+    did:"08-10-10",
+    discription:"機器の異常や状態変化を聴覚的に知らせる警報器のシンボルです。"
+  },
   /*
   {
     id: FUN,
