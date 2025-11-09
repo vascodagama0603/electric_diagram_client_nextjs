@@ -34,6 +34,8 @@ const BREAK_CONTACTOR = "S00286"
 const CIRCUIT_BREAKER = "S00287"
 const CIRCUIT_2P_BREAKER = "S00287_2P"
 const CIRCUIT_3P_BREAKER = "S00287_3P"
+const ELB_2P = "S00144+S00287_2P"
+const ELB_3P = "S00144+S00287_3P"
 const COIL_GENEREL = "S00305"
 const THERMAL_RERAY_1P = "S00325"
 const THERMAL_RERAY_2P = "S00325_2P"
@@ -290,7 +292,7 @@ export const Signals = [
     id: CIRCUIT_BREAKER,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,1P",
     caption:"サーキットブレーカ1極",
-    did:"7-13-08",
+    did:"7-13-05",
     discription:"1極（単相または直流）の配線用遮断器（ノーヒューズブレーカなど）を示します。過電流や短絡事故が発生した際に、自動で回路を遮断し機器を保護します。"
   },
   {
@@ -306,6 +308,20 @@ export const Signals = [
     caption:"サーキットブレーカ3極",
     did:"-",
     discription:"3極（三相3線）の配線用遮断器を示します。動力回路などの三相電源ラインを一括で保護・遮断する目的で使用されます。"
+  },
+  {
+    id: ELB_2P,
+    search:"make,a接点,メーク,漏電遮断器,ELB,circuit,2P",
+    caption:"漏電遮断器2極",
+    did:"7-13-08 + 06-13-11",
+    discription:"漏電保護と過電流保護（短絡・過負荷）の機能を併せ持つ遮断器（Earth Leakage Breaker）のシンボルです。2極（単相2線など）の回路に使用され、地絡（漏電）電流を検出した場合、または定格以上の電流が流れた場合に、瞬時に回路を遮断し、感電事故や火災を防ぎます。"
+  },
+  {
+    id: ELB_3P,
+    search:"make,a接点,メーク,漏電遮断器,ELB,circuit,3P",
+    caption:"漏電遮断器3極",
+    did:"7-13-08 + 06-13-11",
+    discription:"漏電遮断器3極 | 漏電保護と過電流保護（短絡・過負荷）の機能を併せ持つ遮断器です。3極（三相3線など）の動力回路に使用され、三相電源を一括で保護します。回路の安全確保と法規遵守のために、主電源回路や特定の負荷回路に設置されます。"
   },
   {
     id: COIL_GENEREL,

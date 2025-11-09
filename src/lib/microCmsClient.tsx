@@ -29,6 +29,13 @@ interface ArticleDetail {
     description:string;
     keyword:string;
 }
+
+const reservedSlugs = [
+    'favicon.ico',
+    'sitemap.xml',
+    'robots.txt',
+    // 他に必要なものがあれば追加
+];
 const getClient = () => {
   const serviceId = process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID;
   const apiKey = process.env.NEXT_PUBLIC_MICROCMS_API_KEY;
@@ -145,15 +152,28 @@ function processArticleBody(htmlContent: string): string {
 
     const $ = cheerio.load(htmlContent);
 
-    // 1. テーブル処理 (既存のロジック)
-    $('table').each((i, table) => {
-        // ... (既存のテーブル処理ロジックをここに維持) ...
+$('table').each((i, table) => {
+        const $table = $(table);
+        const headers: string[] = [];
+        $table.find('thead th').each((j, th) => {
+            headers.push($(th).text().trim()); 
+        });
+        if (headers.length > 0) {
+            $table.find('tbody tr').each((k, tr) => {
+                $(tr).find('td').each((l, td) => {
+                    if (headers[l]) {
+                        $(td).attr('data-label', headers[l]);
+                    }
+                });
+            });
+        }
+        if (!$table.parent().hasClass('table-scroll-wrapper')) {
+            $table.wrap('<div class="table-scroll-wrapper"></div>');
+        }
     });
 
-    // 2. 見出しにIDを付与するロジック (目次用)
     $('h2, h3').each((i, el) => {
         const text = $(el).text().trim();
-        // ID生成ロジックを再利用
         let id = text
             .toLowerCase()
             .replace(/[\s\t]+/g, '-')
