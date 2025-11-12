@@ -52,6 +52,9 @@ export function SymbolCatalog() : React.JSX.Element {
   const [flags, setFlags] = useState<Record<string, boolean>>({});
   const [selectedPictureId, setSelectedPictureId] = useState<string | null>(null);
 
+  const [downloadScale, setDownloadScale] = useState<number>(1.0);
+  const [downloadVertical, setDownloadVertical] = useState<boolean>(false);
+
   const filteredPictures = useMemo(() => {
         if (!searchTerm) {
             return pictures;
@@ -73,30 +76,45 @@ export function SymbolCatalog() : React.JSX.Element {
 
   const downloadContents = async (picture: Picture, extType: FileExtensionType) => {
     try {
-      setFlags(prev => ({ ...prev, [picture.id]: true }));
-      const response = await axios.get(extType.url+ picture.id, {
-        responseType: 'blob', 
-      });
-      const blob = new Blob([response.data], { type: extType.type });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = picture.id+extType.ext; // The default filename for the download
-      document.body.appendChild(link); // Append to the document body
-      link.click();
-      URL.revokeObjectURL(link.href);
-      document.body.removeChild(link);
+        setFlags(prev => ({ ...prev, [picture.id]: true }));
 
-    } catch (error) {
-      swal.fire({
-        icon: "error",
-        title: "通信異常",
-        text: "ダウンロードできませんでした",
-      });      
-      console.error('Error downloading the '+extType+' file:', error);
-    }finally {
-      // ★ 修正 3: 完了時またはエラー時に特定のIDのフラグを false に設定 (finallyブロックの使用を推奨)
-      setFlags(prev => ({ ...prev, [picture.id]: false }));
-    }
+        const params = new URLSearchParams();
+        if (downloadScale !== 1.0) {
+            params.append('scale', downloadScale.toString());
+        }
+
+        if (downloadVertical) {
+            params.append('vertical', 'True');
+        }
+
+        const queryString = params.toString();
+        const url = extType.url + picture.id + (queryString ? `?${queryString}` : '');
+        console.log("URL:",url)
+        const response = await axios.get(url, {
+            responseType: 'blob', 
+        });
+        if (response.status !== 200) {
+            throw new Error(`API returned status ${response.status}`);
+        }
+        const blob = new Blob([response.data], { type: extType.type });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = picture.id + extType.ext; 
+        document.body.appendChild(link);
+        link.click();
+        URL.revokeObjectURL(link.href);
+        document.body.removeChild(link);
+
+        } catch (error) {
+        swal.fire({
+            icon: "error",
+            title: "通信異常",
+            text: "ダウンロードできませんでした",
+        });      
+        console.error('Error downloading the '+extType+' file:', error);
+        }finally {
+            setFlags(prev => ({ ...prev, [picture.id]: false }));
+        }
   };
   const selectedPicture = useMemo(() => {
     return selectedPictureId !== null 
@@ -106,12 +124,34 @@ export function SymbolCatalog() : React.JSX.Element {
 
 	return (
 		<>
-       <PageTitle>電気シンボル一覧</PageTitle> 
+            <PageTitle>電気シンボル一覧</PageTitle> 
+            <div style={{ marginBottom: '20px', display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap', padding: '10px', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
+            <label style={{ fontSize: '1rem', fontWeight: 'bold', color: '#333' }}>ダウンロード設定:</label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                スケール (x): 
+                <input
+                    type="number"
+                    value={downloadScale}
+                    onChange={(e) => setDownloadScale(parseFloat(e.target.value) || 1.0)}
+                    min="0.1"
+                    step="0.1"
+                    style={{ width: '80px', padding: '5px', borderRadius: '4px', border: '1px solid #ccc' }}
+                />
+            </label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                垂直反転:
+                <input
+                    type="checkbox"
+                    checked={downloadVertical}
+                    onChange={(e) => setDownloadVertical(e.target.checked)}
+                    style={{ width: '20px', height: '20px' }}
+                />
+            </label>
+            </div>
       <SearchInput 
           type="text"
           placeholder="シンボルを検索 (例: a接点, break, 2P)"
           value={searchTerm}
-          // 4. 入力時に searchTerm State を更新
           onChange={(e) => setSearchTerm(e.target.value)}
       />
 
