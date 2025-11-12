@@ -29,6 +29,8 @@ const BREAK_CONTACT_THERMAL = "S00265"
 //const FOUR_POSITION_SWITCH = "S00271"
 //const MULTI_POSITION_SWITCH_DIAGRAM = "S00272"
 const MAKE_CONTACTOR = "S00284"
+const MAKE_CONTACTOR_2P = "S00284_2P"
+const MAKE_CONTACTOR_3P = "S00284_3P"
 //const MAKE_CONTACTOR_AUTO_TRIP = "S00285"
 const BREAK_CONTACTOR = "S00286"
 const CIRCUIT_BREAKER = "S00287"
@@ -269,10 +271,24 @@ export const Signals = [
   // },
   {
     id: MAKE_CONTACTOR,
-    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器",
+    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,1極,1P",
     caption:"電磁接触器a接点",
     did:"7-13-02",
     discription:"電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
+  },
+  {
+    id: MAKE_CONTACTOR_2P,
+    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,2極,2P",
+    caption:"電磁接触器a接点2極",
+    did:"-",
+    discription:"2極の電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
+  },
+  {
+    id: MAKE_CONTACTOR_3P,
+    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,3極,3P",
+    caption:"電磁接触器a接点3極",
+    did:"-",
+    discription:"3極の電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
   },
   // {
   //   id: MAKE_CONTACTOR_AUTO_TRIP,
@@ -290,35 +306,35 @@ export const Signals = [
   },
   {
     id: CIRCUIT_BREAKER,
-    search:"make,a接点,メーク,サーキットブレーカ,circuit,1P",
+    search:"make,a接点,メーク,サーキットブレーカ,circuit,1極,1P",
     caption:"サーキットブレーカ1極",
     did:"7-13-05",
     discription:"1極（単相または直流）の配線用遮断器（ノーヒューズブレーカなど）を示します。過電流や短絡事故が発生した際に、自動で回路を遮断し機器を保護します。"
   },
   {
     id: CIRCUIT_2P_BREAKER,
-    search:"make,a接点,メーク,サーキットブレーカ,circuit,2P",
+    search:"make,a接点,メーク,サーキットブレーカ,circuit,2極,2P",
     caption:"サーキットブレーカ2極",
     did:"-",
     discription:"2極（単相2線、または三相の一部）の配線用遮断器を示します。過負荷や短絡から回路を保護し、手動での開閉操作も可能です。"
   },
   {
     id: CIRCUIT_3P_BREAKER,
-    search:"make,a接点,メーク,サーキットブレーカ,circuit,3P",
+    search:"make,a接点,メーク,サーキットブレーカ,circuit,3極,3P",
     caption:"サーキットブレーカ3極",
     did:"-",
     discription:"3極（三相3線）の配線用遮断器を示します。動力回路などの三相電源ラインを一括で保護・遮断する目的で使用されます。"
   },
   {
     id: ELB_2P,
-    search:"make,a接点,メーク,漏電遮断器,ELB,circuit,2P",
+    search:"make,a接点,メーク,漏電遮断器,ELB,circuit,2極,2P",
     caption:"漏電遮断器2極",
     did:"7-13-08 + 06-13-11",
     discription:"漏電保護と過電流保護（短絡・過負荷）の機能を併せ持つ遮断器（Earth Leakage Breaker）のシンボルです。2極（単相2線など）の回路に使用され、地絡（漏電）電流を検出した場合、または定格以上の電流が流れた場合に、瞬時に回路を遮断し、感電事故や火災を防ぎます。"
   },
   {
     id: ELB_3P,
-    search:"make,a接点,メーク,漏電遮断器,ELB,circuit,3P",
+    search:"make,a接点,メーク,漏電遮断器,ELB,circuit,3極,3P",
     caption:"漏電遮断器3極",
     did:"7-13-08 + 06-13-11",
     discription:"漏電遮断器3極 | 漏電保護と過電流保護（短絡・過負荷）の機能を併せ持つ遮断器です。3極（三相3線など）の動力回路に使用され、三相電源を一括で保護します。回路の安全確保と法規遵守のために、主電源回路や特定の負荷回路に設置されます。"
@@ -332,24 +348,24 @@ export const Signals = [
   },
   {
     id: THERMAL_RERAY_1P,
-    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
-    caption:"サーマルリレー1極",
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,1素子,1E",
+    caption:"サーマルリレー1素子",
     did:"7-15-21",
     discription:"熱動継電器の主回路部分のシンボルです。モーターなどの過負荷による発熱を検出・保護するリレーであり、1極（単相または直流）の電流を検出します。"
   },
   {
     id: THERMAL_RERAY_2P,
-    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
-    caption:"サーマルリレー2極",
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,2素子,2E",
+    caption:"サーマルリレー2素子",
     did:"-",
-    discription:"2極の電流を検出する熱動継電器の主回路シンボルです。"
+    discription:"3相2素子の電流を検出する熱動継電器の主回路シンボルです。"
   },
   {
     id: THERMAL_RERAY_3P,
-    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器",
-    caption:"サーマルリレー3極",
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,3素子,3E",
+    caption:"サーマルリレー3素子",
     did:"-",
-    discription:"3極の電流を検出する熱動継電器の主回路シンボルです。三相交流モーターの過負荷保護に最も広く利用されます。"
+    discription:"3相3素子の電流を検出する熱動継電器の主回路シンボルです。三相交流モーターの過負荷保護に最も広く利用されます。"
   },
   {
     id: TOUCH_SENSOR,

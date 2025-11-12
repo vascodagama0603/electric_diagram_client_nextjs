@@ -139,7 +139,7 @@ export function SymbolCatalog() : React.JSX.Element {
                 />
             </label>
             <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                垂直反転:
+                垂直出力(OFFで水平出力):
                 <input
                     type="checkbox"
                     checked={downloadVertical}
