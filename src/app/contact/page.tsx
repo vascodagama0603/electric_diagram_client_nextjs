@@ -8,14 +8,12 @@ import React, { useState } from 'react';
 
 
 export default function ContactPage() {
-    // 実際に使用するメールアドレスを設定してください
     const emailAddress = "contact@denkizumen.com"; 
 
     const [copyMessage, setCopyMessage] = useState('');
 
     const handleCopy = () => {
         if (!navigator.clipboard) {
-            // navigator.clipboard がサポートされていない古いブラウザの場合
             setCopyMessage('ブラウザがコピー機能をサポートしていません。手動でコピーしてください。');
             return;
         }
