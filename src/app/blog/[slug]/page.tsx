@@ -1,15 +1,14 @@
 // src/app/blog/[slug]/page.tsx
-
+import React from 'react';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getBlogArticleBySlug, getBlogArticles } from '../../../lib/microCmsClient'; 
 import { PageLayout } from '../../components/LayoutComponents';
-import { StyledContentContainer } from '../../components/ContentStyles';
-import { BlogTags } from '@/app/components/BlogTag';
+import { StyledContentContainer } from '../../../styles/GeneralStyles';
+import { BlogTags } from '../../../app/components/BlogTag';
 import { ArticleContent } from './ArticleClient'; 
-import React from 'react';
-import { Metadata } from 'next';
-import { extractHeadings } from '../../../lib/articleUtils'; // 💡 新しいユーティリティをインポート
-import { TableOfContents } from './TableOfContents'; // 💡 新しいコンポーネントをインポート
+import { extractHeadings } from '../../../lib/articleUtils'; 
+import { TableOfContents } from './TableOfContents';
 
 export async function generateMetadata(props: any): Promise<Metadata> {
     const resolvedParams = await props.params;
@@ -80,7 +79,7 @@ export default async function BlogDetail(props: any) {
     return (
         <PageLayout>
             <StyledContentContainer>
-                <h1>{article.title}</h1>
+                <h2>{article.title}</h2>
                 <p style={{ color: '#666', fontSize: '0.9em', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
                     公開日: {formatDate(article.publishedAt)}
                 </p>

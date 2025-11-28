@@ -1,7 +1,6 @@
 // app/about/page.tsx
 import { PageLayout } from '../components/LayoutComponents';
-import { StyledContentContainer } from '../components/ContentStyles';
-import { CopyrightWarning,SectionTitle } from '../../styles/GeneralStyles'; 
+import { CopyrightWarning,SectionTitle,StyledContentContainer } from '../../styles/GeneralStyles'; 
 
 export default function AboutPage() {
     return (

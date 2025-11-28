@@ -1,23 +1,18 @@
 // app/contact/page.tsx
-
 "use client";
-import { StyledContentContainer } from '../components/ContentStyles';
+import React, { useState } from 'react';
+import { StyledContentContainer } from '../../styles/GeneralStyles';
 import { PageLayout } from '../components/LayoutComponents'; 
 import { CenteredContent, MailActionArea,  CopyButton, Message } from '../../styles/GeneralStyles'; 
-import React, { useState } from 'react';
-
 
 export default function ContactPage() {
     const emailAddress = "contact@denkizumen.com"; 
-
     const [copyMessage, setCopyMessage] = useState('');
-
     const handleCopy = () => {
         if (!navigator.clipboard) {
             setCopyMessage('ブラウザがコピー機能をサポートしていません。手動でコピーしてください。');
             return;
         }
-
         navigator.clipboard.writeText(emailAddress)
             .then(() => {
                 setCopyMessage('✅ メールアドレスをコピーしました！');
@@ -28,7 +23,6 @@ export default function ContactPage() {
                 console.error('Copy failed:', err);
             });
     };
-
     return (
         <PageLayout>
             <StyledContentContainer>
@@ -36,22 +30,18 @@ export default function ContactPage() {
                     <h2>お問い合わせ</h2>
                     <p>
                         CADシンボルに関するご質問、サイトの内容に関するご指摘、その他のお問い合わせは、以下の方法でご連絡ください。
-                    </p>
-                    
+                    </p>                    
                     <MailActionArea>
-                        <p style={{ fontWeight: 'bold' }}>メールアドレス：{emailAddress}</p>
-                        
+                        <p style={{ fontWeight: 'bold' }}>メールアドレス：{emailAddress}</p>                        
                         <CopyButton onClick={handleCopy}>
                             メールアドレスをコピー
                         </CopyButton>
-
                         {copyMessage && 
                             <Message color={copyMessage.includes('失敗') ? 'error' : 'success'}>
                                 {copyMessage}
                             </Message>
                         }
                     </MailActionArea>
-
                     <p style={{marginTop: '40px', color: '#666'}}>
                         ※返信には数日いただく場合がございます。あらかじめご了承ください。
                     </p>

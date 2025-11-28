@@ -5,14 +5,13 @@ import { Signals } from '../../lib/data/signalsData';
 import React, { useCallback, useState ,useMemo} from "react";
 import swal from 'sweetalert2';
 import { IoMdCloseCircle } from 'react-icons/io'; 
-
 import { PageTitle, SearchInput, StyledImageArea, SignalBox,
   StyledOverlay,StyledDescriptionBox,CloseButton,DescriptionTitle,
   DescriptionContent,NotFoundMessage,StyledStatusContainer,
   Spinner,StatusText,StyledImage,StyledOnImageButton,SvgButton,DxfButton,
   StyledComment,StyledSubComment
 } from '../../styles/GeneralStyles';
-
+import {Picture,FileExtensionType} from '../../lib/type'
 
 const base = process.env.NODE_ENV === 'production' ? '/' : '/';
 const extSVG ={
@@ -28,32 +27,14 @@ const extDXF ={
   url:process.env.NEXT_PUBLIC_SERVER_URL+"/dxf/"
 }
 
-interface Picture {
-    id: string;
-    caption: string;
-    subcaption: string;
-    did: string;
-    discription: string; 
-    search: string; 
-}
-interface FileExtensionType {
-    ext: string;
-    type: string;
-    text: string;
-    url: string;
-}
-
-
 export function SymbolCatalog() : React.JSX.Element {
-
   const [searchTerm, setSearchTerm] = useState<string>(''); 
   const [pictures, setPictures] = useState<Picture[]>(Signals as Picture[]);
   const [hoveredPictureId, setHoveredPictureId] = useState<string | null>(null);
   const [flags, setFlags] = useState<Record<string, boolean>>({});
   const [selectedPictureId, setSelectedPictureId] = useState<string | null>(null);
-
-  const [downloadScale, setDownloadScale] = useState<number>(1.0);
-  const [downloadVertical, setDownloadVertical] = useState<boolean>(false);
+  const [downloadScale, setDownloadScale] = useState<number>(1.0);
+  const [downloadVertical, setDownloadVertical] = useState<boolean>(false);
 
   const filteredPictures = useMemo(() => {
         if (!searchTerm) {
@@ -89,7 +70,7 @@ export function SymbolCatalog() : React.JSX.Element {
 
         const queryString = params.toString();
         const url = extType.url + picture.id + (queryString ? `?${queryString}` : '');
-        console.log("URL:",url)
+        // console.log("a:",url)
         const response = await axios.get(url, {
             responseType: 'blob', 
         });
@@ -104,7 +85,6 @@ export function SymbolCatalog() : React.JSX.Element {
         link.click();
         URL.revokeObjectURL(link.href);
         document.body.removeChild(link);
-
         } catch (error) {
         swal.fire({
             icon: "error",
@@ -116,15 +96,16 @@ export function SymbolCatalog() : React.JSX.Element {
             setFlags(prev => ({ ...prev, [picture.id]: false }));
         }
   };
+
   const selectedPicture = useMemo(() => {
     return selectedPictureId !== null 
         ? pictures.find(p => p.id === selectedPictureId)
         : null;
   }, [selectedPictureId, pictures]);
-
 	return (
 		<>
-            <PageTitle>電気シンボル一覧</PageTitle> 
+            <PageTitle>電気回路図シンボルライブラリ | CAD素材</PageTitle> 
+            <p>※サーバー起動のため、最初のダウンロードに時間がかかる場合があります。</p>
             <div style={{ marginBottom: '20px', display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap', padding: '10px', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
             <label style={{ fontSize: '1rem', fontWeight: 'bold', color: '#333' }}>ダウンロード設定:</label>
             <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>

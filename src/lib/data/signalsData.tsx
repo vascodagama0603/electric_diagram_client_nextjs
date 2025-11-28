@@ -1,3 +1,4 @@
+
 const MAKE_CONTACT = "S00227"
 const BREAK_CONTACT = "S00229"
 const TWO_MAKE_CONTACT = "S00234"
@@ -61,6 +62,10 @@ const PUMP = "S01422"
 export const Signals = [
   {
     id: MAKE_CONTACT,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク",
     caption:"a接点",
     did:"07-02-01",
@@ -68,6 +73,10 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"break,b接点,ブレイク",
     caption:"b接点",
     did:"07-02-03",
@@ -75,6 +84,10 @@ export const Signals = [
   },
   {
     id: TWO_MAKE_CONTACT,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,二重",
     caption:"二重a接点",
     did:"07-02-08",
@@ -82,6 +95,10 @@ export const Signals = [
   },
   {
     id: TWO_BREAK_CONTACT,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"break,b接点,メーク,二重",
     caption:"二重b接点",
     did:"07-02-09",
@@ -89,6 +106,10 @@ export const Signals = [
   },
   {
     id: MIRROR_CONTACT,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,ミラー",
     caption:"安全開離機能a接点",
     did:"07-02-10",
@@ -96,6 +117,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_DELAYED_CLOSING,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,off,delay",
     caption:"a接点(オフディレイ)",
     did:"07-05-01",
@@ -103,6 +128,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_DELAYED_OPENING,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,on,delay",
     caption:"a接点(オンディレイ)",
     did:"07-05-02",
@@ -110,6 +139,10 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_DELAYED_OPENING,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"break,b接点,ブレイク,off,delay",
     caption:"b接点(オフディレイ)",
     did:"07-05-03",
@@ -117,6 +150,10 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_DELAYED_CLOSING,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"break,b接点,ブレイク,on,,delay",
     caption:"b接点(オンディレイ)",
     did:"07-05-04",
@@ -124,6 +161,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_DELAYED,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,on,off,delay",
     caption:"a接点(オンディレイオフディレイ)",
     did:"07-05-05",
@@ -131,6 +172,10 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_DELAYED,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"break,b接点,ブレイク,on,off,delay",
     caption:"b接点(オンディレイオフディレイ)",
     did:"-",
@@ -159,6 +204,10 @@ export const Signals = [
   // },
   {
     id: MAKE_CONTACT_PUSH_BUTTON,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,push",
     caption:"押しボタンa接点",
     did:"07-07-02",
@@ -166,6 +215,10 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_PUSH_BUTTON,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"break,b接点,ブレイク,push",
     caption:"押しボタンb接点",
     did:"-",
@@ -173,6 +226,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_PUSH_BUTTON_POSITIBVE,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,push",
     caption:"押しボタンa接点",
     did:"07-07-05",
@@ -180,6 +237,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_PULL_BUTTON,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,pull",
     caption:"引きボタンa接点",
     did:"07-07-03",
@@ -187,6 +248,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_TWIST_BUTTON,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,twist",
     caption:"ひねりボタンa接点",
     did:"07-07-04",
@@ -194,6 +259,10 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_EMERGENCY_STOP,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"ブレイク,b接点,emergency,break",
     caption:"非常停止ボタン",
     did:"07-07-06",
@@ -271,6 +340,10 @@ export const Signals = [
   // },
   {
     id: MAKE_CONTACTOR,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,1極,1P",
     caption:"電磁接触器a接点",
     did:"7-13-02",
@@ -278,6 +351,10 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACTOR_2P,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
     search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,2極,2P",
     caption:"電磁接触器a接点2極",
     did:"-",
@@ -285,6 +362,8 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACTOR_3P,
+    end_x:[0,-3,-6],
+    end_y:[-6,-6,-6],
     search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,3極,3P",
     caption:"電磁接触器a接点3極",
     did:"-",

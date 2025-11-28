@@ -1,5 +1,5 @@
 import { PageLayout } from '../components/LayoutComponents';
-import { StyledContentContainer } from '../components/ContentStyles';
+import { StyledContentContainer } from '../../styles/GeneralStyles';
 import ClientTagFilterWithData from '../components/ClientTagFilterWithData'; 
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';

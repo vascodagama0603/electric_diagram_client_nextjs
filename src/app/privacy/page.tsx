@@ -1,7 +1,6 @@
 // app/privacy/page.tsx
-
 import { PageLayout } from '../components/LayoutComponents'; 
-import { StyledContentContainer } from '../components/ContentStyles';
+import { StyledContentContainer } from '../../styles/GeneralStyles';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
     title: '【重要】電気シンボルサイトの個人情報保護方針と免責事項', 

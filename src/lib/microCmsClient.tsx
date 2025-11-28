@@ -1,5 +1,4 @@
 // lib/microCmsClient.tsx
-
 import * as cheerio from 'cheerio';
 import { createClient, MicroCMSListResponse, MicroCMSListContent } from 'microcms-js-sdk';
 

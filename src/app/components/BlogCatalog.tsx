@@ -1,7 +1,6 @@
 // src/app/components/BlogCatalog.tsx
 "use client";
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link'; 
 import { 
     BlogPageTitle, BlogContainer, BlogArticleCard, 
@@ -9,18 +8,8 @@ import {
     ArticleSummary, ArticleMeta, TagList, Tag, StatusMessage 
 } from '../../styles/GeneralStyles'; 
 
+import {BlogCatalogProps} from '../../lib/type'
 
-interface Article {
-    slug: string;
-    title: string;
-    summary: string;
-    date: string; 
-    tag: string[];
-    image: string | null;
-}
-interface BlogCatalogProps {
-    initialArticles: Article[]; 
-}
 
 const formatDate = (dateString: string): string => {
     if (!dateString) return '日付不明';
@@ -39,10 +28,7 @@ export const BlogCatalog: React.FC<BlogCatalogProps> = ({ initialArticles }) => 
     const articles = initialArticles; 
     return (
         <>
-           <BlogPageTitle>💡 電気設計 技術ブログ</BlogPageTitle> 
-            {/* 💡 ロード/エラー表示は親コンポーネント（ClientTagFilter）で管理可能 */}
-
-            {/* 記事一覧の表示 */}
+           <BlogPageTitle> 電気設計 技術ブログ</BlogPageTitle> 
             {articles.length === 0 && (
                 <StatusMessage>該当する記事はありません。</StatusMessage>
             )}
