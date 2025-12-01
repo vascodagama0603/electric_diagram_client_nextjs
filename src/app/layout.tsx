@@ -8,8 +8,8 @@ import { ToastContainer } from 'react-toastify'
 const GA_MEASUREMENT_ID = 'G-GKF9VPTXYB';
 
 export const metadata: Metadata = {
-  title: "CAD用 電気シンボル DXF/SVG 無料ダウンロード",
-  description: "電気図面作成に必要なJIS規格の電気シンボルを提供します。a接点、遮断器、押しボタンなど",
+  title: "電気図面自動生成ツール",
+  description: "簡単なクリック操作で電気図面の概略図を生成します",
   icons: {
     icon: [
         { url: '/favicon.svg', type: 'image/svg+xml' }, 

@@ -23,28 +23,14 @@ export interface SelectOption {
     did?: string;
     discription?: string;
     color?: string;
+    wire:number;
 }
 export interface SVGConnectionProps {
     parent: LayoutNode;
     child: LayoutNode;
     color: string;
-}
-
-export interface ConnectionMapProps {
-    id: string;
-    type: string;
-    parentNode: LayoutNode;
-    childNode: LayoutNode;
-    code: string;
-    color: string;
-}
-export interface CustomSelectFieldProps { 
-    nodeId: string;
-    value: string; 
-    onTriggerOpen: (id: string, currentValue: string, isRoot: boolean) => void;
-    options: SelectOption[];
-    isRoot: boolean;
-    note: string;
+    childLen:number;
+    
 }
 
 export interface NodeRendererProps {
@@ -56,6 +42,32 @@ export interface NodeRendererProps {
     // ★ Drag & Drop 用プロパティ
     onDropNode: (targetId: string, newItemValue: string) => void;
 }
+
+export interface ConnectionMapProps {
+    id: string;
+    type: string;
+    parentNode: LayoutNode;
+    childNode: LayoutNode;
+    code: string;
+    color: string;
+    x:number;
+    y:number;
+    width:number;
+    height:number;
+}
+export interface ConnectionRendererProps {
+    cons: ConnectionMapProps;
+    onDropLineNode: (targetId: ConnectionMapProps, newItemValue: string) => void;
+}
+export interface CustomSelectFieldProps { 
+    nodeId: string;
+    value: string; 
+    onTriggerOpen: (id: string, currentValue: string, isRoot: boolean) => void;
+    options: SelectOption[];
+    isRoot: boolean;
+    note: string;
+}
+
 
 
 export interface NoteModalState {
@@ -78,8 +90,9 @@ export interface SelectModalState {
 
 export interface DecisionSelectModalProps {
     state: SelectModalState;
-    onSelect: (nodeId: string, value: string) => void;
+    onSelect: (nodeId: string, value: string,treeData:TreeNode[]) => void;
     onClose: () => void;
+    treeData: TreeNode[];
 }
 
 export interface TreeDisplayProps {
@@ -89,6 +102,7 @@ export interface TreeDisplayProps {
     openSelectModal: (id: string, currentValue: string, isRoot: boolean) => void;
     openNoteModal: (id: string, currentNote: string) => void;
     onDropNode: (targetId: string, newItemValue: string) => void;
+    onDropLineNode: (targetId: ConnectionMapProps, newItemValue: string) => void;
 }
 
 export const baseColors = {
@@ -147,6 +161,7 @@ export interface Picture {
     did: string;
     discription: string; 
     search: string; 
+    wire:number;
 }
 export interface FileExtensionType {
     ext: string;

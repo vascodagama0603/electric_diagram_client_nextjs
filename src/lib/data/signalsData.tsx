@@ -12,7 +12,7 @@ const MAKE_CONTACT_DELAYED = "S00247"
 const BREAK_CONTACT_DELAYED = "S01911"
 //const MAKE_CONTACT_MANUAL = "S00250"
 //const BREAK_CONTACT_MANUAL = "S00171+S00225"
-const MAKE_CONTACT_GENERAL_MANUAL = "S00253"
+//const MAKE_CONTACT_GENERAL_MANUAL = "S00253"
 const MAKE_CONTACT_PUSH_BUTTON = "S00254"
 const MAKE_CONTACT_PUSH_BUTTON_POSITIBVE = "S00257"
 const BREAK_CONTACT_PUSH_BUTTON = "S00171+S00229"
@@ -49,9 +49,12 @@ const PROXIMITY_SWITCH = "S00359"
 const FUSE = "S00362"
 const FUSE_STRIKER = "S00364"
 const FUSE_SWITCH = "S00368"
-const MOTOR = "S00819"
-const LINER_MOTOR = "S00820"
-const STEPPING_MOTOR = "S00821"
+const MOTOR_2P = "S00819_2P"
+const MOTOR_3P = "S00819_3P"
+const LINER_MOTOR_2P = "S00820_2P"
+const LINER_MOTOR_3P = "S00820_3P"
+const STEPPING_MOTOR_2P = "S00821_2P"
+const STEPPING_MOTOR_3P = "S00821_3P"
 const THEMOCOUPLE = "S00952"
 const LAMP = "S00965"
 const BUZZER = "S00973"
@@ -62,6 +65,7 @@ const PUMP = "S01422"
 export const Signals = [
   {
     id: MAKE_CONTACT,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -73,6 +77,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -84,6 +89,7 @@ export const Signals = [
   },
   {
     id: TWO_MAKE_CONTACT,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -95,6 +101,7 @@ export const Signals = [
   },
   {
     id: TWO_BREAK_CONTACT,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -106,6 +113,7 @@ export const Signals = [
   },
   {
     id: MIRROR_CONTACT,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -117,6 +125,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_DELAYED_CLOSING,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -128,6 +137,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_DELAYED_OPENING,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -139,6 +149,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_DELAYED_OPENING,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -150,6 +161,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_DELAYED_CLOSING,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -161,6 +173,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_DELAYED,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -172,6 +185,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_DELAYED,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -204,6 +218,7 @@ export const Signals = [
   // },
   {
     id: MAKE_CONTACT_PUSH_BUTTON,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -215,6 +230,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_PUSH_BUTTON,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -226,6 +242,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_PUSH_BUTTON_POSITIBVE,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -237,6 +254,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_PULL_BUTTON,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -248,6 +266,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_TWIST_BUTTON,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -259,6 +278,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_EMERGENCY_STOP,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
@@ -270,6 +290,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_LIMIT,
+    wire:1,
     search:"make,a接点,メーク,limit",
     caption:"リミット接点",
     did:"07-08-01",
@@ -277,6 +298,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_LIMIT,
+    wire:1,
     search:"break,ブレイク,limit",
     caption:"リミットb接点",
     did:"07-08-02",
@@ -291,6 +313,7 @@ export const Signals = [
   // },
   {
     id: BREAK_CONTACT_LIMIT_POSITIVE,
+    wire:1,
     search:"break,ブレイク,limit",
     caption:"確実リミットb接点",
     did:"07-08-04",
@@ -298,6 +321,7 @@ export const Signals = [
   },
   {
     id: MAKE_CONTACT_TEMPERRATURE,
+    wire:1,
     search:"make,a接点,メーク,温度",
     caption:"温度感知a接点",
     did:"07-09-01",
@@ -305,6 +329,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_TEMPERRATURE,
+    wire:1,
     search:"break,ブレイク,温度",
     caption:"温度感知b接点",
     did:"07-09-02",
@@ -312,6 +337,7 @@ export const Signals = [
   },
   {
     id: BREAK_CONTACT_THERMAL,
+    wire:1,
     search:"break,ブレイク,サーマル",
     caption:"自己動作温度b接点",
     did:"07-09-03",
@@ -340,33 +366,36 @@ export const Signals = [
   // },
   {
     id: MAKE_CONTACTOR,
+    wire:1,
     start_x:[0],
     start_y:[0],
     end_x:[0],
     end_y:[0],
-    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,1極,1P",
+    search:"make,a接点,メーク,contactor,コンタクタ,電磁接触器,電磁,接触器,1極,1P",
     caption:"電磁接触器a接点",
     did:"7-13-02",
     discription:"電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
   },
   {
     id: MAKE_CONTACTOR_2P,
+    wire:2,
     start_x:[0],
     start_y:[0],
     end_x:[0],
     end_y:[0],
-    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,2極,2P",
+    search:"make,a接点,メーク,contactor,コンタクタ,電磁接触器,電磁,接触器,2極,2P",
     caption:"電磁接触器a接点2極",
-    did:"-",
+    did:"7-13-02(2P)",
     discription:"2極の電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
   },
   {
     id: MAKE_CONTACTOR_3P,
+    wire:3,
     end_x:[0,-3,-6],
     end_y:[-6,-6,-6],
-    search:"make,a接点,メーク,contactor,コンタクタ,電磁,接触器,3極,3P",
+    search:"make,a接点,メーク,contactor,コンタクタ,電磁接触器,電磁,接触器,3極,3P",
     caption:"電磁接触器a接点3極",
-    did:"-",
+    did:"7-13-02(3P)",
     discription:"3極の電磁接触器の主回路または補助回路のa接点を示します。リレーよりも大電流の開閉能力を持ち、モータなどの高負荷機器の起動・運転に使用されます。"
   },
   // {
@@ -378,13 +407,15 @@ export const Signals = [
   // },
   {
     id: BREAK_CONTACTOR,
-    search:"break,b接点,ブレイク,contactor,コンタクタ,電磁,接触器",
+    wire:1,
+    search:"break,b接点,ブレイク,contactor,コンタクタ,電磁接触器,電磁,接触器",
     caption:"電磁接触器b接点",
     did:"7-13-04",
     discription:"電磁接触器の補助回路のb接点を示します。主に電磁接触器が動作していないことの確認や、インターロック（相互の同時動作防止）回路に利用されます。"
   },
   {
     id: CIRCUIT_BREAKER,
+    wire:1,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,1極,1P",
     caption:"サーキットブレーカ1極",
     did:"7-13-05",
@@ -392,34 +423,39 @@ export const Signals = [
   },
   {
     id: CIRCUIT_2P_BREAKER,
+    wire:2,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,2極,2P",
     caption:"サーキットブレーカ2極",
-    did:"-",
+    did:"7-13-05(2P)",
     discription:"2極（単相2線、または三相の一部）の配線用遮断器を示します。過負荷や短絡から回路を保護し、手動での開閉操作も可能です。"
   },
   {
     id: CIRCUIT_3P_BREAKER,
+    wire:3,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,3極,3P",
     caption:"サーキットブレーカ3極",
-    did:"-",
+    did:"7-13-05(3P)",
     discription:"3極（三相3線）の配線用遮断器を示します。動力回路などの三相電源ラインを一括で保護・遮断する目的で使用されます。"
   },
   {
     id: ELB_2P,
+    wire:2,
     search:"make,a接点,メーク,漏電遮断器,ELB,circuit,2極,2P",
     caption:"漏電遮断器2極",
-    did:"7-13-08 + 06-13-11",
+    did:"7-13-08 + 06-13-11(2P)",
     discription:"漏電保護と過電流保護（短絡・過負荷）の機能を併せ持つ遮断器（Earth Leakage Breaker）のシンボルです。2極（単相2線など）の回路に使用され、地絡（漏電）電流を検出した場合、または定格以上の電流が流れた場合に、瞬時に回路を遮断し、感電事故や火災を防ぎます。"
   },
   {
     id: ELB_3P,
+    wire:3,
     search:"make,a接点,メーク,漏電遮断器,ELB,circuit,3極,3P",
     caption:"漏電遮断器3極",
-    did:"7-13-08 + 06-13-11",
+    did:"7-13-08 + 06-13-11(3P)",
     discription:"漏電遮断器3極 | 漏電保護と過電流保護（短絡・過負荷）の機能を併せ持つ遮断器です。3極（三相3線など）の動力回路に使用され、三相電源を一括で保護します。回路の安全確保と法規遵守のために、主電源回路や特定の負荷回路に設置されます。"
   },
   {
     id: COIL_GENEREL,
+    wire:1,
     search:"coil,コイル,一般",
     caption:"コイル(一般)",
     did:"7-15-01",
@@ -427,27 +463,31 @@ export const Signals = [
   },
   {
     id: THERMAL_RERAY_1P,
-    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,1素子,1E",
+    wire:1,
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,1素子,1E,1P",
     caption:"サーマルリレー1素子",
     did:"7-15-21",
     discription:"熱動継電器の主回路部分のシンボルです。モーターなどの過負荷による発熱を検出・保護するリレーであり、1極（単相または直流）の電流を検出します。"
   },
   {
     id: THERMAL_RERAY_2P,
-    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,2素子,2E",
-    caption:"サーマルリレー2素子",
-    did:"-",
+    wire:3,
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,2素子,2E,3極,3P",
+    caption:"サーマルリレー3極2素子",
+    did:"7-15-21(3P2E)",
     discription:"3相2素子の電流を検出する熱動継電器の主回路シンボルです。"
   },
   {
     id: THERMAL_RERAY_3P,
-    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,3素子,3E",
+    wire:3,
+    search:"coil,reray,thermal,サーマル,リレー,コイル,熱動継電器,3素子,3E,3極,3P",
     caption:"サーマルリレー3素子",
-    did:"-",
+    did:"7-15-21(3P3E)",
     discription:"3相3素子の電流を検出する熱動継電器の主回路シンボルです。三相交流モーターの過負荷保護に最も広く利用されます。"
   },
   {
     id: TOUCH_SENSOR,
+    wire:1,
     search:"sensor,センサー,タッチ,touch",
     caption:"タッチセンサー",
     did:"7-19-04",
@@ -455,6 +495,7 @@ export const Signals = [
   },
   {
     id: TOUCH_SENSITIVE_SWITCH,
+    wire:1,
     search:"sensor,センサー,タッチ,スイッチ,touch",
     caption:"タッチセンサースイッチ",
     did:"7-20-01",
@@ -462,6 +503,7 @@ export const Signals = [
   },
   {
     id: PROXIMITY_SWITCH,
+    wire:1,
     search:"sensor,センサー,近接,PROXIMITY",
     caption:"近接センサ",
     did:"7-20-02",
@@ -469,6 +511,7 @@ export const Signals = [
   },
   {
     id: FUSE,
+    wire:1,
     search:"ヒューズ,fuze",
     caption:"ヒューズ(一般図)",
     did:"7-21-02",
@@ -476,6 +519,7 @@ export const Signals = [
   },
   {
     id: FUSE_STRIKER,
+    wire:1,
     search:"ヒューズ,fuze,striker,ストライカー",
     caption:"ストライカー付きヒューズ",
     did:"7-21-03",
@@ -483,34 +527,63 @@ export const Signals = [
   },
   {
     id: FUSE_SWITCH,
+    wire:1,
     search:"ヒューズ,fuze,スイッチ",
     caption:"ヒューズスイッチ",
     did:"7-21-07",
     discription:"ヒューズ（過電流保護）とスイッチ（手動開閉）の機能を一体化した機器のシンボルです。回路を物理的に開閉できるため、安全な保守・点検のために電源を遮断する用途や、保護と同時に電源投入を行う主回路の開閉器として使用されます。"
   },
   {
-    id: MOTOR,
-    search:"motor,モータ,",
-    caption:"モータ（一般図)",
-    did:"06-04-01",
-    discription:"一般的な電動機のシンボルです。電気エネルギーを回転運動（動力）に変換する機器を示し、ポンプ、コンベヤ、ファンなどの駆動源として使用されます。"
+    id: MOTOR_2P,
+    wire:2,
+    search:"motor,モータ,2極,2P",
+    caption:"モータ2極（一般図)",
+    did:"06-04-01(2P)",
+    discription:"一般的な2極の電動機のシンボルです。電気エネルギーを回転運動（動力）に変換する機器を示し、ポンプ、コンベヤ、ファンなどの駆動源として使用されます。"
   },
   {
-    id: LINER_MOTOR,
-    search:"motor,モータ,liner,リニア",
-    caption:"リニアモータ（一般図)",
-    did:"06-04-02",
-    discription:"電気エネルギーを直線運動に変換する特殊な電動機のシンボルです。高速・高精度の位置決めが必要な搬送装置などに使用されます。"
+    id: MOTOR_3P,
+    wire:3,
+    search:"motor,モータ,3極,3P",
+    caption:"モータ3極（一般図)",
+    did:"06-04-01(3P)",
+    discription:"一般的な3極の電動機のシンボルです。電気エネルギーを回転運動（動力）に変換する機器を示し、ポンプ、コンベヤ、ファンなどの駆動源として使用されます。"
   },
   {
-    id: STEPPING_MOTOR,
-    search:"motor,モータ,stepping,ステッピング",
-    caption:"ステッピングモータ",
-    did:"06-04-03",
+    id: LINER_MOTOR_2P,
+    wire:2,
+    search:"motor,モータ,liner,リニア,2極,2P",
+    caption:"リニアモータ2極",
+    did:"06-04-02(2P)",
+    discription:"電気エネルギーを直線運動に変換する2極の電動機のシンボルです。高速・高精度の位置決めが必要な搬送装置などに使用されます。"
+  },
+  {
+    id: LINER_MOTOR_3P,
+    wire:2,
+    search:"motor,モータ,liner,リニア,3極,3P",
+    caption:"リニアモータ3極",
+    did:"06-04-02(3P)",
+    discription:"電気エネルギーを直線運動に変換する3極の電動機のシンボルです。高速・高精度の位置決めが必要な搬送装置などに使用されます。"
+  },
+  {
+    id: STEPPING_MOTOR_2P,
+    wire:1,
+    search:"motor,モータ,stepping,ステッピング,2極,2P",
+    caption:"ステッピングモータ2極",
+    did:"06-04-03(2P)",
+    discription:"パルス信号に応じて段階的に回転するモーターです。正確な角度制御や位置決めが必要な用途（例：プリンター、精密機器）に使用されます。"
+  },
+  {
+    id: STEPPING_MOTOR_3P,
+    wire:1,
+    search:"motor,モータ,stepping,ステッピング,3極,3P",
+    caption:"ステッピングモータ3極",
+    did:"06-04-03(3P)",
     discription:"パルス信号に応じて段階的に回転するモーターです。正確な角度制御や位置決めが必要な用途（例：プリンター、精密機器）に使用されます。"
   },
   {
     id: THEMOCOUPLE,
+    wire:2,
     search:"themocouple,熱電対",
     caption:"熱電対",
     did:"08-06-01",
@@ -518,6 +591,7 @@ export const Signals = [
   },
   {
     id: LAMP,
+    wire:1,
     search:"lamp,ランプ",
     caption:"ランプ",
     did:"08-10-01",
@@ -525,6 +599,7 @@ export const Signals = [
   },
   {
     id: BUZZER,
+    wire:2,
     search:"ブザー,buzzer",
     caption:"ブザー",
     did:"08-10-10",

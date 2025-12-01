@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     
     openGraph: {
         title: '技術ブログ一覧 | 電気設計、制御、CADの専門知識',
-        url: 'https://denkizumen.com/blog', // サイトのドメインに合わせて修正
+        url: 'https://denkizumen.com/blog',
     }
 };
 export default async function BlogPage() {

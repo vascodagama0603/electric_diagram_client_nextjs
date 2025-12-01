@@ -694,10 +694,37 @@ export const CanvasLayout = styled.div`
     position: relative;
 `;
 export const PaletteLayout = styled.div`
-    width: 500px;
+    width: 300px;
     background-color: #f1f5f9;
     border-radius: 1rem;
     padding: 1.5rem;
     overflow-y: auto;
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+`;
+export const HoverPath = styled.path`
+  stroke-width: 4px;
+  pointer-events: none;
+  fill: none;
+  stroke: navy;
+  &[data-primary="true"] {
+    stroke: tomato;
+  }
+`;
+export const NormalPath = styled.path`
+  stroke-width: 4px;
+  fill: none;
+  stroke: navy;
+`;
+
+export const HoverLine = styled.svg<{ consx: number, consy: number }>`
+  position: absolute;
+  top: ${props => props.consy};
+  left: ${props => props.consx};
+  zIndex: 10;
+  overflow: visible;
+
+  &[data-primary="true"] {
+    stroke: tomato;
+    border: 3px dashed tomato;
+  }
 `;

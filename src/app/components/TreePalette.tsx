@@ -27,9 +27,7 @@ const paletteItemStyle: CSSProperties = {
 
 
 const PaletteItem: React.FC<{ option: SelectOption }> = ({ option }) => {
-        // console.log("PaletteItem")
     const [isHover, setIsHover] = useState(false);
-
     const handleDragStart = (e: React.DragEvent) => {
         e.dataTransfer.setData('application/react-dnd-item', option.id);
         e.dataTransfer.effectAllowed = 'copy';
@@ -63,9 +61,9 @@ const PaletteItem: React.FC<{ option: SelectOption }> = ({ option }) => {
 export const NodePalette: React.FC = () => {
     return (
         <PaletteLayout>
-            <h3 style={{ fontSize: '1.0rem', fontWeight: 'bold', marginBottom: '0.1rem', color: '#334155' }}>ノードパレット</h3>
+            <h3 style={{ fontSize: '1.0rem', fontWeight: 'bold', marginBottom: '0.1rem', color: '#334155' }}>シンボル一覧</h3>
             <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '' }}>
-                項目をドラッグして、右側のツリー内の親ノードにドロップしてください。
+                項目をドラッグして、右側のツリー内の要素か線にドロップしてください。
             </p>
             {SELECT_OPTIONS.slice(0).map(option => (
                 <PaletteItem key={option.id} option={option} />

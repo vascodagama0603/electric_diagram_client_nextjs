@@ -17,7 +17,7 @@ import { GlobalLayoutContainer,
 const Menu = () => {
     const links = [
         { href: '/', label: 'Auto電気図面' },
-        { href: '/svg_download', label: 'シンボルダウンロード' },
+        { href: '/symbol_download', label: 'シンボルダウンロード' },
         { href: '/blog', label: '技術ブログ' },
         // { href: '/contact', label: 'お問い合わせ' },
         // { href: '/about', label: '運営者情報' },

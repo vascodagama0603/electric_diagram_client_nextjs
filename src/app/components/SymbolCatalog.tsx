@@ -70,7 +70,6 @@ export function SymbolCatalog() : React.JSX.Element {
 
         const queryString = params.toString();
         const url = extType.url + picture.id + (queryString ? `?${queryString}` : '');
-        // console.log("a:",url)
         const response = await axios.get(url, {
             responseType: 'blob', 
         });
