@@ -21,12 +21,6 @@ import swal from 'sweetalert2';
 import {Signals} from './../lib/data/signalsData'
 import {baseColors} from './page_css'
 
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: '【重要】電気シンボルサイトの個人情報保護方針と免責事項', 
-    description: '当サイトのプライバシーポリシー、Google AdSense、アクセス解析ツールの利用規約、免責事項、著作権について記載しています。',
-};
 const extSVG:FileExtensionType ={
   ext : ".svg",
   type: 'image/svg+xml',
