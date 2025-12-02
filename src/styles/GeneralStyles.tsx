@@ -159,7 +159,7 @@ export const StyledOverlay = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1;
 `;
 export const StyledDescriptionBox = styled.div`
     position: relative;
@@ -314,7 +314,7 @@ export const StyledStatusContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 20000;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
   border-radius: 12px;
