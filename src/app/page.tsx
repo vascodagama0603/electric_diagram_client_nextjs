@@ -96,13 +96,9 @@ const App: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        console.log("USEEFFECT")
         let loadedData = loadTreeDataFromLocalStorage();
-        console.log("loadedData:",loadedData)
         if (!loadedData.length){
-
           loadedData = INITIAL_TREE_DATA
-          console.log("INITIAL:",INITIAL_TREE_DATA)
         }
         setTreeData(loadedData);
     }, []); 
