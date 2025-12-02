@@ -264,7 +264,7 @@ const App: React.FC = () => {
             if (response.status !== 200) {
                 throw new Error(`API returned status ${response.status}`);
             }
-            const blob = new Blob([response.data], { type: `${extType.type};charset=Shift_JIS` });
+            const blob = new Blob([response.data], { type: `${extType.type};charset=utf-8` });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = extType.text +extType.ext; 
