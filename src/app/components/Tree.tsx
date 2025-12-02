@@ -25,48 +25,6 @@ export const ROOT_SELECT_OPTIONS: SelectOption[] = [
     { id: '3φ3w', caption: '3φ3w',  wire:3,color: baseColors.default },
     { id: '1φ2w', caption: '1φ2w', wire:2, color: baseColors.default },
 ];
-export const INITIAL_TREE_DATA: TreeNode[] = [
-    {
-        id: 'root',
-        type: 'decision',
-        caption: ROOT_SELECT_OPTIONS[0].id,
-        note: '3φ3W\n20A\n200V', 
-        children: [
-        {
-            id: '1',
-            type: 'decision',
-            caption: "S00144+S00287_3P",
-            note: 'ELB01\n30A30mA\n三菱電機', 
-            children: [
-                {
-            id: '2',
-            type: 'decision',
-            caption: "S00284_3P",
-            note: 'MC01\n30A\n富士電機', 
-            children: [
-                {
-            id: '3',
-            type: 'decision',
-            caption: "S00325_3P",
-            note: 'THR01\n30A\n富士電機', 
-            children: [
-                {
-            id: '4',
-            type: 'decision',
-            caption: "S00819_3P",
-            note: 'M01\n5kW\n三菱電機', 
-            children: [],
-        },
-            ],
-        },
-            ],
-        },
-            ],
-        },
-        ],
-    },
-
-];
 export const generateId = () => Math.random().toString(36).substring(2, 9);
 export const findNode = (nodes: TreeNode[], id: string, parent?: TreeNode): { node: TreeNode | undefined, parent: TreeNode | undefined, index: number } => {
     for (let i = 0; i < nodes.length; i++) {

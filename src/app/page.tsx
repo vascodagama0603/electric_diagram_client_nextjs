@@ -38,25 +38,25 @@ const INITIAL_TREE_DATA: TreeNode[] = [
             id: '1',
             type: 'decision',
             caption: "S00144+S00287_3P",
-            note: 'ELB01\n30A30mA\n三菱電機', 
+            note: 'ELB01\n30A30mA\nMITSUBISHI ELEC.', 
             children: [
                 {
             id: '2',
             type: 'decision',
             caption: "S00284_3P",
-            note: 'MC01\n30A\n富士電機', 
+            note: 'MC01\n30A\nFUJI ELEC.', 
             children: [
                 {
             id: '3',
             type: 'decision',
             caption: "S00325_3P",
-            note: 'THR01\n30A\n富士電機', 
+            note: 'THR01\n30A\nFUJI ELEC.', 
             children: [
                 {
             id: '4',
             type: 'decision',
             caption: "S00819_3P",
-            note: 'M01\n5kW\n三菱電機', 
+            note: 'M01\n5kW\nMITSUBISHI ELEC.', 
             children: [],
         },
             ],
