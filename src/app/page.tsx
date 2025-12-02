@@ -67,7 +67,15 @@ const INITIAL_TREE_DATA: TreeNode[] = [
     },
 
 ];
-
+const RESET_TREE_DATA: TreeNode[] = [
+    {
+        id: 'root',
+        type: 'decision',
+        caption: ROOT_SELECT_OPTIONS[0].id,
+        note: '3φ3W\n20A\n200V', 
+        children: [],
+    },
+];
 const extSVG:FileExtensionType ={
   ext : ".svg",
   type: 'image/svg+xml',
@@ -235,7 +243,7 @@ const App: React.FC = () => {
          updateNode(nodeId, 'note', note); 
          setNoteModalState({ isOpen: false, nodeId: null, currentNote: '' }); 
         }, [updateNode]);
-    const handleReset = () => { if (window.confirm("全てのデータをリセットしますか？")) { setTreeData(INITIAL_TREE_DATA); saveTreeDataToLocalStorage(INITIAL_TREE_DATA); } };
+    const handleReset = () => { if (window.confirm("全てのデータをリセットしますか？")) { setTreeData(RESET_TREE_DATA); saveTreeDataToLocalStorage(INITIAL_TREE_DATA); } };
 
 
     const getDownloadFile = async (extType: FileExtensionType) =>{
