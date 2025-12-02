@@ -14,7 +14,9 @@ import {TreeDisplay,DecisionSelectModal,NoteEditorModal,
       useTreeUpdater,findNode,generateId,
 } from './components/Tree'
 import {NodePalette} from './components/TreePalette'
-import { PageTitle, EditorLayout,CanvasLayout
+import { PageTitle, EditorLayout,CanvasLayout,
+    StyledStatusContainer,
+  Spinner,StatusText
 } from '../styles/GeneralStyles';
 import {FileExtensionType,ConnectionMapProps} from '../lib/type'
 import swal from 'sweetalert2';
@@ -94,6 +96,7 @@ const App: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [selectModalState, setSelectModalState] = useState<SelectModalState>({ isOpen: false, nodeId: null, currentValue: '', isRoot: false });
     const [noteModalState, setNoteModalState] = useState<NoteModalState>({ isOpen: false, nodeId: null, currentNote: '' });
+    const [flags, setFlags] = useState<boolean>(false);
     const updateNode = useTreeUpdater(setTreeData);
 
     useEffect(() => {
@@ -248,6 +251,7 @@ const App: React.FC = () => {
 
     const getDownloadFile = async (extType: FileExtensionType) =>{
         try {
+            setFlags(true);
             const params = new URLSearchParams();
             if (treeData.length > 0) {
                 params.set('data', JSON.stringify(treeData));
@@ -275,7 +279,9 @@ const App: React.FC = () => {
                 text: "ダウンロードできませんでした",
             });      
             console.error('Error downloading the '+extType+' file:', error);
-            }
+            }finally {
+                setFlags(false);
+        }
     };
 
     return (
@@ -300,7 +306,12 @@ const App: React.FC = () => {
                 <EditorLayout>
                     <NodePalette />
                     <CanvasLayout>
-
+                        {flags && (
+                            <StyledStatusContainer>
+                                <Spinner />
+                                <StatusText>ダウンロード中...</StatusText>
+                            </StyledStatusContainer>
+                        )}
                         {treeData.length > 0 ? 
                             <TreeDisplay 
                                 nodes={treeData} 
