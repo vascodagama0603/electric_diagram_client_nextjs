@@ -302,6 +302,7 @@ const App: React.FC = () => {
                             getDownloadFile(extDXF);
                         }}
                         tabIndex={0}>DXF保存</SvgButton>
+                    <span>※SVG保存は現状日本語対応しておりません。DXF保存は日本語使用可能です。</span>
                 </div>
                 <EditorLayout>
                     <NodePalette />
