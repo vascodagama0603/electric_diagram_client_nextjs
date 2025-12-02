@@ -21,11 +21,11 @@ import swal from 'sweetalert2';
 import {Signals} from './../lib/data/signalsData'
 import {baseColors} from './page_css'
 
-export const ROOT_SELECT_OPTIONS: SelectOption[] = [
+const ROOT_SELECT_OPTIONS: SelectOption[] = [
     { id: '3φ3w', caption: '3φ3w',  wire:3,color: baseColors.default },
     { id: '1φ2w', caption: '1φ2w', wire:2, color: baseColors.default },
 ];
-export const INITIAL_TREE_DATA: TreeNode[] = [
+const INITIAL_TREE_DATA: TreeNode[] = [
     {
         id: 'root',
         type: 'decision',
