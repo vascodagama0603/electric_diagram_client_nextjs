@@ -1,4 +1,7 @@
 
+const DEVICE_1P = "S00060_1P"
+const DEVICE_2P = "S00060_2P"
+const DEVICE_3P = "S00060_3P"
 const MAKE_CONTACT = "S00227"
 const BREAK_CONTACT = "S00229"
 const TWO_MAKE_CONTACT = "S00234"
@@ -63,6 +66,54 @@ const FUN = "S01421"
 const PUMP = "S01422"
 */  
 export const Signals = [
+  {
+    id: DEVICE_1P,
+    wire:1,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
+    search:"device,デバイス,四角,装置,部品,1P",
+    caption:"デバイス1極",
+    did:"02-01-02(1P)",
+    discription:"1極の装置,デバイス,機能部品,構成部品などに使用します。"
+  },
+  {
+    id: DEVICE_2P,
+    wire:2,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
+    search:"device,デバイス,四角,装置,部品,2P",
+    caption:"デバイス2極",
+    did:"02-01-02(2P)",
+    discription:"2極の装置,デバイス,機能部品,構成部品などに使用します。"
+  },
+  {
+    id: DEVICE_2P,
+    wire:2,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
+    search:"device,デバイス,四角,装置,部品,2P",
+    caption:"デバイス2極",
+    did:"02-01-02(2P)",
+    discription:"2極の装置,デバイス,機能部品,構成部品などに使用します。"
+  },
+  {
+    id: DEVICE_3P,
+    wire:3,
+    start_x:[0],
+    start_y:[0],
+    end_x:[0],
+    end_y:[0],
+    search:"device,デバイス,四角,装置,部品,3P",
+    caption:"デバイス3極",
+    did:"02-01-02(3P)",
+    discription:"3極の装置,デバイス,機能部品,構成部品などに使用します。"
+  },
   {
     id: MAKE_CONTACT,
     wire:1,

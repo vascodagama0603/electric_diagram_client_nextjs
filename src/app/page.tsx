@@ -29,46 +29,142 @@ const ROOT_SELECT_OPTIONS: SelectOption[] = [
 ];
 const INITIAL_TREE_DATA: TreeNode[] = [
     {
-        id: 'root',
-        type: 'decision',
-        caption: ROOT_SELECT_OPTIONS[0].id,
-        note: '3φ3W\n20A\n200V', 
-        children: [
-        {
-            id: '1',
-            type: 'decision',
-            caption: "S00144+S00287_3P",
-            note: 'ELB01\n30A30mA\n三菱電機', 
-            children: [
-                {
-            id: '2',
-            type: 'decision',
-            caption: "S00284_3P",
-            note: 'MC01\n30A\n富士電機', 
-            children: [
-                {
-            id: '3',
-            type: 'decision',
-            caption: "S00325_3P",
-            note: 'THR01\n30A\n富士電機', 
-            children: [
-                {
-            id: '4',
-            type: 'decision',
-            caption: "S00819_3P",
-            note: 'M01\n5kW\n三菱電機', 
-            children: [],
-        },
-            ],
-        },
-            ],
-        },
-            ],
-        },
-        ],
-    },
-
-];
+        "id": "root",
+        "type": "decision",
+        "caption": "3φ3w",
+        "note": "3φ3W\n20A\n200V\n富士電機",
+        "children": [
+            {
+                "id": "1",
+                "type": "decision",
+                "caption": "S00144+S00287_3P",
+                "note": "ELB01\n30A30mA\n富士電機\nEW32AAG-3P030B",
+                "children": [
+                    {
+                        "id": "2",
+                        "type": "decision",
+                        "caption": "S00284_3P",
+                        "note": "MC01\n11A 2.2kW\n富士電機\nSC09XG-E10",
+                        "children": [
+                            {
+                                "id": "3",
+                                "type": "decision",
+                                "caption": "S00325_3P",
+                                "note": "THR01\n30A\n富士電機\nTR18X3-009",
+                                "children": [
+                                    {
+                                        "id": "4",
+                                        "type": "decision",
+                                        "caption": "S00819_3P",
+                                        "note": "M01\n2.2kW\n三菱電機\nSF-PRV \n2.2KW 4P 200V",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "cw6c6jz",
+                        "type": "decision",
+                        "caption": "S00284_3P",
+                        "note": "MC02\n18A 3.7kW\n富士電機\nSC18XG-E10",
+                        "children": [
+                            {
+                                "id": "w6anbkr",
+                                "type": "decision",
+                                "caption": "S00060_3P",
+                                "note": "INV01\n3.kW\n三菱\nFR-D720-3.7K",
+                                "children": [
+                                    {
+                                        "id": "1clebtg",
+                                        "type": "decision",
+                                        "caption": "S00819_3P",
+                                        "note": "M02\n3.7kW\n三菱電機\nSF-PRV \n3.7KW 4P 200V",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "gzoa6an",
+                        "type": "decision",
+                        "caption": "S00287_2P",
+                        "note": "CP01\n5A\n三菱\nCP30-BA 2P 1-M 5A",
+                        "children": [
+                            {
+                                "id": "458mjfc",
+                                "type": "decision",
+                                "caption": "S00060_2P",
+                                "note": "AVR01\n120W\nOMRON\nS8VK-G12024",
+                                "children": [
+                                    {
+                                        "id": "r7biwas",
+                                        "type": "decision",
+                                        "caption": "S00060_2P",
+                                        "note": "PLC-CPU01\nKEYENCE\nKV-8000",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "b05lyqx",
+                                        "type": "decision",
+                                        "caption": "S00060_1P",
+                                        "note": "PLC-IN01\nKEYENCE\nKV-C64XC",
+                                        "children": [
+                                            {
+                                                "id": "s0cvoww",
+                                                "type": "decision",
+                                                "caption": "S00254",
+                                                "note": "PSW01\nOMRON\nA16L-AGM-24D-1\n運転ボタン[緑]",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "i4a9e10",
+                                                "type": "decision",
+                                                "caption": "S00171+S00229",
+                                                "note": "PSW02\nOMRON\nA16L-ARM-24D-1\n停止ボタン[緑]",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "fu9fx0m",
+                                                "type": "decision",
+                                                "caption": "S00258",
+                                                "note": "PSW03\nOMRON\nA165E-S-01\n非常停止ボタン",
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "zrtwhl4",
+                                        "type": "decision",
+                                        "caption": "S00060_1P",
+                                        "note": "PLC-OUT01\nKEYENCE\nKV-C64TD",
+                                        "children": [
+                                            {
+                                                "id": "8ducpt8",
+                                                "type": "decision",
+                                                "caption": "S00305",
+                                                "note": "MC01\nモータ[M01]起動",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "dojpugi",
+                                                "type": "decision",
+                                                "caption": "S00305",
+                                                "note": "MC02\nモータ[M01]起動",
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
 const RESET_TREE_DATA: TreeNode[] = [
     {
         id: 'root',
