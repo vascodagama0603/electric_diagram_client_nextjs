@@ -3,12 +3,16 @@ const STORAGE_KEY = 'DENKIZUMEN';
 
 export const loadTreeDataFromLocalStorage = (): TreeNode[] => {
     if (typeof window === 'undefined') return [];
+    
     try {
         const storedData = localStorage.getItem(STORAGE_KEY);
         if (storedData) {
             const parsed = JSON.parse(storedData);
+            
             if (Array.isArray(parsed) && parsed.length > 0) {
-                return parsed;
+                if(parsed[0].device && parsed[0].device.specification){
+                    return parsed;
+                }
             }
         }
     } catch (e) {
