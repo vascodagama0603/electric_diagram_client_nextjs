@@ -87,8 +87,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-      - name: Deploy (Example - Placeholder)
-        run: echo "Deployment step goes here. e.g., using Vercel CLI."
 
   # Deployment job
   deploy:
