@@ -337,7 +337,7 @@ const extDXF:FileExtensionType ={
   text: 'autoElectric',
   url:process.env.NEXT_PUBLIC_SERVER_URL+"/dxf"
 }
-export const useTreeUpdater1 = (setTreeData: React.Dispatch<React.SetStateAction<TreeNode[]>>) => {
+const useTreeUpdater1 = (setTreeData: React.Dispatch<React.SetStateAction<TreeNode[]>>) => {
     return useCallback(
         (id: string, field:Device) => {
 
@@ -356,7 +356,7 @@ export const useTreeUpdater1 = (setTreeData: React.Dispatch<React.SetStateAction
 };
 
 
-export const useTreeUpdater2 = (setTreeData: React.Dispatch<React.SetStateAction<TreeNode[]>>) => {
+const useTreeUpdater2 = (setTreeData: React.Dispatch<React.SetStateAction<TreeNode[]>>) => {
     return useCallback(
         () => {
             
