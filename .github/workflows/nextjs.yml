@@ -22,7 +22,6 @@ concurrency:
   cancel-in-progress: false
 
 
-
 jobs:
   # Build job
   build:
@@ -72,9 +71,8 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Build with Next.js and Export
-        # next build を実行した後、続けて next export を実行して静的ファイルを出力します。
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build && ${{ steps.detect-package-manager.outputs.runner }} next export       
+      - name: Build with Next.js
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build          
         env:
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
           NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
@@ -87,8 +85,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+      - name: Deploy (Example - Placeholder)
+        run: echo "Deployment step goes here. e.g., using Vercel CLI."
 
-          
   # Deployment job
   deploy:
     environment:
