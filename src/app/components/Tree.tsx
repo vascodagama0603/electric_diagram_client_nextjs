@@ -4,14 +4,20 @@ import React, { useState, useCallback, CSSProperties, useEffect } from 'react';
 import {TreeNode,LayoutNode,SelectOption,SVGConnectionProps,CustomSelectFieldProps,
   NodeRendererProps,NoteEditorModalProps,
   DecisionSelectModalProps,TreeDisplayProps,
-  ConnectionMapProps,ConnectionRendererProps
+  ConnectionMapProps,ConnectionRendererProps,
+  Device,Power,Sw,OffDelaySw,OnDelaySw,OnDelayOffDelaySw,
+  Dev,Elb,MagnetSwitch,CircuitBreaker,Coil,Thermal,TouthSensor,
+  ProximitySwitch,Fuze,Motor,ThermoCouple,Lamp,Buzzer,
+  Specification,NoteModalState
 } from '../../lib/type'
 import {saveTreeDataToLocalStorage} from '../../lib/localStrage'
 import {Signals} from '../../lib/data/signalsData'
 import {baseColors,nodeStyles,buttonStyles,ModalContentStyle,OverlayStyle} from '../page_css'
 import {} from './TreePalette'
-import {HoverPath,NormalPath,HoverLine} from '../../styles/GeneralStyles'
-
+import { HoverPath,NormalPath,HoverLine,InputSpecs, TextAreaSpecs} from '../../styles/GeneralStyles'
+import { categoryLabels } from '../../lib/data/label';
+import { SpecificationOrder } from '@/lib/data/signalsProperty';
+import { generateId } from './Logic';
 const NODE_WIDTH = 150;
 const NODE_HEIGHT = 70;
 const HORIZONTAL_SPACING = 10;
@@ -25,41 +31,7 @@ export const ROOT_SELECT_OPTIONS: SelectOption[] = [
     { id: '3φ3w', caption: '3φ3w',  wire:3,color: baseColors.default },
     { id: '1φ2w', caption: '1φ2w', wire:2, color: baseColors.default },
 ];
-export const generateId = () => Math.random().toString(36).substring(2, 9);
-export const findNode = (nodes: TreeNode[], id: string, parent?: TreeNode): { node: TreeNode | undefined, parent: TreeNode | undefined, index: number } => {
-    for (let i = 0; i < nodes.length; i++) {
-        if (nodes[i].id === id) {
-            return { node: nodes[i], parent, index: i };
-        }
-        const result = findNode(nodes[i].children, id, nodes[i]);
-        if (result.node) {
-            return result;
-        }
-    }
-    return { node: undefined, parent: undefined, index: -1 };
-};
 
-export const useTreeUpdater = (setTreeData: React.Dispatch<React.SetStateAction<TreeNode[]>>) => {
-    return useCallback(
-        (id: string, field: 'caption' | 'note', value: string) => {
-
-            setTreeData(prevTree => {
-                const newTree = JSON.parse(JSON.stringify(prevTree));
-                const { node } = findNode(newTree, id);
-                if (node) {
-                    if (field === 'caption') {
-                        node.caption = value;
-                    } else if (field === 'note') {
-                        node.note = value;
-                    }
-                    saveTreeDataToLocalStorage(newTree); 
-                }
-                return newTree;
-            });
-        },
-        [setTreeData]
-    );
-};
 const SELECT_OPTIONS: SelectOption[] = Signals
 
 const calculateTreeLayout = (nodes: TreeNode[]): { layoutNodes: LayoutNode[], dimensions: { width: number, height: number } } => {
@@ -124,9 +96,13 @@ const calculateTreeLayout = (nodes: TreeNode[]): { layoutNodes: LayoutNode[], di
 };
 
 
-const CustomSelectField: React.FC<CustomSelectFieldProps> = ({ nodeId, value, onTriggerOpen, options, isRoot, note }) => {
+const CustomSelectField: React.FC<CustomSelectFieldProps> = ({ nodeId, value, onTriggerOpen, options, isRoot, device}) => {
     const selectedOption = options.find(opt => opt.id === value) || options[0];
     const [isHover, setIsHover] = useState(false);
+    const keys = Object.keys(device.specification).filter(k => k !== 'id' && k !== 'type' && k !== 'signature' && k !== 'signatureNumber' && k !== 'phase');
+    const isWrite = keys.some((key) => {
+        const currentValue: any = device.specification[key as keyof Specification];
+        return currentValue !== "" && currentValue !== 0})
 
     const buttonStyle: CSSProperties = {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '12px 16px', borderRadius: '12px',
@@ -149,7 +125,7 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({ nodeId, value, on
                     </div>
                     <div style={{ color: baseColors.primary }}>{ChevronDownIcon(baseColors.primary)}</div>
                 </div>
-                {note && note.trim().length > 0 && (
+                {isWrite && (
                     <div style={{ width: '100%', fontSize: '0.5rem', color: baseColors.warning, fontWeight: '600', textAlign: 'right', borderTop: '1px dashed #e5e7eb' }}>
                         <span style={{ backgroundColor: baseColors.warning, color: 'white', padding: '2px 6px', borderRadius: '6px' }}>メモあり</span>
                     </div>
@@ -163,16 +139,121 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({ nodeId, value, on
 
 
 export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({ state, onSave, onClose }) => {
-    const [noteContent, setNoteContent] = useState(state.currentNote);
+    const [device, setDevice] = useState<Device>(state.device);
+    const [nodeId, setNodeId] = useState<string | null>(state.nodeId);
     const [isSaveHover, setIsSaveHover] = useState(false);
-    useEffect(() => { if (state.isOpen) { setNoteContent(state.currentNote); } }, [state.currentNote, state.isOpen]);
+    useEffect(() => { 
+        if (state.isOpen) {
+            //console.log("open")
+             setDevice(state.device); 
+             setNodeId(state.nodeId)
+        }},[state.device,
+            state.nodeId,
+            state.isOpen]
+    );
+
     if (!state.isOpen || !state.nodeId) return null;
+
+    const handleChange = (key: string, value: any) => {
+        //console.log("KEY:",key)
+        //console.log("value:",value)
+        setDevice(prevData => ({
+            ...prevData,
+            specification:{
+                ...prevData.specification,
+                [key]: value
+            }
+        }) as Device); 
+    };
+    const renderFields = (item: Device,id:string | null) => {
+        if(item && id){
+            const keys = Object.keys(item.specification).filter(k => k !== 'id' && k !== 'type' && k !== 'phase');
+            return SpecificationOrder.map((key) => {
+                if (!keys.includes(key)){
+                    return null
+                }
+                let currentValue: any;
+                let inputType: string = 'text';
+                
+                if (item.specification.type === "POWER") {
+                    currentValue = item.specification[key as keyof Power];
+                } else if (item.specification.type === "DEVICE") {
+                    currentValue = item.specification[key as keyof Dev];
+                }else if (item.specification.type === "SW") {
+                    currentValue = item.specification[key as keyof Sw];
+                }else if (item.specification.type === "OFFDELAYSW") {
+                    currentValue = item.specification[key as keyof OffDelaySw];
+                }else if (item.specification.type === "ONDELAYSW") {
+                    currentValue = item.specification[key as keyof OnDelaySw];
+                }else if (item.specification.type === "ONDELAYOFFDELAYSW") {
+                    currentValue = item.specification[key as keyof OnDelayOffDelaySw];
+                }else if (item.specification.type === "MC") {
+                    currentValue = item.specification[key as keyof MagnetSwitch];
+                }else if (item.specification.type === "CP") {
+                    currentValue = item.specification[key as keyof CircuitBreaker];
+                }else if (item.specification.type === "COIL") {
+                    currentValue = item.specification[key as keyof Coil];
+                }else if (item.specification.type === "THR") {
+                    currentValue = item.specification[key as keyof Thermal];
+                }else if (item.specification.type === "TS") {
+                    currentValue = item.specification[key as keyof TouthSensor];
+                }else if (item.specification.type === "AP") {
+                    currentValue = item.specification[key as keyof ProximitySwitch];
+                }else if (item.specification.type === "FZ") {
+                    currentValue = item.specification[key as keyof Fuze];
+                }else if (item.specification.type === "M") {
+                    currentValue = item.specification[key as keyof Motor];
+                }else if (item.specification.type === "TC") {
+                    currentValue = item.specification[key as keyof ThermoCouple];
+                }else if (item.specification.type === "PL") {
+                    currentValue = item.specification[key as keyof Lamp];
+                }else if (item.specification.type === "BZ") {
+                    currentValue = item.specification[key as keyof Buzzer];
+                }else if (item.specification.type === "ELB") {
+                    currentValue = item.specification[key as keyof Elb];
+                }
+                if (key === 'modelNumber') inputType = 'textarea';
+                //if (typeof currentValue === 'boolean') inputType = 'checkbox';
+                
+        //console.log("currentValue]:",key)
+            return (
+            <div key={id+"_"+key}>
+                <p>{categoryLabels[key]}</p>
+            {inputType === 'textarea' ? (
+                <TextAreaSpecs
+                id={id+"_"+key}
+                value={currentValue || ''}
+                onChange={(e) => handleChange(key, e.target.value)}
+                />
+            ) : (
+                <InputSpecs
+                type={inputType}
+                id={id+"_"+key}
+                value={currentValue || ''}
+                onChange={(e) => handleChange(key, e.target.value)}
+                />
+            )}
+            </div>
+            );
+            })
+
+        }
+    };
     return (
         <OverlayStyle onClick={onClose}>
             <ModalContentStyle onClick={(e) => e.stopPropagation()}>
                 <h3 style={{ fontWeight: '700', fontSize: '1.5rem', color: baseColors.warning, marginBottom: '0.5rem' }}>ノードメモ編集</h3>
-                <textarea value={noteContent} onChange={(e) => setNoteContent(e.target.value)} placeholder="メモの内容..." style={{ width: '100%', minHeight: '200px', padding: '1rem', borderRadius: '0.75rem', border: `2px solid ${baseColors.warning}40`, backgroundColor: '#fffbeb', fontSize: '1rem', resize: 'vertical', marginBottom: '1.5rem', outline: 'none' }} />
-                <button onClick={() => onSave(state.nodeId!, noteContent)} onMouseEnter={() => setIsSaveHover(true)} onMouseLeave={() => setIsSaveHover(false)} style={{ ...buttonStyles.rootButton(isSaveHover), backgroundColor: baseColors.warning, ...(isSaveHover && { backgroundColor: '#d97706' }), width: '100%' }}>
+                {device && <p>{categoryLabels[device.type]}</p>}
+                {device && renderFields(device,nodeId)}
+                <button 
+                    onClick={() => onSave(state.nodeId!, device)} 
+                    onMouseEnter={() => setIsSaveHover(true)} 
+                    onMouseLeave={() => setIsSaveHover(false)} 
+                    style={{ 
+                        ...buttonStyles.rootButton(isSaveHover), 
+                        backgroundColor: baseColors.warning, 
+                        ...(isSaveHover && { backgroundColor: '#d97706' }), 
+                        width: '100%' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{EditIcon('white')}<span style={{ marginLeft: '8px' }}>メモを保存する</span></div>
                 </button>
                 <button onClick={onClose} style={{ position: 'absolute', top: '20px', right: '20px', backgroundColor: baseColors.danger, color: 'white', border: 'none', borderRadius: '50%', width: '35px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>{CloseIcon('white')}</button>
@@ -203,7 +284,7 @@ export const DecisionSelectModal: React.FC<DecisionSelectModalProps> = ({ state,
 };
 
 
-export const TreeDisplay: React.FC<TreeDisplayProps> = ({ nodes, updateNode, onRemove, openSelectModal, openNoteModal, onDropNode, onDropLineNode }) => {
+export const TreeDisplay: React.FC<TreeDisplayProps> = ({ nodes, onRemove, openSelectModal, openNoteModal, onDropNode, onDropLineNode }) => {
     const { layoutNodes, dimensions } = calculateTreeLayout(nodes);
     const layoutMap = new Map(layoutNodes.map(n => [n.id, n]));
     const connections: SVGConnectionProps[] = [];
@@ -315,7 +396,7 @@ const NodeRenderer: React.FC<NodeRendererProps> = ({ node, onRemove, isRoot, ope
     const [isNoteHover, setIsNoteHover] = useState(false);
     const [isRemoveHover, setIsRemoveHover] = useState(false);
     const currentOptions = isRoot ? ROOT_SELECT_OPTIONS : SELECT_OPTIONS;
-    const nodeValue = node.caption || currentOptions[0].id;
+    const nodeValue = node.device?.caption || currentOptions[0].id;
     const handleDragOver = (e: React.DragEvent) => {
         e.preventDefault();
         setIsDragOver(true);
@@ -342,11 +423,41 @@ const NodeRenderer: React.FC<NodeRendererProps> = ({ node, onRemove, isRoot, ope
             onDrop={handleDrop}
         >
             <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <CustomSelectField nodeId={node.id} value={nodeValue} onTriggerOpen={openSelectModal} options={currentOptions} isRoot={isRoot} note={node.note} />
+                <CustomSelectField 
+                    nodeId={node.id} 
+                    value={nodeValue} 
+                    onTriggerOpen={openSelectModal} 
+                    options={currentOptions} 
+                    isRoot={isRoot} 
+                    device={node.device} />
             </div>
             
-            <div style={{ position: 'absolute', top: '-10px', right: isRoot ? '-10px' : '-15px', zIndex: 60, display: 'flex', gap: '0.5rem', opacity: isHover || isRoot ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
-                <button onClick={(e) => { e.stopPropagation(); openNoteModal(node.id, node.note); }} onMouseEnter={() => setIsNoteHover(true)} onMouseLeave={() => setIsNoteHover(false)} style={buttonStyles.note(isNoteHover)} title="メモ">
+            <div 
+            style={{ 
+                position: 'absolute', 
+                top: '-10px', 
+                right: isRoot ? '-10px' : '-15px', 
+                zIndex: 60, 
+                display: 'flex', 
+                gap: '0.5rem', 
+                opacity: isHover || isRoot ? 1 : 0, 
+                transition: 'opacity 0.3s ease-in-out' }}>
+                <button 
+                    onClick={(e) => { 
+                        e.stopPropagation(); 
+                        openNoteModal(
+                            node.id, 
+                            node.device); 
+                    }} 
+                    onMouseEnter={() => 
+                        setIsNoteHover(true)
+                    } 
+                    onMouseLeave={() => 
+                        setIsNoteHover(false)
+                    } 
+                    style={buttonStyles.note(isNoteHover)} 
+                    title="メモ"
+                >
                     {EditIcon('white')}
                 </button>
                 {!isRoot && (
@@ -360,20 +471,7 @@ const NodeRenderer: React.FC<NodeRendererProps> = ({ node, onRemove, isRoot, ope
 };
 
 const SVGConnection:React.FC<ConnectionRendererProps> = ({cons,onDropLineNode }) => {
-   const [isHover, setIsHover] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
-    const nodeSpecificStyles = true ? nodeStyles.root() : nodeStyles.decision();
-    const containerStyle: CSSProperties = { 
-        ...nodeStyles.base(), 
-        ...nodeSpecificStyles, 
-        ...(isHover && !false ? nodeStyles.hoverEffect : {}),
-        ...(isDragOver ? nodeStyles.dragOver : {}),
-    };
-    
-    const [isNoteHover, setIsNoteHover] = useState(false);
-    const [isRemoveHover, setIsRemoveHover] = useState(false);
-    const currentOptions = SELECT_OPTIONS;
-    const nodeValue = currentOptions[0].id;
     const handleDragOver = (e: React.DragEvent) => {
         e.preventDefault();
         setIsDragOver(true);
@@ -403,8 +501,6 @@ const SVGConnection:React.FC<ConnectionRendererProps> = ({cons,onDropLineNode })
                 data-primary ={isDragOver}
                 width={cons.width} 
                 height={cons.height}
-                onMouseEnter={() => setIsHover(true)}
-                onMouseLeave={() => setIsHover(false)}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}

@@ -1,66 +1,66 @@
 
-const DEVICE_1P = "S00060_1P"
-const DEVICE_2P = "S00060_2P"
-const DEVICE_3P = "S00060_3P"
-const MAKE_CONTACT = "S00227"
-const BREAK_CONTACT = "S00229"
-const TWO_MAKE_CONTACT = "S00234"
-const TWO_BREAK_CONTACT = "S00235"
-const MIRROR_CONTACT = "S01462"
-const MAKE_CONTACT_DELAYED_CLOSING = "S00243"
-const MAKE_CONTACT_DELAYED_OPENING = "S00244"
-const BREAK_CONTACT_DELAYED_OPENING = "S00245"
-const BREAK_CONTACT_DELAYED_CLOSING = "S00246"
-const MAKE_CONTACT_DELAYED = "S00247"
-const BREAK_CONTACT_DELAYED = "S01911"
-//const MAKE_CONTACT_MANUAL = "S00250"
-//const BREAK_CONTACT_MANUAL = "S00171+S00225"
-//const MAKE_CONTACT_GENERAL_MANUAL = "S00253"
-const MAKE_CONTACT_PUSH_BUTTON = "S00254"
-const MAKE_CONTACT_PUSH_BUTTON_POSITIBVE = "S00257"
-const BREAK_CONTACT_PUSH_BUTTON = "S00171+S00229"
-const MAKE_CONTACT_PULL_BUTTON = "S00255"
-const MAKE_CONTACT_TWIST_BUTTON = "S00256"
-const BREAK_CONTACT_EMERGENCY_STOP = "S00258"
-const MAKE_CONTACT_LIMIT = "S00259"
-const BREAK_CONTACT_LIMIT = "S00260"
-//const ASSEMBLY_CONTACT_LIMIT = "S00261"
-const BREAK_CONTACT_LIMIT_POSITIVE = "S00262"
-const MAKE_CONTACT_TEMPERRATURE = "S00263"
-const BREAK_CONTACT_TEMPERRATURE = "S00264"
-const BREAK_CONTACT_THERMAL = "S00265"
-//const MULTI_POSITION_SWITCH = "S00270"
-//const FOUR_POSITION_SWITCH = "S00271"
-//const MULTI_POSITION_SWITCH_DIAGRAM = "S00272"
-const MAKE_CONTACTOR = "S00284"
-const MAKE_CONTACTOR_2P = "S00284_2P"
-const MAKE_CONTACTOR_3P = "S00284_3P"
-//const MAKE_CONTACTOR_AUTO_TRIP = "S00285"
-const BREAK_CONTACTOR = "S00286"
-const CIRCUIT_BREAKER = "S00287"
-const CIRCUIT_2P_BREAKER = "S00287_2P"
-const CIRCUIT_3P_BREAKER = "S00287_3P"
-const ELB_2P = "S00144+S00287_2P"
-const ELB_3P = "S00144+S00287_3P"
-const COIL_GENEREL = "S00305"
-const THERMAL_RERAY_1P = "S00325"
-const THERMAL_RERAY_2P = "S00325_2P"
-const THERMAL_RERAY_3P = "S00325_3P"
-const TOUCH_SENSOR = "S00357"
-const TOUCH_SENSITIVE_SWITCH = "S00358"
-const PROXIMITY_SWITCH = "S00359"
-const FUSE = "S00362"
-const FUSE_STRIKER = "S00364"
-const FUSE_SWITCH = "S00368"
-const MOTOR_2P = "S00819_2P"
-const MOTOR_3P = "S00819_3P"
-const LINER_MOTOR_2P = "S00820_2P"
-const LINER_MOTOR_3P = "S00820_3P"
-const STEPPING_MOTOR_2P = "S00821_2P"
-const STEPPING_MOTOR_3P = "S00821_3P"
-const THEMOCOUPLE = "S00952"
-const LAMP = "S00965"
-const BUZZER = "S00973"
+export const DEVICE_1P = "S00060_1P"
+export const DEVICE_2P = "S00060_2P"
+export const DEVICE_3P = "S00060_3P"
+export const MAKE_CONTACT = "S00227"
+export const BREAK_CONTACT = "S00229"
+export const TWO_MAKE_CONTACT = "S00234"
+export const TWO_BREAK_CONTACT = "S00235"
+export const MIRROR_CONTACT = "S01462"
+export const MAKE_CONTACT_DELAYED_CLOSING = "S00243"
+export const MAKE_CONTACT_DELAYED_OPENING = "S00244"
+export const BREAK_CONTACT_DELAYED_OPENING = "S00245"
+export const BREAK_CONTACT_DELAYED_CLOSING = "S00246"
+export const MAKE_CONTACT_DELAYED = "S00247"
+export const BREAK_CONTACT_DELAYED = "S01911"
+//export const MAKE_CONTACT_MANUAL = "S00250"
+//export const BREAK_CONTACT_MANUAL = "S00171+S00225"
+//export const MAKE_CONTACT_GENERAL_MANUAL = "S00253"
+export const MAKE_CONTACT_PUSH_BUTTON = "S00254"
+export const MAKE_CONTACT_PUSH_BUTTON_POSITIBVE = "S00257"
+export const BREAK_CONTACT_PUSH_BUTTON = "S00171+S00229"
+export const MAKE_CONTACT_PULL_BUTTON = "S00255"
+export const MAKE_CONTACT_TWIST_BUTTON = "S00256"
+export const BREAK_CONTACT_EMERGENCY_STOP = "S00258"
+export const MAKE_CONTACT_LIMIT = "S00259"
+export const BREAK_CONTACT_LIMIT = "S00260"
+//export const ASSEMBLY_CONTACT_LIMIT = "S00261"
+export const BREAK_CONTACT_LIMIT_POSITIVE = "S00262"
+export const MAKE_CONTACT_TEMPERRATURE = "S00263"
+export const BREAK_CONTACT_TEMPERRATURE = "S00264"
+export const BREAK_CONTACT_THERMAL = "S00265"
+//export const MULTI_POSITION_SWITCH = "S00270"
+//export const FOUR_POSITION_SWITCH = "S00271"
+//export const MULTI_POSITION_SWITCH_DIAGRAM = "S00272"
+export const MAKE_CONTACTOR = "S00284"
+export const MAKE_CONTACTOR_2P = "S00284_2P"
+export const MAKE_CONTACTOR_3P = "S00284_3P"
+//export const MAKE_CONTACTOR_AUTO_TRIP = "S00285"
+export const BREAK_CONTACTOR = "S00286"
+export const CIRCUIT_BREAKER = "S00287"
+export const CIRCUIT_2P_BREAKER = "S00287_2P"
+export const CIRCUIT_3P_BREAKER = "S00287_3P"
+export const ELB_2P = "S00144+S00287_2P"
+export const ELB_3P = "S00144+S00287_3P"
+export const COIL_GENEREL = "S00305"
+export const THERMAL_RERAY_1P = "S00325"
+export const THERMAL_RERAY_2P = "S00325_2P"
+export const THERMAL_RERAY_3P = "S00325_3P"
+export const TOUCH_SENSOR = "S00357"
+export const TOUCH_SENSITIVE_SWITCH = "S00358"
+export const PROXIMITY_SWITCH = "S00359"
+export const FUSE = "S00362"
+export const FUSE_STRIKER = "S00364"
+export const FUSE_SWITCH = "S00368"
+export const MOTOR_2P = "S00819_2P"
+export const MOTOR_3P = "S00819_3P"
+export const LINER_MOTOR_2P = "S00820_2P"
+export const LINER_MOTOR_3P = "S00820_3P"
+export const STEPPING_MOTOR_2P = "S00821_2P"
+export const STEPPING_MOTOR_3P = "S00821_3P"
+export const THEMOCOUPLE = "S00952"
+export const LAMP = "S00965"
+export const BUZZER = "S00973"
 /*
 const FUN = "S01421"
 const PUMP = "S01422"
@@ -77,18 +77,6 @@ export const Signals = [
     caption:"デバイス1極",
     did:"02-01-02(1P)",
     discription:"1極の装置,デバイス,機能部品,構成部品などに使用します。"
-  },
-  {
-    id: DEVICE_2P,
-    wire:2,
-    start_x:[0],
-    start_y:[0],
-    end_x:[0],
-    end_y:[0],
-    search:"device,デバイス,四角,装置,部品,2P",
-    caption:"デバイス2極",
-    did:"02-01-02(2P)",
-    discription:"2極の装置,デバイス,機能部品,構成部品などに使用します。"
   },
   {
     id: DEVICE_2P,
@@ -610,7 +598,7 @@ export const Signals = [
   },
   {
     id: LINER_MOTOR_3P,
-    wire:2,
+    wire:3,
     search:"motor,モータ,liner,リニア,3極,3P",
     caption:"リニアモータ3極",
     did:"06-04-02(3P)",
@@ -618,7 +606,7 @@ export const Signals = [
   },
   {
     id: STEPPING_MOTOR_2P,
-    wire:1,
+    wire:2,
     search:"motor,モータ,stepping,ステッピング,2極,2P",
     caption:"ステッピングモータ2極",
     did:"06-04-03(2P)",
@@ -626,7 +614,7 @@ export const Signals = [
   },
   {
     id: STEPPING_MOTOR_3P,
-    wire:1,
+    wire:3,
     search:"motor,モータ,stepping,ステッピング,3極,3P",
     caption:"ステッピングモータ3極",
     did:"06-04-03(3P)",

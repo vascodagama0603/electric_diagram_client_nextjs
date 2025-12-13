@@ -65,8 +65,8 @@ export const NodePalette: React.FC = () => {
             <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '' }}>
                 項目をドラッグして、右側のツリー内の要素か線にドロップしてください。
             </p>
-            {SELECT_OPTIONS.slice(0).map(option => (
-                <PaletteItem key={option.id} option={option} />
+            {SELECT_OPTIONS.slice(0).map((option,index) => (
+                <PaletteItem key={option.id + index} option={option} />
             ))}
         </PaletteLayout>
     );

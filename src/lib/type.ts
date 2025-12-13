@@ -1,13 +1,114 @@
 export interface TreeNode {
     id: string;
-    type: NodeType;
-    caption: string;
-    note: string;
+    device: Device;
     children: TreeNode[]; 
-    
 }
 
-type NodeType = 'decision';
+export interface Device{
+    type: string;
+    caption: string;
+    specification: Specification;
+}
+
+export type Specification = 
+Power | Dev | Sw | OffDelaySw | OnDelaySw | OnDelayOffDelaySw | MagnetSwitch | CircuitBreaker |
+ Coil | Thermal | TouthSensor | ProximitySwitch | Fuze | Motor | ThermoCouple | 
+ Lamp | Buzzer | Elb ;
+
+export interface Power{
+    type: "POWER";
+    volt:number;
+    phase:string;
+    amp: number;
+    signature: string;
+    signatureNumber:string,
+}
+//-----------------------------------------
+interface Parts{
+    modelNumber: string;
+    maker:string;
+    signature: string;
+    signatureNumber:string,
+
+}
+export interface Dev extends Parts{
+    type: "DEVICE";
+    amp: number;
+}
+
+export interface Sw extends Parts{
+    type: "SW";
+}
+
+export interface OffDelaySw extends Parts{
+    type: "OFFDELAYSW";
+    OffDelay:number;
+}
+export interface OnDelaySw extends Parts{
+    type: "ONDELAYSW";
+    OnDelay:number;
+}
+export interface OnDelayOffDelaySw extends Parts{
+    type: "ONDELAYOFFDELAYSW";
+    OffDelay:number;
+    OnDelay:number;
+}
+export interface MagnetSwitch extends Parts{
+    type: "MC";
+    amp: number;
+}
+
+export interface CircuitBreaker extends Parts{
+    type: "CP";
+    amp: number;
+}
+
+export interface Coil extends Parts{
+    type: "COIL";
+}
+
+export interface Thermal extends Parts{
+    type: "THR";
+    ampTemp: number;
+}
+
+export interface TouthSensor extends Parts{
+    type: "TS";
+}
+
+export interface ProximitySwitch extends Parts{
+    type: "AP";
+}
+
+export interface Fuze extends Parts{
+    type: "FZ";
+    ampLimit:number;
+}
+
+export interface Motor extends Parts{
+    type: "M";
+    watt:number;
+}
+
+export interface ThermoCouple extends Parts{
+    type: "TC";
+}
+
+export interface Lamp extends Parts{
+    type: "PL";
+    color:string;
+}
+
+export interface Buzzer extends Parts{
+    type: "BZ";
+}
+
+export interface Elb extends Parts{
+    type: "ELB";
+    amp: number;
+    sensitivity: number;
+}
+
 
 export interface LayoutNode extends TreeNode {
     x: number;
@@ -24,6 +125,7 @@ export interface SelectOption {
     discription?: string;
     color?: string;
     wire:number;
+    device?:Device;
 }
 export interface SVGConnectionProps {
     parent: LayoutNode;
@@ -37,9 +139,11 @@ export interface NodeRendererProps {
     node: LayoutNode;
     onRemove: (id: string) => void;
     isRoot: boolean;
-    openSelectModal: (id: string, currentValue: string, isRoot: boolean) => void;
-    openNoteModal: (id: string, currentNote: string) => void; 
-    // ★ Drag & Drop 用プロパティ
+    openSelectModal: (
+        id: string, currentValue: string, isRoot: boolean) => void;
+    openNoteModal: (
+        id: string,
+        device: Device) => void; 
     onDropNode: (targetId: string, newItemValue: string) => void;
 }
 
@@ -65,7 +169,7 @@ export interface CustomSelectFieldProps {
     onTriggerOpen: (id: string, currentValue: string, isRoot: boolean) => void;
     options: SelectOption[];
     isRoot: boolean;
-    note: string;
+    device: Device;
 }
 
 
@@ -73,12 +177,14 @@ export interface CustomSelectFieldProps {
 export interface NoteModalState {
     isOpen: boolean;
     nodeId: string | null;
-    currentNote: string;
+    device: Device;
 }
 
 export interface NoteEditorModalProps {
     state: NoteModalState;
-    onSave: (nodeId: string, note: string) => void;
+    onSave: (
+        nodeId: string, 
+        device: Device) => void;
     onClose: () => void;
 }
 export interface SelectModalState {
@@ -97,10 +203,11 @@ export interface DecisionSelectModalProps {
 
 export interface TreeDisplayProps {
     nodes: TreeNode[];
-    updateNode: (id: string, field: 'caption' | 'note', value: string) => void;
     onRemove: (id: string) => void;
     openSelectModal: (id: string, currentValue: string, isRoot: boolean) => void;
-    openNoteModal: (id: string, currentNote: string) => void;
+    openNoteModal: (
+        id: string, 
+        device: Device) => void;
     onDropNode: (targetId: string, newItemValue: string) => void;
     onDropLineNode: (targetId: ConnectionMapProps, newItemValue: string) => void;
 }
@@ -119,6 +226,10 @@ export const baseColors = {
     info: '#3b82f6',
 };
 
+// src/lib/data/label.ts
+export interface Label {
+  [name: string]: string;
+}
 // src/app/components/LayoutComponents.tsx
 export interface LayoutProps {
     children: React.ReactNode;
@@ -184,3 +295,5 @@ interface Heading {
 export interface TableOfContentsProps {
     headings: Heading[];
 }
+
+

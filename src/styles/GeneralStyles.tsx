@@ -728,3 +728,29 @@ export const HoverLine = styled.svg<{ consx: number, consy: number }>`
     border: 3px dashed tomato;
   }
 `;
+
+// src/app/components/Tree.tsx
+export const InputSpecs = styled.input`
+    width: 100%; 
+    padding: 1rem;
+    border-radius: 0.75rem; 
+    border: 2px solid #f59e0b;
+    background-color:#fffbeb;
+    font-size: 1rem; 
+    resize: vertical;
+    margin-bottom: 1.5rem; 
+    outline: none; 
+`;
+export const TextAreaSpecs = styled.textarea`
+    width: 100%; 
+    padding: 1rem;
+    border-radius: 0.75rem; 
+    border: 2px solid #f59e0b;
+    background-color:#fffbeb;
+    font-size: 1rem; 
+    resize: vertical;
+    margin-bottom: 1.5rem; 
+    outline: none; 
+    rows:2;
+    
+`;
