@@ -17,7 +17,7 @@ export const findNode = (nodes: TreeNode[], id: string, parent?: TreeNode): { no
 export const getNode = (nodes: TreeNode[],signatureNumbering:{ [name: string]: number }) => {
     
     for (let i = 0; i < nodes.length; i++) {
-        const targetType = nodes[i].device.specification.signature
+        const targetType = nodes[i].device.specification?.signature
         if(targetType in signatureNumbering){
             signatureNumbering[targetType] = signatureNumbering[targetType] + 1
         }else{

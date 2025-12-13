@@ -426,7 +426,7 @@ const App: React.FC = () => {
                         device:{
                             type:"",
                             caption: newItemValue, 
-                            specification:sigProp.specification,
+                            specification:sigProp?.specification,
                         },
                         children: [] 
                     };
@@ -455,7 +455,7 @@ const App: React.FC = () => {
                     device:{
                         type:targetNode.device.type,
                         caption: newItemValue, 
-                        specification:sigProp.specification,
+                        specification:sigProp?.specification,
                     },
                     children: [targetNode] 
                 };
@@ -544,7 +544,7 @@ const App: React.FC = () => {
                     const device = {
                         type:sigProp.specification.type,
                         caption: value, 
-                        specification:sigProp.specification,
+                        specification:sigProp?.specification,
                     }
                     updateSpecification(nodeId, device);
                     updateSignatureNumber();

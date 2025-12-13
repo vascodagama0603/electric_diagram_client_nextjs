@@ -101,7 +101,7 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({ nodeId, value, on
     const [isHover, setIsHover] = useState(false);
     const keys = Object.keys(device.specification).filter(k => k !== 'id' && k !== 'type' && k !== 'signature' && k !== 'signatureNumber' && k !== 'phase');
     const isWrite = keys.some((key) => {
-        const currentValue: any = device.specification[key as keyof Specification];
+        const currentValue: any = device?.specification[key as keyof Specification];
         return currentValue !== "" && currentValue !== 0})
 
     const buttonStyle: CSSProperties = {
@@ -160,14 +160,14 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({ state, onSave,
         setDevice(prevData => ({
             ...prevData,
             specification:{
-                ...prevData.specification,
+                ...prevData?.specification,
                 [key]: value
             }
         }) as Device); 
     };
     const renderFields = (item: Device,id:string | null) => {
         if(item && id){
-            const keys = Object.keys(item.specification).filter(k => k !== 'id' && k !== 'type' && k !== 'phase');
+            const keys = Object.keys(item?.specification).filter(k => k !== 'id' && k !== 'type' && k !== 'phase');
             return SpecificationOrder.map((key) => {
                 if (!keys.includes(key)){
                     return null
