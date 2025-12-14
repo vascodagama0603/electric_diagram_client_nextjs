@@ -117,7 +117,7 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                         "specification": {
                             "modelNumber": "FR-D720-3.7K",
                             "maker": "三菱電機",
-                            "signature": "DEV",
+                            "signature": "INV",
                             "signatureNumber": "001",
                             "type": "DEVICE",
                             "amp": 18
