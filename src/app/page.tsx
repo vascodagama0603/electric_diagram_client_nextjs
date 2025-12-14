@@ -275,7 +275,7 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "specification": {
                                             "modelNumber": "モータ[M001]起動",
                                             "maker": "",
-                                            "signature": "MS001-COIL",
+                                            "signature": "MC001-COIL",
                                             "signatureNumber": "001",
                                             "type": "COIL"
                                         }
@@ -290,7 +290,7 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "specification": {
                                             "modelNumber": "モータ[M002]起動",
                                             "maker": "",
-                                            "signature": "MS002-COIL",
+                                            "signature": "MC002-COIL",
                                             "signatureNumber": "001",
                                             "type": "COIL"
                                         }
