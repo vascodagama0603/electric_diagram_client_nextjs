@@ -102,7 +102,8 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({ nodeId, value, on
     const keys = Object.keys(device.specification).filter(k => k !== 'id' && k !== 'type' && k !== 'signature' && k !== 'signatureNumber' && k !== 'phase');
     const isWrite = keys.some((key) => {
         const currentValue: any = device?.specification[key as keyof Specification];
-        return currentValue !== "" && currentValue !== 0})
+        return currentValue !== "" && currentValue !== 0
+    })
 
     const buttonStyle: CSSProperties = {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '12px 16px', borderRadius: '12px',
@@ -175,8 +176,12 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({ state, onSave,
                 let currentValue: any;
                 let inputType: string = 'text';
                 
-                if (item.specification.type === "POWER") {
+                if (item.specification.type === "POWER") {              
+                    
                     currentValue = item.specification[key as keyof Power];
+                    if (currentValue === 'POWER'){
+                        return null
+                    }
                 } else if (item.specification.type === "DEVICE") {
                     currentValue = item.specification[key as keyof Dev];
                 }else if (item.specification.type === "SW") {
@@ -213,6 +218,7 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({ state, onSave,
                     currentValue = item.specification[key as keyof Elb];
                 }
                 if (key === 'modelNumber') inputType = 'textarea';
+                if (key === 'note') inputType = 'textarea';
                 //if (typeof currentValue === 'boolean') inputType = 'checkbox';
                 
         //console.log("currentValue]:",key)

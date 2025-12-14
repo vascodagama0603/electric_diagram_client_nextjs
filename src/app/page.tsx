@@ -55,7 +55,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                     "signatureNumber": "001",
                     "type": "ELB",
                     "amp": 30,
-                    "sensitivity": 30
+                    "sensitivity": 30,
+                    "note": ""
                 }
             },
             "children": [
@@ -70,7 +71,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                             "signature": "MC",
                             "signatureNumber": "001",
                             "type": "MC",
-                            "amp": 11
+                            "amp": 11,
+                            "note": ""
                         }
                     },
                     "children": [
@@ -85,7 +87,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                     "signature": "THR",
                                     "signatureNumber": "001",
                                     "type": "THR",
-                                    "ampTemp": 30
+                                    "ampTemp": 30,
+                                    "note": ""
                                 }
                             },
                             "children": [
@@ -100,7 +103,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                             "signature": "M",
                                             "signatureNumber": "001",
                                             "type": "M",
-                                            "watt": 2.2
+                                            "watt": 2.2,
+                                            "note": ""
                                         }
                                     },
                                     "children": []
@@ -120,7 +124,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                             "signature": "INV",
                             "signatureNumber": "001",
                             "type": "DEVICE",
-                            "amp": 18
+                            "amp": 18,
+                            "note": ""
                         }
                     },
                     "children": [
@@ -135,7 +140,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                     "signature": "M",
                                     "signatureNumber": "002",
                                     "type": "M",
-                                    "watt": 3.7
+                                    "watt": 3.7,
+                                    "note": ""
                                 }
                             },
                             "children": []
@@ -155,7 +161,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                     "signature": "CP",
                     "signatureNumber": "001",
                     "type": "CP",
-                    "amp": 5
+                    "amp": 5,
+                    "note": ""
                 }
             },
             "children": [
@@ -170,7 +177,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                             "signature": "AVR",
                             "signatureNumber": "001",
                             "type": "DEVICE",
-                            "amp": 5
+                            "amp": 5,
+                            "note": ""
                         }
                     },
                     "children": [
@@ -185,7 +193,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                     "signature": "PLC-CPU",
                                     "signatureNumber": "001",
                                     "type": "DEVICE",
-                                    "amp": 0
+                                    "amp": 0,
+                                    "note": ""
                                 }
                             },
                             "children": []
@@ -201,7 +210,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                     "signature": "PLC-IN",
                                     "signatureNumber": "001",
                                     "type": "DEVICE",
-                                    "amp": 0
+                                    "amp": 0,
+                                    "note": ""
                                 }
                             },
                             "children": [
@@ -211,11 +221,12 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "type": "",
                                         "caption": "S00254",
                                         "specification": {
-                                            "modelNumber": "A16L-AGM-24D-1\n運転ボタン[緑]",
+                                            "modelNumber": "A16L-AGM-24D-1",
                                             "maker": "OMRON",
                                             "signature": "SW",
                                             "signatureNumber": "001",
-                                            "type": "SW"
+                                            "type": "SW",
+                                            "note": "運転ボタン[緑]"
                                         }
                                     },
                                     "children": []
@@ -226,11 +237,12 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "type": "",
                                         "caption": "S00171+S00229",
                                         "specification": {
-                                            "modelNumber": "A16L-ARM-24D-1\n停止ボタン[緑]",
+                                            "modelNumber": "A16L-ARM-24D-1",
                                             "maker": "OMRON",
                                             "signature": "SW",
                                             "signatureNumber": "002",
-                                            "type": "SW"
+                                            "type": "SW",
+                                            "note": "停止ボタン[赤]"
                                         }
                                     },
                                     "children": []
@@ -241,11 +253,12 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "type": "",
                                         "caption": "S00258",
                                         "specification": {
-                                            "modelNumber": "非常停止ボタン",
+                                            "modelNumber": "A22-01M",
                                             "maker": "OMRON",
                                             "signature": "SW",
                                             "signatureNumber": "003",
-                                            "type": "SW"
+                                            "type": "SW",
+                                            "note": "非常停止ボタン"
                                         }
                                     },
                                     "children": []
@@ -263,7 +276,8 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                     "signature": "PLC-OUT",
                                     "signatureNumber": "001",
                                     "type": "DEVICE",
-                                    "amp": 0
+                                    "amp": 0,
+                                    "note": ""
                                 }
                             },
                             "children": [
@@ -273,11 +287,12 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "type": "",
                                         "caption": "S00305",
                                         "specification": {
-                                            "modelNumber": "モータ[M001]起動",
+                                            "modelNumber": "",
                                             "maker": "",
                                             "signature": "MC001-COIL",
                                             "signatureNumber": "001",
-                                            "type": "COIL"
+                                            "type": "COIL",
+                                            "note": "モータ[M001]起動"
                                         }
                                     },
                                     "children": []
@@ -288,11 +303,12 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                                         "type": "",
                                         "caption": "S00305",
                                         "specification": {
-                                            "modelNumber": "モータ[M002]起動",
+                                            "modelNumber": "",
                                             "maker": "",
                                             "signature": "MC002-COIL",
                                             "signatureNumber": "001",
-                                            "type": "COIL"
+                                            "type": "COIL",
+                                            "note": "モータ[M002]起動"
                                         }
                                     },
                                     "children": []

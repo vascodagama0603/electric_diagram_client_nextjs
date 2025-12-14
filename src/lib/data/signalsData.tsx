@@ -38,8 +38,8 @@ export const MAKE_CONTACTOR_3P = "S00284_3P"
 //export const MAKE_CONTACTOR_AUTO_TRIP = "S00285"
 export const BREAK_CONTACTOR = "S00286"
 export const CIRCUIT_BREAKER = "S00287"
-export const CIRCUIT_2P_BREAKER = "S00287_2P"
-export const CIRCUIT_3P_BREAKER = "S00287_3P"
+export const CIRCUIT_BREAKER_2P = "S00287_2P"
+export const CIRCUIT_BREAKER_3P = "S00287_3P"
 export const ELB_2P = "S00144+S00287_2P"
 export const ELB_3P = "S00144+S00287_3P"
 export const COIL_GENEREL = "S00305"
@@ -287,9 +287,9 @@ export const Signals = [
     end_x:[0],
     end_y:[0],
     search:"make,a接点,メーク,push",
-    caption:"押しボタンa接点",
+    caption:"押しボタンa接点(強制乖離)",
     did:"07-07-05",
-    discription:"強制開離（ポジティブオープニング）機能を持つ押しボタンスイッチのa接点です。接点の溶着などの異常時でも、ボタンを操作すれば必ず接点が開く構造となっており、安全規格が要求される回路に用いられます。"
+    discription:"強制乖離（ポジティブオープニング）機能を持つ押しボタンスイッチのa接点です。接点の溶着などの異常時でも、ボタンを操作すれば必ず接点が開く構造となっており、安全規格が要求される回路に用いられます。"
   },
   {
     id: MAKE_CONTACT_PULL_BUTTON,
@@ -331,7 +331,7 @@ export const Signals = [
     id: MAKE_CONTACT_LIMIT,
     wire:1,
     search:"make,a接点,メーク,limit",
-    caption:"リミット接点",
+    caption:"リミットa接点",
     did:"07-08-01",
     discription:"機械的な移動や位置を検出するリミットスイッチのa接点です。機械部品が所定の位置に到達したことを検出する用途（例：動作開始条件）に用いられます。"
   },
@@ -461,7 +461,7 @@ export const Signals = [
     discription:"1極（単相または直流）の配線用遮断器（ノーヒューズブレーカなど）を示します。過電流や短絡事故が発生した際に、自動で回路を遮断し機器を保護します。"
   },
   {
-    id: CIRCUIT_2P_BREAKER,
+    id: CIRCUIT_BREAKER_2P,
     wire:2,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,2極,2P",
     caption:"サーキットブレーカ2極",
@@ -469,7 +469,7 @@ export const Signals = [
     discription:"2極（単相2線、または三相の一部）の配線用遮断器を示します。過負荷や短絡から回路を保護し、手動での開閉操作も可能です。"
   },
   {
-    id: CIRCUIT_3P_BREAKER,
+    id: CIRCUIT_BREAKER_3P,
     wire:3,
     search:"make,a接点,メーク,サーキットブレーカ,circuit,3極,3P",
     caption:"サーキットブレーカ3極",

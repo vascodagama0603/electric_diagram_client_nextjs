@@ -29,6 +29,7 @@ interface Parts{
     maker:string;
     signature: string;
     signatureNumber:string,
+    note:string,
 
 }
 export interface Dev extends Parts{

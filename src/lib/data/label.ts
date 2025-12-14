@@ -15,5 +15,6 @@ export const categoryLabels: Label = {
     ampLimit:"トリップ電流[A]",
     watt:"定格出力[kW]",
     color:"色",
+    note:"補足",
 
 }

@@ -16,6 +16,7 @@ export const SpecificationOrder = [
     "color",
     "maker",
     "modelNumber",
+    "note"
 ];
 
 // SignalPropoertiesの単一要素の型
@@ -56,6 +57,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "DEVICE",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -67,6 +69,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "DEVICE",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -78,6 +81,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "DEVICE",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -88,6 +92,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -98,6 +103,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -108,6 +114,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -118,6 +125,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -128,6 +136,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -139,6 +148,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "OFFDELAYSW",
             OffDelay: 0.0,
+            note: ""
         }
     },
     {
@@ -150,6 +160,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "ONDELAYSW",
             OnDelay: 0.0,
+            note: ""
         }
     },
     {
@@ -161,6 +172,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "OFFDELAYSW",
             OffDelay: 0.0,
+            note: ""
         }
     },
     {
@@ -172,6 +184,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "ONDELAYSW",
             OnDelay: 0.0,
+            note: ""
         }
     },
     {
@@ -184,6 +197,7 @@ export const SignalPropoerties: SignalProperty[] = [
             type: "ONDELAYOFFDELAYSW",
             OnDelay: 0.0,
             OffDelay: 0.0,
+            note: ""
         }
     },
     {
@@ -196,6 +210,7 @@ export const SignalPropoerties: SignalProperty[] = [
             type: "ONDELAYOFFDELAYSW",
             OnDelay: 0.0,
             OffDelay: 0.0,
+            note: ""
         }
     },
     {
@@ -206,6 +221,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -216,6 +232,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -226,6 +243,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -236,6 +254,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -246,6 +265,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -256,6 +276,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -266,6 +287,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -276,6 +298,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -286,6 +309,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -296,6 +320,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -306,6 +331,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -316,6 +342,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "SW",
             signatureNumber: "01",
             type: "SW",
+            note: ""
         }
     },
     {
@@ -327,6 +354,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "MC",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -338,6 +366,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "MC",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -349,6 +378,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "MC",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -360,17 +390,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "MC",
             amp: 0,
-        }
-    },
-    {
-        id:data.CIRCUIT_BREAKER,
-        specification:{
-            modelNumber:"",
-            maker:"",
-            signature: "MC",
-            signatureNumber: "01",
-            type: "MC",
-            amp: 0,
+            note: ""
         }
     },
     {
@@ -382,10 +402,11 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "CP",
             amp: 0,
+            note: ""
         }
     },
     {
-        id:data.CIRCUIT_2P_BREAKER,
+        id:data.CIRCUIT_BREAKER_2P,
         specification:{
             modelNumber:"",
             maker:"",
@@ -393,10 +414,11 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "CP",
             amp: 0,
+            note: ""
         }
     },
     {
-        id:data.CIRCUIT_3P_BREAKER,
+        id:data.CIRCUIT_BREAKER_3P,
         specification:{
             modelNumber:"",
             maker:"",
@@ -404,6 +426,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "CP",
             amp: 0,
+            note: ""
         }
     },
     {
@@ -416,6 +439,7 @@ export const SignalPropoerties: SignalProperty[] = [
             type: "ELB",
             amp: 0,
             sensitivity:0, 
+            note: ""
         }
     },
     {
@@ -428,6 +452,7 @@ export const SignalPropoerties: SignalProperty[] = [
             type: "ELB",
             amp: 0,
             sensitivity:0, 
+            note: ""
         }
     },
     {
@@ -438,6 +463,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "COIL",
             signatureNumber: "01",
             type: "COIL",
+            note: ""
         }
     },
     {
@@ -449,6 +475,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "THR",
             ampTemp: 0,
+            note: ""
         }
     },
     {
@@ -460,6 +487,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "THR",
             ampTemp: 0,
+            note: ""
         }
     },
     {
@@ -471,6 +499,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "THR",
             ampTemp: 0,
+            note: ""
         }
     },
     {
@@ -481,6 +510,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "TS",
             signatureNumber: "01",
             type: "TS",
+            note: ""
         }
     },
     {
@@ -491,6 +521,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "TS",
             signatureNumber: "01",
             type: "TS",
+            note: ""
         }
     },
     {
@@ -501,6 +532,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "AP",
             signatureNumber: "01",
             type: "AP",
+            note: ""
         }
     },
     {
@@ -511,7 +543,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "FZ",
             signatureNumber: "01",
             type: "FZ",
-            ampLimit:0
+            ampLimit:0,
+            note: ""
         }
     },
     {
@@ -522,7 +555,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "FZ",
             signatureNumber: "01",
             type: "FZ",
-            ampLimit:0
+            ampLimit:0,
+            note: ""
         }
     },
     {
@@ -533,7 +567,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "FZ",
             signatureNumber: "01",
             type: "FZ",
-            ampLimit:0
+            ampLimit:0,
+            note: ""
         }
     },
     {
@@ -544,7 +579,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "M",
             signatureNumber: "01",
             type: "M",
-            watt:0
+            watt:0,
+            note: ""
         }
     },
     {
@@ -555,7 +591,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "M",
             signatureNumber: "01",
             type: "M",
-            watt:0
+            watt:0,
+            note: ""
         }
     },
     {
@@ -566,7 +603,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "LM",
             signatureNumber: "01",
             type: "M",
-            watt:0
+            watt:0,
+            note: ""
         }
     },
     {
@@ -577,7 +615,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "LM",
             signatureNumber: "01",
             type: "M",
-            watt:0
+            watt:0,
+            note: ""
         }
     },
     {
@@ -588,7 +627,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "PM",
             signatureNumber: "01",
             type: "M",
-            watt:0
+            watt:0,
+            note: ""
         }
     },
     {
@@ -599,7 +639,8 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "PM",
             signatureNumber: "01",
             type: "M",
-            watt:0
+            watt:0,
+            note: ""
         }
     },
     {
@@ -610,6 +651,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "TC",
             signatureNumber: "01",
             type: "TC",
+            note: ""
         }
     },
     {
@@ -621,6 +663,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "PL",
             color: "",
+            note: ""
         }
     },
     {
@@ -631,6 +674,7 @@ export const SignalPropoerties: SignalProperty[] = [
             signature: "BZ",
             signatureNumber: "01",
             type: "BZ",
+            note: ""
         }
     },
 ]
