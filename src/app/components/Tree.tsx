@@ -156,8 +156,6 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({ state, onSave,
     if (!state.isOpen || !state.nodeId) return null;
 
     const handleChange = (key: string, value: any) => {
-        //console.log("KEY:",key)
-        //console.log("value:",value)
         setDevice(prevData => ({
             ...prevData,
             specification:{

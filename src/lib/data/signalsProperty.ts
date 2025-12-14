@@ -35,6 +35,9 @@ export const SignalPropoerties: SignalProperty[] = [
             amp: 0,
             signature: "POWER",
             signatureNumber:"01",
+            modelNumber:"",
+            maker:"",
+            note:"",
         }
     },
     {
@@ -46,6 +49,9 @@ export const SignalPropoerties: SignalProperty[] = [
             amp: 0,
             signature: "POWER",
             signatureNumber:"01",
+            modelNumber:"",
+            maker:"",
+            note:"",
         }
     },
     {

@@ -7,7 +7,7 @@ import React, { useState, useCallback, useEffect, } from 'react';
 
 import { PageLayout } from './components/LayoutComponents';
 import { StyledContentContainer } from './../styles/GeneralStyles';
-import {TreeNode,NoteModalState,SelectModalState,SelectOption} from '../lib/type'
+import {TreeNode,NoteModalState,SelectModalState,SelectOption,SelectTableModalState} from '../lib/type'
 import {loadTreeDataFromLocalStorage,saveTreeDataToLocalStorage} from '../lib/localStrage'
 import {ResetButton,SvgButton} from './page_css'
 import {TreeDisplay,DecisionSelectModal,NoteEditorModal,} from './components/Tree'
@@ -22,7 +22,7 @@ import swal from 'sweetalert2';
 import {Signals} from './../lib/data/signalsData'
 import {baseColors} from './page_css'
 import {SignalPropoerties} from './../lib/data/signalsProperty'
-
+import {TableModal} from './components/Table'
 const ROOT_SELECT_OPTIONS: SelectOption[] = [
     { id: '3φ3w', caption: '3φ3w',  wire:3,color: baseColors.default },
     { id: '1φ2w', caption: '1φ2w', wire:2, color: baseColors.default },
@@ -39,7 +39,10 @@ const INITIAL_TREE_DATA: TreeNode[] = [
             "volt": 200,
             "amp": 20,
             "signature": "POWER",
-            "signatureNumber": "001"
+            "signatureNumber": "001",
+            "modelNumber":"",
+            "maker":"",
+            "note":"",
         }
     },
     "children": [
@@ -334,7 +337,10 @@ const RESET_TREE_DATA: TreeNode[] = [
                 volt:200,
                 amp:20,
                 signature: "POWER",
-                signatureNumber:"01",
+                signatureNumber:"",
+                modelNumber:"",
+                maker:"",
+                note:"",
             },
 
         },
@@ -390,6 +396,7 @@ const App: React.FC = () => {
     const [treeData, setTreeData] = useState<TreeNode[]>([]);
     const [isMobile, setIsMobile] = useState(false);
     const [selectModalState, setSelectModalState] = useState<SelectModalState>({ isOpen: false, nodeId: null, currentValue: '', isRoot: false });
+    const [selectTableModalState, setSelectTableModalState] = useState<SelectTableModalState>({ isOpen: false });
     const [noteModalState, setNoteModalState] = useState<NoteModalState>({
         isOpen: false,
         nodeId: "1", 
@@ -402,7 +409,10 @@ const App: React.FC = () => {
                 volt:200,
                 amp:20,
                 signature: "POWER",
-                signatureNumber:"01",}
+                signatureNumber:"01",
+                modelNumber:"",
+                maker:"",
+                note:"",}
         }
 , });
     const [flags, setFlags] = useState<boolean>(false);
@@ -533,6 +543,7 @@ const App: React.FC = () => {
     }, []);
 
     const openSelectModal = useCallback((id: string, currentValue: string, isRoot: boolean) => setSelectModalState({ isOpen: true, nodeId: id, currentValue, isRoot }), []);
+    const openSelectTableModal = useCallback(() => setSelectTableModalState({ isOpen: true }), []);
     const handleSelect = useCallback((nodeId: string, value: string,treeData:TreeNode[]) => {
             const { node: targetNode, parent: parentNode, index}= findNode(treeData, nodeId);
             const roots = ROOT_SELECT_OPTIONS.concat(Signals);
@@ -595,7 +606,10 @@ const App: React.FC = () => {
                         volt:200,
                         amp:20,
                         signature: "POWER",
-                        signatureNumber:"01"
+                        signatureNumber:"01",
+                        modelNumber:"",
+                        maker:"",
+                        note:"",
                     }
                 },
              }); 
@@ -640,8 +654,10 @@ const App: React.FC = () => {
 
     return (
       <PageLayout>
+        
         <StyledContentContainer>
-                <PageTitle >Auto電気図面</PageTitle>      
+                <PageTitle >Auto電気図面</PageTitle>
+                
                 <div style={{ marginBottom: '0.5rem', textAlign: 'right' ,display: 'flex',}}>
                     <ResetButton onClick={handleReset}>リセット</ResetButton>
                     <SvgButton 
@@ -656,7 +672,15 @@ const App: React.FC = () => {
                             getDownloadFile(extDXF);
                         }}
                         tabIndex={0}>DXF保存</SvgButton>
+                    <SvgButton 
+                        onClick={ () =>openSelectTableModal()}
+                        tabIndex={0}>部品表表示</SvgButton>
                 </div>
+                <TableModal 
+                    state={selectTableModalState} 
+                    onClose={() => setSelectTableModalState({ isOpen: false})}
+                    treeData = {treeData}
+                />
                 <EditorLayout>
                     <NodePalette />
                     <CanvasLayout>
@@ -670,7 +694,7 @@ const App: React.FC = () => {
                             <TreeDisplay 
                                 nodes={treeData} 
                                 onRemove={onRemove} 
-                                openSelectModal={openSelectModal} 
+                                openSelectModal={openSelectModal}  
                                 openNoteModal={openNoteModal} 
                                 onDropNode={onDropNode} 
                                 onDropLineNode={onDropLineNode}
@@ -700,8 +724,13 @@ const App: React.FC = () => {
                             volt:200,
                             amp:20,
                             signature: "POWER",
-                            signatureNumber:"01",},
+                            signatureNumber:"01",
+                            modelNumber:"",
+                            maker:"",
+                            note:"",},
                     },})} />
+
+            
         </StyledContentContainer>
     </PageLayout>
     );

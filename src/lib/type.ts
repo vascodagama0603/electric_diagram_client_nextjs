@@ -15,13 +15,11 @@ Power | Dev | Sw | OffDelaySw | OnDelaySw | OnDelayOffDelaySw | MagnetSwitch | C
  Coil | Thermal | TouthSensor | ProximitySwitch | Fuze | Motor | ThermoCouple | 
  Lamp | Buzzer | Elb ;
 
-export interface Power{
+export interface Power extends Parts{
     type: "POWER";
     volt:number;
     phase:string;
     amp: number;
-    signature: string;
-    signatureNumber:string,
 }
 //-----------------------------------------
 interface Parts{
@@ -194,13 +192,25 @@ export interface SelectModalState {
     currentValue: string;
     isRoot: boolean;
 }
-
+export interface SelectTableModalState{
+    isOpen: boolean;
+}
 export interface DecisionSelectModalProps {
     state: SelectModalState;
     onSelect: (nodeId: string, value: string,treeData:TreeNode[]) => void;
     onClose: () => void;
     treeData: TreeNode[];
 }
+export interface DecisionSelectTableModalProps {
+    state: SelectTableModalState;
+    onClose: () => void;
+    treeData: TreeNode[];
+}
+
+export interface TreeModalProps {
+    treeData: TreeNode[];
+}
+
 
 export interface TreeDisplayProps {
     nodes: TreeNode[];
@@ -298,3 +308,10 @@ export interface TableOfContentsProps {
 }
 
 
+export interface PartsList{
+    maker:string;
+    modelNumber:string;
+    amount:number;
+    note:string;
+    [key: string]: string | number | boolean | null | undefined;
+}

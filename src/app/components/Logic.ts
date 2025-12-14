@@ -1,4 +1,4 @@
-import {TreeNode} from '../../lib/type'
+import {TreeNode,PartsList} from '../../lib/type'
 
 export const generateId = () => Math.random().toString(36).substring(2, 9);
 export const findNode = (nodes: TreeNode[], id: string, parent?: TreeNode): { node: TreeNode | undefined, parent: TreeNode | undefined, index: number } => {
@@ -26,6 +26,28 @@ export const getNode = (nodes: TreeNode[],signatureNumbering:{ [name: string]: n
         nodes[i].device.specification.signatureNumber = String(signatureNumbering[targetType]).padStart(3, '0');
         getNode(nodes[i].children,signatureNumbering);
     }
-    //console.log("NODE:",nodes)
     return
+};
+
+export const flatNode = (nodes: TreeNode[],plist:PartsList[]) => {
+    for (let i = 0; i < nodes.length; i++) {
+        const targetType = nodes[i].device.specification?.modelNumber
+        const existPartsName = plist.find(parts => parts.modelNumber === targetType);
+        if(existPartsName){
+            existPartsName.amount = existPartsName.amount + 1;
+            existPartsName.note =  existPartsName.note + "," + nodes[i].device.specification.signature+nodes[i].device.specification.signatureNumber;
+        }
+        else{
+            if(targetType){
+                const new_PartsList :PartsList ={
+                        modelNumber:nodes[i].device.specification.modelNumber,
+                        amount:1,
+                        maker:nodes[i].device.specification.maker,
+                        note:nodes[i].device.specification.signature+nodes[i].device.specification.signatureNumber,
+                }
+                plist.push(new_PartsList)
+            }
+        }
+        flatNode(nodes[i].children, plist);
+    }
 };
