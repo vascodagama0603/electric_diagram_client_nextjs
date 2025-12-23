@@ -14,7 +14,10 @@ export const categoryLabels: Label = {
     ampTemp:"トリップ電流[A]",
     ampLimit:"トリップ電流[A]",
     watt:"定格出力[kW]",
+    watt_w:"定格出力[W]",
     color:"色",
     note:"補足",
+    splyVolt:"変換前電圧[V]",
+    convVolt:"変換後電圧[V]",
 
 }

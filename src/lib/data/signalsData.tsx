@@ -2,6 +2,7 @@
 export const DEVICE_1P = "S00060_1P"
 export const DEVICE_2P = "S00060_2P"
 export const DEVICE_3P = "S00060_3P"
+export const POWER_SUPPLY = "S00060_EX1"
 export const MAKE_CONTACT = "S00227"
 export const BREAK_CONTACT = "S00229"
 export const TWO_MAKE_CONTACT = "S00234"
@@ -58,6 +59,7 @@ export const LINER_MOTOR_2P = "S00820_2P"
 export const LINER_MOTOR_3P = "S00820_3P"
 export const STEPPING_MOTOR_2P = "S00821_2P"
 export const STEPPING_MOTOR_3P = "S00821_3P"
+export const TRANS_TWO_WINDS = "S00842"
 export const THEMOCOUPLE = "S00952"
 export const LAMP = "S00965"
 export const BUZZER = "S00973"
@@ -101,6 +103,14 @@ export const Signals = [
     caption:"デバイス3極",
     did:"02-01-02(3P)",
     discription:"3極の装置,デバイス,機能部品,構成部品などに使用します。"
+  },
+  {
+    id: POWER_SUPPLY,
+    wire:2,
+    search:"Power,supply,AVR,スイッチング電源,パワーサプライ",
+    caption:"パワーサプライ",
+    did:"02-01-02(カスタム)",
+    discription:"パワーサプライです。"
   },
   {
     id: MAKE_CONTACT,
@@ -619,6 +629,14 @@ export const Signals = [
     caption:"ステッピングモータ3極",
     did:"06-04-03(3P)",
     discription:"パルス信号に応じて段階的に回転するモーターです。正確な角度制御や位置決めが必要な用途（例：プリンター、精密機器）に使用されます。"
+  },
+  {
+    id: TRANS_TWO_WINDS,
+    wire:2,
+    search:"TRANS,トランス,2P",
+    caption:"トランス",
+    did:"06-09-02",
+    discription:"2巻線変圧器です。"
   },
   {
     id: THEMOCOUPLE,

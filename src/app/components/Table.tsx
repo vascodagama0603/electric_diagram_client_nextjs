@@ -5,7 +5,7 @@ import {
   createMRTColumnHelper,
 } from 'material-react-table';
 
-import React, { useState, useCallback, useEffect, } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { Box, Button } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { mkConfig, generateCsv, download } from 'export-to-csv'; //or use your library of choice here
@@ -13,7 +13,6 @@ const CloseIcon = (color: string) => (<svg xmlns="http://www.w3.org/2000/svg" wi
 
 import {
   TreeModalProps,
-  TreeNode,
   DecisionSelectTableModalProps,
   PartsList
 } from '../../lib/type'

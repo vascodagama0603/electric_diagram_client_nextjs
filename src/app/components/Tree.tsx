@@ -8,7 +8,9 @@ import {TreeNode,LayoutNode,SelectOption,SVGConnectionProps,CustomSelectFieldPro
   Device,Power,Sw,OffDelaySw,OnDelaySw,OnDelayOffDelaySw,
   Dev,Elb,MagnetSwitch,CircuitBreaker,Coil,Thermal,TouthSensor,
   ProximitySwitch,Fuze,Motor,ThermoCouple,Lamp,Buzzer,
-  Specification,NoteModalState
+  Specification,NoteModalState,
+  Trans,
+  PowerSupply
 } from '../../lib/type'
 import {saveTreeDataToLocalStorage} from '../../lib/localStrage'
 import {Signals} from '../../lib/data/signalsData'
@@ -214,12 +216,17 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({ state, onSave,
                     currentValue = item.specification[key as keyof Buzzer];
                 }else if (item.specification.type === "ELB") {
                     currentValue = item.specification[key as keyof Elb];
+                }else if (item.specification.type === "TR") {
+                    currentValue = item.specification[key as keyof Trans];
+                }else if (item.specification.type === "PS") {
+                    currentValue = item.specification[key as keyof PowerSupply];
                 }
                 if (key === 'modelNumber') inputType = 'textarea';
                 if (key === 'note') inputType = 'textarea';
                 //if (typeof currentValue === 'boolean') inputType = 'checkbox';
                 
-        //console.log("currentValue]:",key)
+        //console.log("currentValue[key]:",key)
+        //console.log("currentValue:",currentValue)
             return (
             <div key={id+"_"+key}>
                 <p>{categoryLabels[key]}</p>

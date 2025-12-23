@@ -173,14 +173,16 @@ const INITIAL_TREE_DATA: TreeNode[] = [
                     "id": "cj7wbo7",
                     "device": {
                         "type": "",
-                        "caption": "S00060_2P",
+                        "caption": "S00060_EX1",
                         "specification": {
                             "modelNumber": "S8VK-G12024",
                             "maker": "OMRON",
-                            "signature": "AVR",
+                            "signature": "PS",
                             "signatureNumber": "001",
-                            "type": "DEVICE",
-                            "amp": 5,
+                            "splyVolt":200,
+                            "convVolt":24,
+                            "type": "PS",
+                            "watt_w": 120,
                             "note": ""
                         }
                     },

@@ -10,7 +10,10 @@ export const SpecificationOrder = [
     "ampTemp",
     "ampLimit",
     "sensitivity",
+    "splyVolt",
+    "convVolt",
     "watt",
+    "watt_w",
     "OffDelay",
     "OnDelay",
     "color",
@@ -646,6 +649,34 @@ export const SignalPropoerties: SignalProperty[] = [
             signatureNumber: "01",
             type: "M",
             watt:0,
+            note: ""
+        }
+    },
+    {
+        id:data.TRANS_TWO_WINDS,
+        specification:{
+            modelNumber:"",
+            maker:"",
+            signature: "TR",
+            signatureNumber: "01",
+            type: "TR",
+            splyVolt:0,
+            convVolt:0,
+            watt_w:0,
+            note: ""
+        }
+    },
+    {
+        id:data.POWER_SUPPLY,
+        specification:{
+            modelNumber:"",
+            maker:"",
+            signature: "PS",
+            signatureNumber: "01",
+            type: "PS",
+            splyVolt:0,
+            convVolt:0,
+            watt_w:0,
             note: ""
         }
     },

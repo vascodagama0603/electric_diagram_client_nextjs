@@ -13,7 +13,7 @@ export interface Device{
 export type Specification = 
 Power | Dev | Sw | OffDelaySw | OnDelaySw | OnDelayOffDelaySw | MagnetSwitch | CircuitBreaker |
  Coil | Thermal | TouthSensor | ProximitySwitch | Fuze | Motor | ThermoCouple | 
- Lamp | Buzzer | Elb ;
+ Lamp | Buzzer | Elb | Trans | PowerSupply;
 
 export interface Power extends Parts{
     type: "POWER";
@@ -108,6 +108,19 @@ export interface Elb extends Parts{
     sensitivity: number;
 }
 
+export interface Trans extends Parts{
+    type: "TR";
+    splyVolt:number;
+    convVolt:number;
+    watt_w:number;
+}
+
+export interface PowerSupply extends Parts{
+    type: "PS";
+    splyVolt:number;
+    convVolt:number;
+    watt_w:number;
+}
 
 export interface LayoutNode extends TreeNode {
     x: number;
@@ -307,6 +320,7 @@ export interface TableOfContentsProps {
     headings: Heading[];
 }
 
+// src/app/components/Table.tsx
 
 export interface PartsList{
     maker:string;
